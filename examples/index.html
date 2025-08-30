@@ -814,13 +814,18 @@
     <script>
         // コピー機能（将来の拡張用）
         function copyCode(button) {
-            const codeBlock = button.previousElementSibling;
+            const codeBlock = button.nextElementSibling;
             const text = codeBlock.textContent;
-            navigator.clipboard.writeText(text).then(() => {
-                button.textContent = 'コピー済み!';
-                setTimeout(() => {
-                    button.textContent = 'コピー';
+            
+            navigator.clipboard.writeText(text).then(function() {
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+                setTimeout(function() {
+                    button.textContent = 'Copy';
+                    button.classList.remove('copied');
                 }, 2000);
+            }, function(err) {
+                console.error('Could not copy text: ', err);
             });
         }
     </script>
