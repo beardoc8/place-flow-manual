@@ -2,10 +2,9 @@
 
 const { placeFlow } = require('/Users/yoshiokatakanori/git/place-flow/packages/core/dist/index.js');
 
-const testDsl = `screen "Data Flow" size(400, 150) {
-  database "DB" at(50, 40) size(80, 70) as db
-  node "API" at(250, 40) size(80, 70) as api
-  db -> api
+const testDsl = `screen "Person Examples" size(400, 200) {
+  person "ユーザー" at(50, 60) size(80, 100)
+  person "管理者" at(200, 60) size(80, 100) style(fill: "#28a745")
 }`;
 
 console.log('Testing name-based connection syntax...\n');

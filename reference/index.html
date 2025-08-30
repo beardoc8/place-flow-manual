@@ -1039,17 +1039,22 @@
                     <div class="code-block">
             <button class="copy-button" onclick="copyCode(this)">Copy</button>
 <pre><span class="keyword">screen</span> <span class="string">"Styled Elements"</span> size(400, 200) {
-  <span class="keyword">box</span> <span class="string">"Primary Box"</span> at(50, 50) size(150, 60) style(
-    background: <span class="string">"#007bff"</span>, 
-    color: <span class="string">"white"</span>, 
-    border: <span class="string">"2px solid #0056b3"</span>
-  )
-  <span class="keyword">circle</span> <span class="string">"Alert"</span> at(300, 80) radius(35) style(
-    fill: <span class="string">"#dc3545"</span>, 
-    color: <span class="string">"white"</span>, 
-    fontWeight: <span class="string">"bold"</span>
-  )
+  <span class="keyword">box</span> <span class="string">"Primary Box"</span> at(50, 50) size(150, 60) style(background: <span class="string">"#007bff"</span>, color: <span class="string">"white"</span>, border: <span class="string">"2px solid #0056b3"</span>)
+  <span class="keyword">circle</span> <span class="string">"Alert"</span> at(300, 80) radius(35) style(fill: <span class="string">"#dc3545"</span>, color: <span class="string">"white"</span>, fontWeight: <span class="string">"bold"</span>)
 }</pre>
+                    </div>
+
+                    <div class="preview-box">
+                        <h4>生成結果:</h4>
+                        <div class="svg-preview">
+                            <svg width="400" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="100%" height="100%" fill="white"/>
+                                <rect style="fill: white; stroke: black; stroke-width: 1; fill: #007bff; stroke-width: 2px; stroke: #0056b3" x="50" y="50" width="150" height="60"/>
+                                <text style="text-anchor: middle; dominant-baseline: middle; fill: white; font-weight: normal; font-family: Arial, sans-serif; font-size: 14px; fill: white" x="125" y="80">Primary Box</text>
+                                <circle style="fill: #dc3545" cx="300" cy="80" r="35" fill="white" stroke="black" stroke-width="1"/>
+                                <text style="fill: white; font-weight: bold; fill: white" x="300" y="80" dy="0.35em" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">Alert</text>
+                            </svg>
+                        </div>
                     </div>
 
                     <div class="tip">
