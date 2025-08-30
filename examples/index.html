@@ -645,29 +645,17 @@
   }
   
   <span class="comment">// 外部システム</span>
-  <span class="keyword">box</span> <span class="string">"外部システム"</span> at(50, 420) size(570, 80) style(
-    background: <span class="string">"#ffe8e8"</span>, 
-    border: <span class="string">"2px solid #dc3545"</span>
-  ) {
+  <span class="keyword">box</span> <span class="string">"外部システム"</span> at(50, 420) size(570, 80) style(background: <span class="string">"#ffe8e8"</span>, border: <span class="string">"2px solid #dc3545"</span>) {
     <span class="keyword">node</span> <span class="string">"SMS Gateway"</span> at(50, 15) size(100, 50) <span class="keyword">as</span> sms
     <span class="keyword">node</span> <span class="string">"Email Service"</span> at(180, 15) size(100, 50) <span class="keyword">as</span> email
     <span class="keyword">node</span> <span class="string">"Payment Gateway"</span> at(310, 15) size(120, 50) <span class="keyword">as</span> paygw
     <span class="keyword">database</span> <span class="string">"Analytics"</span> at(460, 15) size(100, 50) <span class="keyword">as</span> analytics
   }
   
-  <span class="comment">// 接続線（API Gatewayからマイクロサービスへ）</span>
-  <span class="keyword">arrow</span> from(350, 110) to(110, 150)
-  <span class="keyword">arrow</span> from(380, 110) to(260, 150)
-  <span class="keyword">arrow</span> from(410, 110) to(410, 150)
-  <span class="keyword">arrow</span> from(450, 110) to(560, 150)
-  
-  <span class="comment">// マイクロサービス間連携</span>
-  <span class="keyword">arrow</span> from(170, 200) to(200, 200) style(strokeWidth: 1, stroke: <span class="string">"#999"</span>)
-  <span class="keyword">arrow</span> from(320, 200) to(350, 200) style(strokeWidth: 1, stroke: <span class="string">"#999"</span>)
-  
-  <span class="comment">// 外部システムとの連携</span>
-  <span class="keyword">arrow</span> from(560, 250) to(530, 420) style(strokeWidth: 1, stroke: <span class="string">"#dc3545"</span>)
-  <span class="keyword">arrow</span> from(410, 250) to(380, 420) style(strokeWidth: 1, stroke: <span class="string">"#dc3545"</span>)
+  <span class="comment">// メイン接続（見やすい配置）</span>
+  gateway -- userapi <span class="string">"ユーザーAPI"</span>
+  gateway -- orderapi <span class="string">"注文API"</span>
+  gateway -- payapi <span class="string">"決済API"</span>
 }</pre>
                     </div>
 
@@ -679,55 +667,60 @@
                     <div class="preview-box">
                         <h4>📋 生成結果プレビュー</h4>
                         <div class="svg-preview">
-                            <svg width="450" height="300" viewBox="0 0 450 300" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto;">
+                            <svg width="450" height="350" viewBox="0 0 450 350" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto;">
                                 <rect width="100%" height="100%" fill="white"/>
-                                <text x="225" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="14px" font-weight="bold" fill="#333">マイクロサービス構成</text>
+                                <text x="225" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="14px" font-weight="bold" fill="#333">マイクロサービス構成</text>
                                 <!-- API Gateway -->
-                                <g style="fill: white; stroke: black; stroke-width: 2; fill: #ff6b6b">
-                                    <polygon points="230,35 275,55 230,75 185,55" fill="#ff6b6b" stroke="black" stroke-width="2"/>
-                                    <line x1="275" y1="55" x2="290" y2="48" stroke="black" stroke-width="1"/>
-                                    <line x1="275" y1="55" x2="290" y2="62" stroke="black" stroke-width="1"/>
-                                    <circle cx="294" cy="48" r="2" fill="blue"/>
-                                    <circle cx="294" cy="62" r="2" fill="blue"/>
+                                <g style="fill: #ff6b6b; stroke: black; stroke-width: 2">
+                                    <polygon points="225,35 265,50 225,65 185,50" fill="#ff6b6b" stroke="black" stroke-width="1"/>
+                                    <line x1="265" y1="50" x2="280" y2="44" stroke="black" stroke-width="1"/>
+                                    <line x1="265" y1="50" x2="280" y2="56" stroke="black" stroke-width="1"/>
+                                    <circle cx="283" cy="44" r="2" fill="blue"/>
+                                    <circle cx="283" cy="56" r="2" fill="blue"/>
                                 </g>
-                                <text x="230" y="55" text-anchor="middle" font-family="Arial, sans-serif" font-size="10px" fill="white">API Gateway</text>
+                                <text x="225" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="9px" fill="white">API Gateway</text>
                                 <!-- User Service -->
-                                <rect x="30" y="90" width="70" height="60" fill="#4ecdc4" stroke="black" stroke-width="1"/>
-                                <text x="65" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="10px" fill="white">User Service</text>
-                                <rect x="35" y="105" width="60" height="18" fill="#E8F4FD" stroke="#4A90E2" stroke-width="1"/>
-                                <text x="65" y="114" text-anchor="middle" font-family="Arial, sans-serif" font-size="8px" fill="#333">User DB</text>
+                                <rect x="30" y="100" width="80" height="70" fill="#4ecdc4" stroke="black" stroke-width="1"/>
+                                <text x="70" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="10px" fill="white">User Service</text>
+                                <rect x="35" y="115" width="70" height="20" fill="#E8F4FD" stroke="#4A90E2" stroke-width="1"/>
+                                <text x="70" y="127" text-anchor="middle" font-family="Arial, sans-serif" font-size="8px" fill="#333">User DB</text>
                                 <!-- Order Service -->
-                                <rect x="120" y="90" width="70" height="60" fill="#45b7d1" stroke="black" stroke-width="1"/>
-                                <text x="155" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="10px" fill="white">Order Service</text>
-                                <rect x="125" y="105" width="60" height="18" fill="#E8F4FD" stroke="#4A90E2" stroke-width="1"/>
-                                <text x="155" y="114" text-anchor="middle" font-family="Arial, sans-serif" font-size="8px" fill="#333">Order DB</text>
+                                <rect x="130" y="100" width="80" height="70" fill="#45b7d1" stroke="black" stroke-width="1"/>
+                                <text x="170" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="10px" fill="white">Order Service</text>
+                                <rect x="135" y="115" width="70" height="20" fill="#E8F4FD" stroke="#4A90E2" stroke-width="1"/>
+                                <text x="170" y="127" text-anchor="middle" font-family="Arial, sans-serif" font-size="8px" fill="#333">Order DB</text>
                                 <!-- Payment Service -->
-                                <rect x="210" y="90" width="70" height="60" fill="#f7b731" stroke="black" stroke-width="1"/>
-                                <text x="245" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="10px" fill="white">Payment Service</text>
-                                <rect x="215" y="105" width="60" height="18" fill="#E8F4FD" stroke="#4A90E2" stroke-width="1"/>
-                                <text x="245" y="114" text-anchor="middle" font-family="Arial, sans-serif" font-size="8px" fill="#333">Payment DB</text>
-                                <!-- Notification Service -->
-                                <rect x="300" y="90" width="70" height="60" fill="#a55eea" stroke="black" stroke-width="1"/>
-                                <text x="335" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="10px" fill="white">Notification Service</text>
-                                <rect x="305" y="105" width="60" height="18" fill="#E8F4FD" stroke="#4A90E2" stroke-width="1"/>
-                                <text x="335" y="114" text-anchor="middle" font-family="Arial, sans-serif" font-size="8px" fill="#333">Queue</text>
+                                <rect x="230" y="100" width="80" height="70" fill="#f7b731" stroke="black" stroke-width="1"/>
+                                <text x="270" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="10px" fill="white">Payment Service</text>
+                                <rect x="235" y="115" width="70" height="20" fill="#E8F4FD" stroke="#4A90E2" stroke-width="1"/>
+                                <text x="270" y="127" text-anchor="middle" font-family="Arial, sans-serif" font-size="8px" fill="#333">Payment DB</text>
                                 <!-- 共通サービス -->
-                                <rect x="30" y="170" width="340" height="50" fill="#f8f9fa" stroke="#6c757d" stroke-width="2"/>
-                                <text x="200" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="12px" fill="#333">共通サービス</text>
-                                <rect x="40" y="180" width="50" height="30" fill="#E8F4FD" stroke="#4A90E2" stroke-width="1"/>
-                                <text x="65" y="197" text-anchor="middle" font-family="Arial, sans-serif" font-size="8px" fill="#333">Redis Cache</text>
-                                <rect x="100" y="180" width="50" height="30" fill="#E8F4FD" stroke="#4A90E2" stroke-width="1"/>
-                                <text x="125" y="197" text-anchor="middle" font-family="Arial, sans-serif" font-size="8px" fill="#333">Config Server</text>
-                                <rect x="160" y="180" width="50" height="30" fill="#E8F4FD" stroke="#4A90E2" stroke-width="1"/>
-                                <text x="185" y="197" text-anchor="middle" font-family="Arial, sans-serif" font-size="8px" fill="#333">Log Service</text>
-                                <rect x="220" y="180" width="50" height="30" fill="#E8F4FD" stroke="#4A90E2" stroke-width="1"/>
-                                <text x="245" y="197" text-anchor="middle" font-family="Arial, sans-serif" font-size="8px" fill="#333">Monitoring</text>
-                                <!-- 接続線 -->
-                                <defs><marker id="arrow-ms" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><polygon points="0,0 6,3 0,6" fill="#666"/></marker></defs>
-                                <line x1="205" y1="55" x2="65" y2="90" stroke="#666" stroke-width="1" marker-end="url(#arrow-ms)"/>
-                                <line x1="220" y1="55" x2="155" y2="90" stroke="#666" stroke-width="1" marker-end="url(#arrow-ms)"/>
-                                <line x1="240" y1="55" x2="245" y2="90" stroke="#666" stroke-width="1" marker-end="url(#arrow-ms)"/>
-                                <line x1="255" y1="55" x2="335" y2="90" stroke="#666" stroke-width="1" marker-end="url(#arrow-ms)"/>
+                                <rect x="30" y="200" width="290" height="50" fill="#f8f9fa" stroke="#6c757d" stroke-width="2"/>
+                                <text x="175" y="230" text-anchor="middle" font-family="Arial, sans-serif" font-size="11px" fill="#333">共通サービス</text>
+                                <rect x="40" y="210" width="60" height="30" fill="#E8F4FD" stroke="#4A90E2" stroke-width="1"/>
+                                <text x="70" y="227" text-anchor="middle" font-family="Arial, sans-serif" font-size="8px" fill="#333">Redis Cache</text>
+                                <rect x="110" y="210" width="60" height="30" fill="#E8F4FD" stroke="#4A90E2" stroke-width="1"/>
+                                <text x="140" y="227" text-anchor="middle" font-family="Arial, sans-serif" font-size="8px" fill="#333">Config Server</text>
+                                <rect x="180" y="210" width="60" height="30" fill="#E8F4FD" stroke="#4A90E2" stroke-width="1"/>
+                                <text x="210" y="227" text-anchor="middle" font-family="Arial, sans-serif" font-size="8px" fill="#333">Log Service</text>
+                                <rect x="250" y="210" width="60" height="30" fill="#E8F4FD" stroke="#4A90E2" stroke-width="1"/>
+                                <text x="280" y="227" text-anchor="middle" font-family="Arial, sans-serif" font-size="8px" fill="#333">Monitoring</text>
+                                <!-- 外部システム -->
+                                <rect x="30" y="270" width="290" height="50" fill="#ffe8e8" stroke="#dc3545" stroke-width="2"/>
+                                <text x="175" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="11px" fill="#333">外部システム</text>
+                                <rect x="40" y="280" width="60" height="30" fill="#E8F4FD" stroke="#4A90E2" stroke-width="1"/>
+                                <text x="70" y="297" text-anchor="middle" font-family="Arial, sans-serif" font-size="8px" fill="#333">SMS Gateway</text>
+                                <rect x="110" y="280" width="60" height="30" fill="#E8F4FD" stroke="#4A90E2" stroke-width="1"/>
+                                <text x="140" y="297" text-anchor="middle" font-family="Arial, sans-serif" font-size="8px" fill="#333">Email Service</text>
+                                <rect x="180" y="280" width="60" height="30" fill="#E8F4FD" stroke="#4A90E2" stroke-width="1"/>
+                                <text x="210" y="297" text-anchor="middle" font-family="Arial, sans-serif" font-size="8px" fill="#333">Payment Gateway</text>
+                                <!-- 接続線（改善版） -->
+                                <line x1="205" y1="50" x2="70" y2="100" stroke="#666" stroke-width="1"/>
+                                <text x="137" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="8px" fill="#666">ユーザーAPI</text>
+                                <line x1="225" y1="50" x2="170" y2="100" stroke="#666" stroke-width="1"/>
+                                <text x="197" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="8px" fill="#666">注文API</text>
+                                <line x1="245" y1="50" x2="270" y2="100" stroke="#666" stroke-width="1"/>
+                                <text x="257" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="8px" fill="#666">決済API</text>
                             </svg>
                         </div>
                     </div>
