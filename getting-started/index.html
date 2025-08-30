@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started - PlaceFlow Manual</title>
+    <meta name="description" content="PlaceFlow DSLの使い方を学ぶ。基本構文から実際の使用例まで。">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            background: white;
+            margin: 2rem auto;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 1.8rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
+        }
+
+        h3 {
+            color: #444;
+            font-size: 1.3rem;
+            margin-top: 2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .intro {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f0f4ff;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            border: 1px solid #333;
+        }
+
+        .code-block .keyword {
+            color: #569cd6;
+        }
+
+        .code-block .string {
+            color: #ce9178;
+        }
+
+        .code-block .comment {
+            color: #6a9955;
+            font-style: italic;
+        }
+
+        .step {
+            background: #fff;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .installation {
+            background: #e8f5e8;
+            border: 1px solid #c3e6c3;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .installation h3 {
+            color: #2d5a2d;
+            margin-top: 0;
+        }
+
+        .tip {
+            background: #fff9c4;
+            border: 1px solid #f0e68c;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .tip::before {
+            content: "💡 ";
+            font-weight: bold;
+        }
+
+        .example-output {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .nav-button {
+            padding: 0.8rem 1.5rem;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background: #5a67d8;
+        }
+
+        .nav-button.secondary {
+            background: #6c757d;
+        }
+
+        .nav-button.secondary:hover {
+            background: #5a6268;
+        }
+
+        @media (max-width: 768px) {
+            main {
+                margin: 1rem;
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="../" class="logo">🎨 PlaceFlow</a>
+            <div class="breadcrumb">
+                <a href="../">Home</a> / Getting Started
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1>Getting Started</h1>
+        
+        <div class="intro">
+            PlaceFlowは、シンプルなDSL（Domain Specific Language）を使用して、UI/UXレイアウト、システム図、フローチャートを作成できるツールです。コードのようにレイアウトを記述し、美しいSVGとして出力できます。
+        </div>
+
+        <h2>インストール</h2>
+        
+        <div class="installation">
+            <h3>VSCode拡張機能（推奨）</h3>
+            <p>Visual Studio Code Marketplaceから<strong>PlaceFlow</strong>拡張機能をインストールします。</p>
+            
+            <div class="step">
+                <span class="step-number">1</span>
+                <strong>VSCodeでMarketplaceを開く</strong><br>
+                <code>Ctrl+Shift+X</code> (macOS: <code>Cmd+Shift+X</code>)
+            </div>
+            
+            <div class="step">
+                <span class="step-number">2</span>
+                <strong>PlaceFlowを検索</strong><br>
+                検索ボックスに「PlaceFlow」と入力
+            </div>
+            
+            <div class="step">
+                <span class="step-number">3</span>
+                <strong>インストール</strong><br>
+                beardoc製のPlaceFlow拡張機能をインストール
+            </div>
+        </div>
+
+        <h2>基本構文</h2>
+
+        <h3>画面・レイアウト定義</h3>
+        <p>PlaceFlowでは<code>screen</code>または<code>layout</code>キーワードでレイアウトを定義します。</p>
+
+        <div class="code-block">
+<pre><span class="keyword">screen</span> <span class="string">"画面名"</span> size(幅, 高さ) {
+  <span class="comment">// 要素を配置</span>
+}
+
+<span class="comment">// 自動サイズ調整</span>
+<span class="keyword">screen</span> <span class="string">"画面名"</span> size(auto) {
+  <span class="comment">// 要素の配置に合わせて自動サイズ調整</span>
+}</pre>
+        </div>
+
+        <h3>基本的な要素</h3>
+        
+        <p><strong>box（ボックス）</strong> - 矩形の領域</p>
+        <div class="code-block">
+<pre><span class="keyword">box</span> <span class="string">"テキスト"</span> at(x, y) size(幅, 高さ)</pre>
+        </div>
+
+        <p><strong>button（ボタン）</strong> - ボタン要素</p>
+        <div class="code-block">
+<pre><span class="keyword">button</span> <span class="string">"ボタンテキスト"</span> at(x, y) size(幅, 高さ)</pre>
+        </div>
+
+        <p><strong>input（入力欄）</strong> - テキスト入力欄</p>
+        <div class="code-block">
+<pre><span class="keyword">input</span> <span class="string">"プレースホルダー"</span> at(x, y) size(幅, 高さ)</pre>
+        </div>
+
+        <h2>最初の例：ログインフォーム</h2>
+        
+        <p>PlaceFlowで簡単なログインフォームを作成してみましょう。</p>
+
+        <div class="code-block">
+<pre><span class="keyword">screen</span> <span class="string">"ログインフォーム"</span> size(400, 300) {
+  <span class="keyword">box</span> <span class="string">"フォーム"</span> at(50, 50) size(300, 200) {
+    <span class="keyword">input</span> <span class="string">"ユーザー名"</span> at(20, 30) size(260, 40) <span class="keyword">as</span> username
+    <span class="keyword">input</span> <span class="string">"パスワード"</span> at(20, 90) size(260, 40) type=<span class="string">"password"</span> <span class="keyword">as</span> password
+    <span class="keyword">button</span> <span class="string">"ログイン"</span> at(20, 150) size(100, 40) <span class="keyword">as</span> loginBtn
+  }
+}</pre>
+        </div>
+
+        <div class="tip">
+            <strong>ヒント:</strong> <code>as</code>キーワードを使用して要素に名前を付けると、後で参照や接続に使用できます。
+        </div>
+
+        <h2>VSCodeでの使い方</h2>
+
+        <div class="step">
+            <span class="step-number">1</span>
+            <strong>新しいファイルを作成</strong><br>
+            <code>.pf</code> または <code>.placeflow</code> 拡張子でファイルを保存
+        </div>
+
+        <div class="step">
+            <span class="step-number">2</span>
+            <strong>PlaceFlow DSLを記述</strong><br>
+            上記の例をコピーしてファイルに貼り付け
+        </div>
+
+        <div class="step">
+            <span class="step-number">3</span>
+            <strong>プレビューを表示</strong><br>
+            エディタ右上の「Open Preview」アイコンをクリック、またはコマンドパレット（<code>Ctrl+Shift+P</code>）で「PlaceFlow: Open Preview」を実行
+        </div>
+
+        <div class="step">
+            <span class="step-number">4</span>
+            <strong>SVGをエクスポート</strong><br>
+            「Copy SVG Code」でクリップボードにコピー、または「Export to SVG」でファイル保存
+        </div>
+
+        <h2>次のステップ</h2>
+        
+        <p>基本的な使い方を習得したら、以下のページで更に詳しく学習できます：</p>
+        
+        <ul>
+            <li><strong><a href="../reference/">DSL Reference</a></strong> - 全ての構文と要素の詳細リファレンス</li>
+            <li><strong><a href="../examples/">Examples</a></strong> - 実用的なサンプル集とユースケース</li>
+            <li><strong><a href="../vscode-guide/">VSCode Guide</a></strong> - VSCode拡張機能の詳細な使い方</li>
+        </ul>
+
+        <div class="nav-buttons">
+            <a href="../" class="nav-button secondary">← ホームに戻る</a>
+            <a href="../reference/" class="nav-button">DSL Reference →</a>
+        </div>
+    </main>
+</body>
+</html>
