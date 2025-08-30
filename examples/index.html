@@ -777,20 +777,18 @@
   <span class="keyword">circle</span> <span class="string">"完了"</span> at(300, 430) radius(30) style(background: <span class="string">"#dc3545"</span>, color: <span class="string">"white"</span>) <span class="keyword">as</span> end
   
   <span class="comment">// フロー線</span>
-  <span class="keyword">arrow</span> from(300, 80) to(300, 130)
-  <span class="keyword">arrow</span> from(300, 180) to(300, 190)
+  start -> form
+  form -> validation
   
   <span class="comment">// バリデーション分岐</span>
-  <span class="keyword">arrow</span> from(260, 230) to(180, 230) style(stroke: <span class="string">"#dc3545"</span>)
-  <span class="keyword">text</span> <span class="string">"NG"</span> at(220, 220) style(color: <span class="string">"#dc3545"</span>, fontSize: 12)
+  validation -> error <span class="string">"NG"</span>
+  validation -> email <span class="string">"OK"</span>
   
-  <span class="keyword">arrow</span> from(300, 270) to(300, 330) style(stroke: <span class="string">"#28a745"</span>)
-  <span class="keyword">text</span> <span class="string">"OK"</span> at(310, 300) style(color: <span class="string">"#28a745"</span>, fontSize: 12)
+  <span class="comment">// 完了へ</span>
+  email -> end
   
   <span class="comment">// エラーからフォームへ戻る</span>
-  <span class="keyword">arrow</span> from(100, 250) to(80, 250) to(80, 155) to(250, 155) style(stroke: <span class="string">"#dc3545"</span>)
-  
-  <span class="keyword">arrow</span> from(300, 380) to(300, 400)
+  error -> form <span class="string">"再入力"</span>
 }</pre>
                     </div>
 
@@ -802,40 +800,41 @@
                     <div class="preview-box">
                         <h4>📋 生成結果プレビュー</h4>
                         <div class="svg-preview">
-                            <svg width="450" height="300" viewBox="0 0 450 300" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto;">
+                            <svg width="450" height="350" viewBox="0 0 450 350" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto;">
                                 <rect width="100%" height="100%" fill="white"/>
                                 <text x="225" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="14px" font-weight="bold" fill="#333">ユーザー登録フロー</text>
                                 <!-- 開始 -->
-                                <circle cx="225" cy="40" r="18" fill="#28a745" stroke="black" stroke-width="1"/>
-                                <text x="225" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="10px" fill="white">開始</text>
+                                <circle cx="225" cy="50" r="22" fill="#28a745" stroke="black" stroke-width="1"/>
+                                <text x="225" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="11px" fill="white">開始</text>
                                 <!-- フォーム入力 -->
-                                <rect x="185" y="70" width="80" height="35" fill="#e3f2fd" stroke="#2196f3" stroke-width="2"/>
-                                <text x="225" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-size="10px" fill="#333">フォーム入力</text>
+                                <rect x="185" y="95" width="80" height="40" fill="#e3f2fd" stroke="#2196f3" stroke-width="2"/>
+                                <text x="225" y="118" text-anchor="middle" font-family="Arial, sans-serif" font-size="10px" fill="#333">フォーム入力</text>
                                 <!-- バリデーション -->
-                                <circle cx="225" cy="140" r="25" fill="#fff3cd" stroke="#ffc107" stroke-width="2"/>
-                                <text x="225" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="8px" fill="#333">バリデーション</text>
-                                <text x="225" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="8px" fill="#333">OK？</text>
+                                <circle cx="225" cy="175" r="30" fill="#fff3cd" stroke="#ffc107" stroke-width="2"/>
+                                <text x="225" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="9px" fill="#333">バリデーション</text>
+                                <text x="225" y="182" text-anchor="middle" font-family="Arial, sans-serif" font-size="9px" fill="#333">OK？</text>
                                 <!-- エラー処理 -->
-                                <rect x="80" y="125" width="60" height="30" fill="#f8d7da" stroke="#dc3545" stroke-width="2"/>
-                                <text x="110" y="142" text-anchor="middle" font-family="Arial, sans-serif" font-size="8px" fill="#333">エラー表示</text>
+                                <rect x="80" y="155" width="60" height="30" fill="#f8d7da" stroke="#dc3545" stroke-width="2"/>
+                                <text x="110" y="172" text-anchor="middle" font-family="Arial, sans-serif" font-size="9px" fill="#333">エラー表示</text>
                                 <!-- メール送信 -->
-                                <rect x="185" y="190" width="80" height="35" fill="#e8f5e8" stroke="#28a745" stroke-width="2"/>
-                                <text x="225" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="9px" fill="#333">確認メール送信</text>
+                                <rect x="185" y="235" width="80" height="40" fill="#e8f5e8" stroke="#28a745" stroke-width="2"/>
+                                <text x="225" y="258" text-anchor="middle" font-family="Arial, sans-serif" font-size="9px" fill="#333">確認メール送信</text>
                                 <!-- 完了 -->
-                                <circle cx="225" cy="250" r="18" fill="#dc3545" stroke="black" stroke-width="1"/>
-                                <text x="225" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="10px" fill="white">完了</text>
-                                <!-- フロー線 -->
-                                <defs><marker id="arrow-uf" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><polygon points="0,0 6,3 0,6" fill="#666"/></marker></defs>
-                                <line x1="225" y1="58" x2="225" y2="70" stroke="#666" stroke-width="1" marker-end="url(#arrow-uf)"/>
-                                <line x1="225" y1="105" x2="225" y2="115" stroke="#666" stroke-width="1" marker-end="url(#arrow-uf)"/>
+                                <circle cx="225" cy="310" r="22" fill="#dc3545" stroke="black" stroke-width="1"/>
+                                <text x="225" y="310" text-anchor="middle" font-family="Arial, sans-serif" font-size="11px" fill="white">完了</text>
+                                <!-- フロー線と接続ラベル -->
+                                <defs><marker id="arrow-flow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><polygon points="0,0 6,3 0,6" fill="#666"/></marker></defs>
+                                <line x1="225" y1="72" x2="225" y2="95" stroke="#666" stroke-width="1" marker-end="url(#arrow-flow)"/>
+                                <line x1="225" y1="135" x2="225" y2="145" stroke="#666" stroke-width="1" marker-end="url(#arrow-flow)"/>
                                 <!-- バリデーション分岐 -->
-                                <line x1="200" y1="140" x2="140" y2="140" stroke="#dc3545" stroke-width="1" marker-end="url(#arrow-uf)"/>
-                                <text x="170" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="8px" fill="#dc3545">NG</text>
-                                <line x1="225" y1="165" x2="225" y2="190" stroke="#28a745" stroke-width="1" marker-end="url(#arrow-uf)"/>
-                                <text x="240" y="178" text-anchor="middle" font-family="Arial, sans-serif" font-size="8px" fill="#28a745">OK</text>
-                                <line x1="225" y1="225" x2="225" y2="232" stroke="#666" stroke-width="1" marker-end="url(#arrow-uf)"/>
+                                <line x1="195" y1="175" x2="140" y2="170" stroke="#666" stroke-width="1" marker-end="url(#arrow-flow)"/>
+                                <text x="167" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="9px" fill="#dc3545">NG</text>
+                                <line x1="225" y1="205" x2="225" y2="235" stroke="#666" stroke-width="1" marker-end="url(#arrow-flow)"/>
+                                <text x="245" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="9px" fill="#28a745">OK</text>
+                                <line x1="225" y1="275" x2="225" y2="288" stroke="#666" stroke-width="1" marker-end="url(#arrow-flow)"/>
                                 <!-- エラー→フォームのループ -->
-                                <line x1="110" y1="155" x2="225" y2="70" stroke="#dc3545" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#arrow-uf)"/>
+                                <path d="M 110 185 Q 50 185 50 115 Q 50 95 185 95" stroke="#dc3545" stroke-width="1" fill="none" stroke-dasharray="3,3" marker-end="url(#arrow-flow)"/>
+                                <text x="80" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="8px" fill="#dc3545">再入力</text>
                             </svg>
                         </div>
                     </div>
