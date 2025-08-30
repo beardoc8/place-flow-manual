@@ -475,10 +475,21 @@
                         </div>
 
                         <div class="code-block">
-<pre><span class="keyword">screen</span> <span class="string">"Rectangles"</span> size(300, 150) {
+<pre><span class="keyword">screen</span> <span class="string">"Rectangle Examples"</span> size(300, 150) {
   <span class="keyword">rect</span> at(50, 40) size(80, 50)
   <span class="keyword">rect</span> at(160, 40) size(80, 50) radius(10) style(fill: <span class="string">"#ffeb3b"</span>)
 }</pre>
+                        </div>
+
+                        <div class="preview-box">
+                            <h4>生成結果:</h4>
+                            <div class="svg-preview">
+                                <svg width="300" height="150" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="100%" height="100%" fill="white"/>
+                                    <rect style="fill: white; stroke: black; stroke-width: 1" x="50" y="40" width="80" height="50"/>
+                                    <rect style="fill: #ffeb3b; stroke: black; stroke-width: 1" x="160" y="40" width="80" height="50" rx="10" ry="10"/>
+                                </svg>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -560,11 +571,23 @@
                         </div>
 
                         <div class="code-block">
-<pre><span class="keyword">screen</span> <span class="string">"Labels"</span> size(300, 150) {
+<pre><span class="keyword">screen</span> <span class="string">"Label Examples"</span> size(300, 150) {
   <span class="keyword">label</span> <span class="string">"ユーザー名:"</span> at(50, 40)
-  <span class="keyword">input</span> <span class="string">"名前を入力"</span> at(50, 60) size(200, 30)
-  <span class="keyword">label</span> <span class="string">"重要な情報"</span> at(50, 110) style(color: <span class="string">"#dc3545"</span>, fontWeight: <span class="string">"bold"</span>)
+  <span class="keyword">label</span> <span class="string">"重要:"</span> at(50, 80) style(color: <span class="string">"#dc3545"</span>, fontWeight: <span class="string">"bold"</span>)
+  <span class="keyword">label</span> <span class="string">"説明文"</span> at(50, 120) style(fontSize: <span class="string">"12"</span>, color: <span class="string">"#6c757d"</span>)
 }</pre>
+                        </div>
+
+                        <div class="preview-box">
+                            <h4>生成結果:</h4>
+                            <div class="svg-preview">
+                                <svg width="300" height="150" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="100%" height="100%" fill="white"/>
+                                    <text style="text-anchor: start; dominant-baseline: hanging; fill: #374151; font-weight: normal; font-family: Arial, sans-serif; font-size: 13px" x="50" y="40">ユーザー名:</text>
+                                    <text style="text-anchor: start; dominant-baseline: hanging; fill: #dc3545; font-weight: bold; font-family: Arial, sans-serif; font-size: 13px" x="50" y="80">重要:</text>
+                                    <text style="text-anchor: start; dominant-baseline: hanging; fill: #6c757d; font-weight: normal; font-family: Arial, sans-serif; font-size: 12px" x="50" y="120">説明文</text>
+                                </svg>
+                            </div>
                         </div>
                     </div>
 
@@ -578,11 +601,25 @@
                         </div>
 
                         <div class="code-block">
-<pre><span class="keyword">screen</span> <span class="string">"Typography"</span> size(400, 200) {
-  <span class="keyword">text</span> <span class="string">"大見出し"</span> at(200, 50) style(fontSize: 24, fontWeight: <span class="string">"bold"</span>, textAlign: <span class="string">"center"</span>)
-  <span class="keyword">text</span> <span class="string">"サブタイトル"</span> at(200, 90) style(fontSize: 16, color: <span class="string">"#666"</span>, textAlign: <span class="string">"center"</span>)
-  <span class="keyword">text</span> <span class="string">"本文テキストの例です。"</span> at(200, 130) style(textAlign: <span class="string">"center"</span>)
+<pre><span class="keyword">screen</span> <span class="string">"Text Examples"</span> size(400, 200) {
+  <span class="keyword">text</span> <span class="string">"タイトル"</span> at(50, 40) style(fontSize: 24, fontWeight: <span class="string">"bold"</span>)
+  <span class="keyword">text</span> <span class="string">"サブタイトル"</span> at(50, 80) style(fontSize: 16, color: <span class="string">"#666"</span>)
+  <span class="keyword">text</span> <span class="string">"本文テキスト"</span> at(50, 120) style(fontSize: 14)
+  <span class="keyword">text</span> <span class="string">"中央寄せ"</span> at(200, 160) style(textAlign: <span class="string">"center"</span>, fontSize: 14)
 }</pre>
+                        </div>
+
+                        <div class="preview-box">
+                            <h4>生成結果:</h4>
+                            <div class="svg-preview">
+                                <svg width="400" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="100%" height="100%" fill="white"/>
+                                    <text style="fill: #000000; font-family: Arial, sans-serif; font-size: 24px; font-weight: bold" x="50" y="40">タイトル</text>
+                                    <text style="fill: #666; font-family: Arial, sans-serif; font-size: 16px; font-weight: normal" x="50" y="80">サブタイトル</text>
+                                    <text style="fill: #000000; font-family: Arial, sans-serif; font-size: 14px; font-weight: normal" x="50" y="120">本文テキスト</text>
+                                    <text style="fill: #000000; font-family: Arial, sans-serif; font-size: 14px; font-weight: normal; text-anchor: middle" x="200" y="160">中央寄せ</text>
+                                </svg>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -629,10 +666,31 @@
                         </div>
 
                         <div class="code-block">
-<pre><span class="keyword">screen</span> <span class="string">"System Architecture"</span> size(400, 200) {
-  <span class="keyword">database</span> <span class="string">"MySQL"</span> at(50, 60) size(100, 80) <span class="keyword">as</span> mainDb
-  <span class="keyword">database</span> <span class="string">"Redis"</span> at(250, 60) size(80, 60) style(color: <span class="string">"#ff5722"</span>) <span class="keyword">as</span> cache
+<pre><span class="keyword">screen</span> <span class="string">"Database Examples"</span> size(400, 200) {
+  <span class="keyword">database</span> <span class="string">"MySQL"</span> at(50, 60) size(100, 80)
+  <span class="keyword">database</span> <span class="string">"Redis"</span> at(200, 60) size(100, 80) style(fill: <span class="string">"#dc3545"</span>)
 }</pre>
+                        </div>
+
+                        <div class="preview-box">
+                            <h4>生成結果:</h4>
+                            <div class="svg-preview">
+                                <svg width="400" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="100%" height="100%" fill="white"/>
+                                    <g style="fill: #E8F4FD; stroke: #4A90E2; stroke-width: 1">
+                                        <rect x="50" y="68" width="100" height="64" fill="#E8F4FD" stroke="#4A90E2" stroke-width="1"/>
+                                        <ellipse cx="100" cy="68" rx="50" ry="8" fill="#B8E0FF" stroke="#4A90E2" stroke-width="1"/>
+                                        <ellipse cx="100" cy="132" rx="50" ry="8" fill="#E8F4FD" stroke="#4A90E2" stroke-width="1"/>
+                                    </g>
+                                    <text style="fill: #333333; font-weight: normal; font-size: 12px" x="100" y="100" dy="0.35em" text-anchor="middle" font-family="Arial, sans-serif">MySQL</text>
+                                    <g style="fill: #dc3545; stroke: #4A90E2; stroke-width: 1">
+                                        <rect x="200" y="68" width="100" height="64" fill="#E8F4FD" stroke="#4A90E2" stroke-width="1"/>
+                                        <ellipse cx="250" cy="68" rx="50" ry="8" fill="#B8E0FF" stroke="#4A90E2" stroke-width="1"/>
+                                        <ellipse cx="250" cy="132" rx="50" ry="8" fill="#E8F4FD" stroke="#4A90E2" stroke-width="1"/>
+                                    </g>
+                                    <text style="fill: #333333; font-weight: normal; font-size: 12px" x="250" y="100" dy="0.35em" text-anchor="middle" font-family="Arial, sans-serif">Redis</text>
+                                </svg>
+                            </div>
                         </div>
                     </div>
 
@@ -662,10 +720,37 @@
                         </div>
 
                         <div class="code-block">
-<pre><span class="keyword">screen</span> <span class="string">"User Flow"</span> size(400, 200) {
-  <span class="keyword">person</span> <span class="string">"ユーザー"</span> at(50, 60) size(80, 100) <span class="keyword">as</span> user
-  <span class="keyword">person</span> <span class="string">"管理者"</span> at(250, 60) size(80, 100) <span class="keyword">as</span> admin
+<pre><span class="keyword">screen</span> <span class="string">"Person Examples"</span> size(400, 200) {
+  <span class="keyword">person</span> <span class="string">"ユーザー"</span> at(50, 60) size(80, 100)
+  <span class="keyword">person</span> <span class="string">"管理者"</span> at(200, 60) size(80, 100) style(fill: <span class="string">"#28a745"</span>)
 }</pre>
+                        </div>
+
+                        <div class="preview-box">
+                            <h4>生成結果:</h4>
+                            <div class="svg-preview">
+                                <svg width="400" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="100%" height="100%" fill="white"/>
+                                    <g style="fill: #87CEEB; stroke: #4682B4; stroke-width: 1">
+                                        <circle cx="90" cy="73" r="8" fill="#FFE4B5" stroke="#8B4513" stroke-width="1"/>
+                                        <rect x="78" y="86" width="24" height="45" rx="5" ry="5" fill="#87CEEB" stroke="#4682B4" stroke-width="1"/>
+                                        <line x1="78" y1="99.5" x2="62" y2="107.5" stroke="#8B4513" stroke-width="2" stroke-linecap="round"/>
+                                        <line x1="102" y1="99.5" x2="118" y2="107.5" stroke="#8B4513" stroke-width="2" stroke-linecap="round"/>
+                                        <line x1="85.2" y1="131" x2="82.8" y2="155" stroke="#8B4513" stroke-width="2" stroke-linecap="round"/>
+                                        <line x1="94.8" y1="131" x2="97.2" y2="155" stroke="#8B4513" stroke-width="2" stroke-linecap="round"/>
+                                    </g>
+                                    <text style="fill: #333333; font-weight: normal; font-size: 12px" x="90" y="175" dy="0.35em" text-anchor="middle" font-family="Arial, sans-serif">ユーザー</text>
+                                    <g style="fill: #28a745; stroke: #4682B4; stroke-width: 1">
+                                        <circle cx="240" cy="73" r="8" fill="#FFE4B5" stroke="#8B4513" stroke-width="1"/>
+                                        <rect x="228" y="86" width="24" height="45" rx="5" ry="5" fill="#87CEEB" stroke="#4682B4" stroke-width="1"/>
+                                        <line x1="228" y1="99.5" x2="212" y2="107.5" stroke="#8B4513" stroke-width="2" stroke-linecap="round"/>
+                                        <line x1="252" y1="99.5" x2="268" y2="107.5" stroke="#8B4513" stroke-width="2" stroke-linecap="round"/>
+                                        <line x1="235.2" y1="131" x2="232.8" y2="155" stroke="#8B4513" stroke-width="2" stroke-linecap="round"/>
+                                        <line x1="244.8" y1="131" x2="247.2" y2="155" stroke="#8B4513" stroke-width="2" stroke-linecap="round"/>
+                                    </g>
+                                    <text style="fill: #333333; font-weight: normal; font-size: 12px" x="240" y="175" dy="0.35em" text-anchor="middle" font-family="Arial, sans-serif">管理者</text>
+                                </svg>
+                            </div>
                         </div>
                     </div>
 
@@ -699,11 +784,27 @@
                         </div>
 
                         <div class="code-block">
-<pre><span class="keyword">screen</span> <span class="string">"Connections"</span> size(300, 200) {
-  <span class="keyword">box</span> <span class="string">"A"</span> at(50, 50) size(60, 40) <span class="keyword">as</span> nodeA
-  <span class="keyword">box</span> <span class="string">"B"</span> at(200, 50) size(60, 40) <span class="keyword">as</span> nodeB
-  <span class="keyword">line</span> from(110, 70) to(200, 70) style(stroke: <span class="string">"#007bff"</span>, strokeWidth: 2)
+<pre><span class="keyword">screen</span> <span class="string">"Line Examples"</span> size(300, 200) {
+  <span class="keyword">box</span> <span class="string">"A"</span> at(50, 50) size(60, 40)
+  <span class="keyword">box</span> <span class="string">"B"</span> at(190, 120) size(60, 40)
+  <span class="keyword">line</span> from(110, 70) to(190, 140)
+  <span class="keyword">line</span> from(50, 120) to(250, 50) style(stroke: <span class="string">"#dc3545"</span>, strokeWidth: <span class="string">"3"</span>)
 }</pre>
+                        </div>
+
+                        <div class="preview-box">
+                            <h4>生成結果:</h4>
+                            <div class="svg-preview">
+                                <svg width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="100%" height="100%" fill="white"/>
+                                    <rect style="fill: white; stroke: black; stroke-width: 1" x="50" y="50" width="60" height="40"/>
+                                    <text style="text-anchor: middle; dominant-baseline: middle; fill: #000000; font-weight: normal; font-family: Arial, sans-serif; font-size: 14px" x="80" y="70">A</text>
+                                    <rect style="fill: white; stroke: black; stroke-width: 1" x="190" y="120" width="60" height="40"/>
+                                    <text style="text-anchor: middle; dominant-baseline: middle; fill: #000000; font-weight: normal; font-family: Arial, sans-serif; font-size: 14px" x="220" y="140">B</text>
+                                    <line style="stroke: black; stroke-width: 1" x1="110" y1="70" x2="190" y2="140"/>
+                                    <line style="stroke: #dc3545; stroke-width: 3" x1="50" y1="120" x2="250" y2="50"/>
+                                </svg>
+                            </div>
                         </div>
                     </div>
 
@@ -717,11 +818,33 @@
                         </div>
 
                         <div class="code-block">
-<pre><span class="keyword">screen</span> <span class="string">"Data Flow"</span> size(400, 150) {
-  <span class="keyword">database</span> <span class="string">"DB"</span> at(50, 40) size(80, 70) <span class="keyword">as</span> db
-  <span class="keyword">node</span> <span class="string">"API"</span> at(250, 40) size(80, 70) <span class="keyword">as</span> api
-  <span class="keyword">arrow</span> from(130, 75) to(250, 75) size(8) style(stroke: <span class="string">"#28a745"</span>, strokeWidth: 2)
+<pre><span class="keyword">screen</span> <span class="string">"Arrow Examples"</span> size(400, 150) {
+  <span class="keyword">box</span> <span class="string">"開始"</span> at(50, 50) size(80, 50)
+  <span class="keyword">box</span> <span class="string">"終了"</span> at(270, 50) size(80, 50)
+  <span class="keyword">arrow</span> from(130, 75) to(270, 75)
+  <span class="keyword">arrow</span> from(200, 120) to(130, 100) style(stroke: <span class="string">"#28a745"</span>)
 }</pre>
+                        </div>
+
+                        <div class="preview-box">
+                            <h4>生成結果:</h4>
+                            <div class="svg-preview">
+                                <svg width="400" height="150" viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="100%" height="100%" fill="white"/>
+                                    <rect style="fill: white; stroke: black; stroke-width: 1" x="50" y="50" width="80" height="50"/>
+                                    <text style="text-anchor: middle; dominant-baseline: middle; fill: #000000; font-weight: normal; font-family: Arial, sans-serif; font-size: 14px" x="90" y="75">開始</text>
+                                    <rect style="fill: white; stroke: black; stroke-width: 1" x="270" y="50" width="80" height="50"/>
+                                    <text style="text-anchor: middle; dominant-baseline: middle; fill: #000000; font-weight: normal; font-family: Arial, sans-serif; font-size: 14px" x="310" y="75">終了</text>
+                                    <defs>
+                                        <marker id="arrow-130-75-270-75" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="black"/></marker>
+                                    </defs>
+                                    <line style="stroke: black; stroke-width: 1" x1="130" y1="75" x2="270" y2="75" marker-end="url(#arrow-130-75-270-75)"/>
+                                    <defs>
+                                        <marker id="arrow-200-120-130-100" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="#28a745"/></marker>
+                                    </defs>
+                                    <line style="stroke: #28a745; stroke-width: 1" x1="200" y1="120" x2="130" y2="100" marker-end="url(#arrow-200-120-130-100)"/>
+                                </svg>
+                            </div>
                         </div>
                     </div>
                 </section>
