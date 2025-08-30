@@ -370,6 +370,58 @@
             <strong>ヒント:</strong> <code>as</code>キーワードを使用して要素に名前を付けると、後で参照や接続に使用できます。
         </div>
 
+        <h2>要素間の接続</h2>
+        
+        <p><code>as</code>キーワードで名前を付けた要素同士は、直接接続することができます。</p>
+        
+        <div class="code-block">
+<pre><span class="keyword">screen</span> <span class="string">"データフロー"</span> size(400, 150) {
+  <span class="keyword">database</span> <span class="string">"データベース"</span> at(50, 60) size(100, 30) <span class="keyword">as</span> db
+  <span class="keyword">box</span> <span class="string">"API"</span> at(200, 60) size(80, 30) <span class="keyword">as</span> api
+  <span class="keyword">box</span> <span class="string">"フロント"</span> at(320, 60) size(60, 30) <span class="keyword">as</span> frontend
+  
+  db -> api
+  api -> frontend
+}</pre>
+        </div>
+
+        <div class="preview-box">
+            <h4>生成結果:</h4>
+            <div class="svg-preview">
+                <svg width="400" height="150" viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="100%" height="100%" fill="white"/>
+                    <g id="db" style="fill: #E8F4FD; stroke: #4A90E2; stroke-width: 1">
+                        <rect x="50" y="63" width="100" height="24" fill="#E8F4FD" stroke="#4A90E2" stroke-width="1"/>
+                        <ellipse cx="100" cy="63" rx="50" ry="3" fill="#B8E0FF" stroke="#4A90E2" stroke-width="1"/>
+                        <ellipse cx="100" cy="87" rx="50" ry="3" fill="#E8F4FD" stroke="#4A90E2" stroke-width="1"/>
+                    </g>
+                    <text style="fill: #333333; font-weight: normal; font-size: 12px" x="100" y="75" dy="0.35em" text-anchor="middle" font-family="Arial, sans-serif">データベース</text>
+                    <rect id="api" style="fill: white; stroke: black; stroke-width: 1" x="200" y="60" width="80" height="30"/>
+                    <text style="text-anchor: middle; dominant-baseline: middle; fill: #000000; font-weight: normal; font-family: Arial, sans-serif; font-size: 14px" x="240" y="75">API</text>
+                    <rect id="frontend" style="fill: white; stroke: black; stroke-width: 1" x="320" y="60" width="60" height="30"/>
+                    <text style="text-anchor: middle; dominant-baseline: middle; fill: #000000; font-weight: normal; font-family: Arial, sans-serif; font-size: 14px" x="350" y="75">フロント</text>
+                    <defs>
+                        <marker id="connection-arrow-150-75-200-75" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                            <polygon points="0,0 8,4 0,8" fill="#666"/>
+                        </marker>
+                    </defs>
+                    <line x1="150" y1="75" x2="200" y2="75" stroke="#666" stroke-width="1" marker-end="url(#connection-arrow-150-75-200-75)"/>
+                    <defs>
+                        <marker id="connection-arrow-280-75-320-75" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                            <polygon points="0,0 8,4 0,8" fill="#666"/>
+                        </marker>
+                    </defs>
+                    <line x1="280" y1="75" x2="320" y2="75" stroke="#666" stroke-width="1" marker-end="url(#connection-arrow-280-75-320-75)"/>
+                </svg>
+            </div>
+        </div>
+
+        <div class="installation">
+            <h3>接続の種類</h3>
+            <p><strong><code>a -> b</code></strong> - aからbへの方向付き接続（矢印）</p>
+            <p><strong><code>a <-> b</code></strong> - aとb間の双方向接続（両端矢印）</p>
+        </div>
+
         <h2>VSCodeでの使い方</h2>
 
         <div class="step">
