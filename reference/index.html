@@ -296,6 +296,31 @@
             background: #5a6268;
         }
 
+        .preview-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .preview-box h4 {
+            color: #495057;
+            margin: 0 0 0.5rem 0;
+            font-size: 1rem;
+        }
+
+        .svg-preview {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 1rem;
+            overflow: auto;
+        }
+
         @media (max-width: 768px) {
             .content-wrapper {
                 grid-template-columns: 1fr;
@@ -420,12 +445,23 @@
                         </table>
 
                         <div class="code-block">
-<pre><span class="keyword">screen</span> <span class="string">"Box Example"</span> size(400, 300) {
-  <span class="keyword">box</span> <span class="string">"メインコンテンツ"</span> at(50, 50) size(300, 200) {
-    <span class="keyword">box</span> <span class="string">"ヘッダー"</span> at(10, 10) size(280, 50)
-    <span class="keyword">box</span> <span class="string">"コンテンツ"</span> at(10, 70) size(280, 120)
-  }
+<pre><span class="keyword">screen</span> <span class="string">"Box Example"</span> size(300, 200) {
+  <span class="keyword">box</span> <span class="string">"Hello Box"</span> at(50, 50) size(120, 60)
+  <span class="keyword">box</span> <span class="string">"Styled Box"</span> at(50, 120) size(120, 60) style(background: <span class="string">"#e3f2fd"</span>, border: <span class="string">"2px solid #1976d2"</span>)
 }</pre>
+                        </div>
+
+                        <div class="preview-box">
+                            <h4>生成結果:</h4>
+                            <div class="svg-preview">
+                                <svg width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="100%" height="100%" fill="white"/>
+                                    <rect style="fill: white; stroke: black; stroke-width: 1" x="50" y="50" width="120" height="60"/>
+                                    <text style="text-anchor: middle; dominant-baseline: middle; fill: #000000; font-weight: normal; font-family: Arial, sans-serif; font-size: 14px" x="110" y="80">Hello Box</text>
+                                    <rect style="fill: white; stroke: black; stroke-width: 1; fill: #e3f2fd; stroke-width: 2px; stroke: #1976d2" x="50" y="120" width="120" height="60"/>
+                                    <text style="text-anchor: middle; dominant-baseline: middle; fill: #000000; font-weight: normal; font-family: Arial, sans-serif; font-size: 14px" x="110" y="150">Styled Box</text>
+                                </svg>
+                            </div>
                         </div>
                     </div>
 
@@ -459,11 +495,29 @@
                         </div>
 
                         <div class="code-block">
-<pre><span class="keyword">screen</span> <span class="string">"Buttons"</span> size(400, 200) {
-  <span class="keyword">button</span> <span class="string">"Primary"</span> at(50, 50) size(100, 40) <span class="keyword">as</span> primaryBtn
-  <span class="keyword">button</span> <span class="string">"Secondary"</span> at(170, 50) size(100, 40) style(background: <span class="string">"#6c757d"</span>)
-  <span class="keyword">button</span> <span class="string">"Success"</span> at(50, 110) size(100, 40) style(background: <span class="string">"#28a745"</span>)
+<pre><span class="keyword">screen</span> <span class="string">"Button Examples"</span> size(300, 150) {
+  <span class="keyword">button</span> <span class="string">"Click Me"</span> at(50, 50) size(100, 40)
+  <span class="keyword">button</span> <span class="string">"Styled Button"</span> at(50, 100) size(120, 40) style(background: <span class="string">"#4CAF50"</span>, color: <span class="string">"white"</span>)
 }</pre>
+                        </div>
+
+                        <div class="preview-box">
+                            <h4>生成結果:</h4>
+                            <div class="svg-preview">
+                                <svg width="300" height="150" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="100%" height="100%" fill="white"/>
+                                    <defs><filter id="shadow-50-50">
+                                        <feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity="0.15"/>
+                                    </filter></defs>
+                                    <rect style="fill: #3b82f6; stroke: #2563eb; stroke-width: 1" x="50" y="50" width="100" height="40" rx="6" ry="6" filter="url(#shadow-50-50)"/>
+                                    <text style="text-anchor: middle; dominant-baseline: middle; fill: white; font-weight: 500; font-family: Arial, sans-serif; font-size: 14px" x="100" y="70">Click Me</text>
+                                    <defs><filter id="shadow-50-100">
+                                        <feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity="0.15"/>
+                                    </filter></defs>
+                                    <rect style="fill: #3b82f6; stroke: #2563eb; stroke-width: 1; fill: #4CAF50; fill: white" x="50" y="100" width="120" height="40" rx="6" ry="6" filter="url(#shadow-50-100)"/>
+                                    <text style="text-anchor: middle; dominant-baseline: middle; fill: white; font-weight: 500; font-family: Arial, sans-serif; font-size: 14px; fill: white" x="110" y="120">Styled Button</text>
+                                </svg>
+                            </div>
                         </div>
                     </div>
 
@@ -477,11 +531,23 @@
                         </div>
 
                         <div class="code-block">
-<pre><span class="keyword">screen</span> <span class="string">"Form"</span> size(350, 200) {
-  <span class="keyword">input</span> <span class="string">"ユーザー名を入力"</span> at(50, 50) size(250, 35) <span class="keyword">as</span> username
-  <span class="keyword">input</span> <span class="string">"パスワード"</span> at(50, 100) size(250, 35) type=<span class="string">"password"</span> <span class="keyword">as</span> password
-  <span class="keyword">button</span> <span class="string">"ログイン"</span> at(50, 150) size(100, 35)
+<pre><span class="keyword">screen</span> <span class="string">"Input Examples"</span> size(300, 120) {
+  <span class="keyword">input</span> <span class="string">"Enter your name"</span> at(50, 30) size(200, 30)
+  <span class="keyword">input</span> <span class="string">"Email address"</span> at(50, 70) size(200, 30) style(border: <span class="string">"2px solid #2196F3"</span>)
 }</pre>
+                        </div>
+
+                        <div class="preview-box">
+                            <h4>生成結果:</h4>
+                            <div class="svg-preview">
+                                <svg width="300" height="120" viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="100%" height="100%" fill="white"/>
+                                    <rect style="fill: white; stroke: #d1d5db; stroke-width: 1" x="50" y="30" width="200" height="30" rx="4" ry="4"/>
+                                    <text style="text-anchor: start; dominant-baseline: middle; fill: #9ca3af; font-weight: normal; font-family: Arial, sans-serif; font-size: 13px" x="58" y="45">Enter your name</text>
+                                    <rect style="fill: white; stroke: #d1d5db; stroke-width: 1; stroke-width: 2px; stroke: #2196F3" x="50" y="70" width="200" height="30" rx="4" ry="4"/>
+                                    <text style="text-anchor: start; dominant-baseline: middle; fill: #9ca3af; font-weight: normal; font-family: Arial, sans-serif; font-size: 13px" x="58" y="85">Email address</text>
+                                </svg>
+                            </div>
                         </div>
                     </div>
 
@@ -534,10 +600,23 @@
                         </div>
 
                         <div class="code-block">
-<pre><span class="keyword">screen</span> <span class="string">"Circles"</span> size(300, 150) {
+<pre><span class="keyword">screen</span> <span class="string">"Circle Examples"</span> size(300, 150) {
   <span class="keyword">circle</span> <span class="string">"1"</span> at(80, 75) radius(30)
   <span class="keyword">circle</span> <span class="string">"API"</span> at(220, 75) radius(35) style(fill: <span class="string">"#2196F3"</span>, color: <span class="string">"white"</span>)
 }</pre>
+                        </div>
+
+                        <div class="preview-box">
+                            <h4>生成結果:</h4>
+                            <div class="svg-preview">
+                                <svg width="300" height="150" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="100%" height="100%" fill="white"/>
+                                    <circle cx="80" cy="75" r="30" fill="white" stroke="black" stroke-width="1"/>
+                                    <text style="fill: #000000; font-weight: normal" x="80" y="75" dy="0.35em" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">1</text>
+                                    <circle style="fill: #2196F3" cx="220" cy="75" r="35" fill="white" stroke="black" stroke-width="1"/>
+                                    <text style="fill: white; font-weight: normal; fill: white" x="220" y="75" dy="0.35em" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">API</text>
+                                </svg>
+                            </div>
                         </div>
                     </div>
 
