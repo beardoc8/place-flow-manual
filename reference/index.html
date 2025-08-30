@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSL Reference - PlaceFlow Manual</title>
+    <meta name="description" content="PlaceFlow DSLの完全なリファレンス。全ての要素、属性、スタイリング機能の詳細。">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+            margin: 2rem auto;
+        }
+
+        .sidebar {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            height: fit-content;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 100px;
+        }
+
+        .sidebar h3 {
+            color: #667eea;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #f0f4ff;
+            padding-bottom: 0.5rem;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.3rem 0;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            color: #667eea;
+        }
+
+        main {
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 1.8rem;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
+        }
+
+        h3 {
+            color: #444;
+            font-size: 1.4rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        h4 {
+            color: #555;
+            font-size: 1.1rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .intro {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f0f4ff;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .element-card {
+            background: #fafafa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .element-title {
+            color: #667eea;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .element-description {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+
+        .code-block .keyword {
+            color: #569cd6;
+        }
+
+        .code-block .string {
+            color: #ce9178;
+        }
+
+        .code-block .comment {
+            color: #6a9955;
+            font-style: italic;
+        }
+
+        .syntax-pattern {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-left: 4px solid #28a745;
+            border-radius: 4px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+        }
+
+        .attributes-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .attributes-table th,
+        .attributes-table td {
+            border: 1px solid #dee2e6;
+            padding: 0.8rem;
+            text-align: left;
+        }
+
+        .attributes-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .attributes-table td:first-child {
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+            background: #f8f9fa;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin: 0.2rem;
+        }
+
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .warning::before {
+            content: "⚠️ ";
+            font-weight: bold;
+        }
+
+        .tip {
+            background: #e8f5e8;
+            border: 1px solid #c3e6c3;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .tip::before {
+            content: "💡 ";
+            font-weight: bold;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .nav-button {
+            padding: 0.8rem 1.5rem;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background: #5a67d8;
+        }
+
+        .nav-button.secondary {
+            background: #6c757d;
+        }
+
+        .nav-button.secondary:hover {
+            background: #5a6268;
+        }
+
+        @media (max-width: 768px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+                margin: 1rem;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            main {
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="../" class="logo">🎨 PlaceFlow</a>
+            <div class="breadcrumb">
+                <a href="../">Home</a> / DSL Reference
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="content-wrapper">
+            <aside class="sidebar">
+                <h3>Quick Navigation</h3>
+                <ul>
+                    <li><a href="#basic-syntax">基本構文</a></li>
+                    <li><a href="#layout-elements">レイアウト要素</a></li>
+                    <li><a href="#ui-elements">UI要素</a></li>
+                    <li><a href="#diagram-elements">図表要素</a></li>
+                    <li><a href="#styling">スタイリング</a></li>
+                    <li><a href="#connections">接続・関係</a></li>
+                    <li><a href="#advanced">高度な機能</a></li>
+                </ul>
+
+                <h3>Elements</h3>
+                <ul>
+                    <li><a href="#box">box</a></li>
+                    <li><a href="#button">button</a></li>
+                    <li><a href="#input">input</a></li>
+                    <li><a href="#label">label</a></li>
+                    <li><a href="#circle">circle</a></li>
+                    <li><a href="#line">line</a></li>
+                    <li><a href="#rect">rect</a></li>
+                    <li><a href="#text">text</a></li>
+                    <li><a href="#arrow">arrow</a></li>
+                    <li><a href="#database">database</a></li>
+                    <li><a href="#node">node</a></li>
+                    <li><a href="#person">person</a></li>
+                    <li><a href="#loadbalancer">loadbalancer</a></li>
+                </ul>
+            </aside>
+
+            <main>
+                <h1>DSL Reference</h1>
+                
+                <div class="intro">
+                    PlaceFlow DSLの完全なリファレンスガイドです。全ての要素、属性、構文、スタイリング機能について詳しく説明します。
+                </div>
+
+                <section id="basic-syntax">
+                    <h2>基本構文</h2>
+
+                    <h3>画面・レイアウト定義</h3>
+                    <p>PlaceFlowでは<code>screen</code>または<code>layout</code>でレイアウトを定義します。</p>
+
+                    <div class="syntax-pattern">
+                        screen "画面名" size(幅, 高さ) { ... }<br>
+                        layout "レイアウト名" size(幅, 高さ) { ... }
+                    </div>
+
+                    <h4>自動サイズ調整</h4>
+                    <div class="code-block">
+<pre><span class="keyword">screen</span> <span class="string">"画面名"</span> size(auto) {
+  <span class="comment">// 要素の配置に合わせて自動サイズ調整</span>
+}</pre>
+                    </div>
+
+                    <h3>コメント</h3>
+                    <div class="code-block">
+<pre><span class="comment">// 行コメント</span></pre>
+                    </div>
+
+                    <h3>要素の命名</h3>
+                    <p><code>as</code>キーワードで要素に名前を付けて、後で参照できます。</p>
+                    <div class="code-block">
+<pre><span class="keyword">button</span> <span class="string">"ログイン"</span> at(50, 100) size(100, 40) <span class="keyword">as</span> loginBtn</pre>
+                    </div>
+                </section>
+
+                <section id="layout-elements">
+                    <h2>レイアウト要素</h2>
+
+                    <div class="element-card" id="box">
+                        <div class="element-title">box <span class="tag">UI</span></div>
+                        <div class="element-description">矩形の領域を表示します。コンテナやグループ化に使用。</div>
+                        
+                        <div class="syntax-pattern">
+                            box "テキスト" at(x, y) size(幅, 高さ)
+                        </div>
+
+                        <h4>属性</h4>
+                        <table class="attributes-table">
+                            <tr><th>属性</th><th>説明</th><th>例</th></tr>
+                            <tr><td>at(x, y)</td><td>位置座標</td><td>at(50, 100)</td></tr>
+                            <tr><td>size(w, h)</td><td>サイズ指定</td><td>size(200, 100)</td></tr>
+                            <tr><td>style(...)</td><td>スタイリング</td><td>style(background: "#f0f0f0")</td></tr>
+                        </table>
+
+                        <div class="code-block">
+<pre><span class="keyword">screen</span> <span class="string">"Box Example"</span> size(400, 300) {
+  <span class="keyword">box</span> <span class="string">"メインコンテンツ"</span> at(50, 50) size(300, 200) {
+    <span class="keyword">box</span> <span class="string">"ヘッダー"</span> at(10, 10) size(280, 50)
+    <span class="keyword">box</span> <span class="string">"コンテンツ"</span> at(10, 70) size(280, 120)
+  }
+}</pre>
+                        </div>
+                    </div>
+
+                    <div class="element-card" id="rect">
+                        <div class="element-title">rect <span class="tag">図形</span></div>
+                        <div class="element-description">基本的な矩形図形。boxよりもシンプルな図形要素。</div>
+                        
+                        <div class="syntax-pattern">
+                            rect at(x, y) size(幅, 高さ)<br>
+                            rect at(x, y) size(幅, 高さ) radius(角丸半径)
+                        </div>
+
+                        <div class="code-block">
+<pre><span class="keyword">screen</span> <span class="string">"Rectangles"</span> size(300, 150) {
+  <span class="keyword">rect</span> at(50, 40) size(80, 50)
+  <span class="keyword">rect</span> at(160, 40) size(80, 50) radius(10) style(fill: <span class="string">"#ffeb3b"</span>)
+}</pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="ui-elements">
+                    <h2>UI要素</h2>
+
+                    <div class="element-card" id="button">
+                        <div class="element-title">button <span class="tag">UI</span></div>
+                        <div class="element-description">ボタン要素を配置します。</div>
+                        
+                        <div class="syntax-pattern">
+                            button "ボタンテキスト" at(x, y) size(幅, 高さ)
+                        </div>
+
+                        <div class="code-block">
+<pre><span class="keyword">screen</span> <span class="string">"Buttons"</span> size(400, 200) {
+  <span class="keyword">button</span> <span class="string">"Primary"</span> at(50, 50) size(100, 40) <span class="keyword">as</span> primaryBtn
+  <span class="keyword">button</span> <span class="string">"Secondary"</span> at(170, 50) size(100, 40) style(background: <span class="string">"#6c757d"</span>)
+  <span class="keyword">button</span> <span class="string">"Success"</span> at(50, 110) size(100, 40) style(background: <span class="string">"#28a745"</span>)
+}</pre>
+                        </div>
+                    </div>
+
+                    <div class="element-card" id="input">
+                        <div class="element-title">input <span class="tag">UI</span></div>
+                        <div class="element-description">テキスト入力フィールドを配置します。</div>
+                        
+                        <div class="syntax-pattern">
+                            input "プレースホルダー" at(x, y) size(幅, 高さ)<br>
+                            input "プレースホルダー" at(x, y) size(幅, 高さ) type="password"
+                        </div>
+
+                        <div class="code-block">
+<pre><span class="keyword">screen</span> <span class="string">"Form"</span> size(350, 200) {
+  <span class="keyword">input</span> <span class="string">"ユーザー名を入力"</span> at(50, 50) size(250, 35) <span class="keyword">as</span> username
+  <span class="keyword">input</span> <span class="string">"パスワード"</span> at(50, 100) size(250, 35) type=<span class="string">"password"</span> <span class="keyword">as</span> password
+  <span class="keyword">button</span> <span class="string">"ログイン"</span> at(50, 150) size(100, 35)
+}</pre>
+                        </div>
+                    </div>
+
+                    <div class="element-card" id="label">
+                        <div class="element-title">label <span class="tag">UI</span></div>
+                        <div class="element-description">テキストラベルを配置します。</div>
+                        
+                        <div class="syntax-pattern">
+                            label "テキスト" at(x, y)
+                        </div>
+
+                        <div class="code-block">
+<pre><span class="keyword">screen</span> <span class="string">"Labels"</span> size(300, 150) {
+  <span class="keyword">label</span> <span class="string">"ユーザー名:"</span> at(50, 40)
+  <span class="keyword">input</span> <span class="string">"名前を入力"</span> at(50, 60) size(200, 30)
+  <span class="keyword">label</span> <span class="string">"重要な情報"</span> at(50, 110) style(color: <span class="string">"#dc3545"</span>, fontWeight: <span class="string">"bold"</span>)
+}</pre>
+                        </div>
+                    </div>
+
+                    <div class="element-card" id="text">
+                        <div class="element-title">text <span class="tag">テキスト</span></div>
+                        <div class="element-description">独立したテキスト要素を配置します。</div>
+                        
+                        <div class="syntax-pattern">
+                            text "テキスト内容" at(x, y)<br>
+                            text "テキスト内容" at(x, y) fontSize(サイズ)
+                        </div>
+
+                        <div class="code-block">
+<pre><span class="keyword">screen</span> <span class="string">"Typography"</span> size(400, 200) {
+  <span class="keyword">text</span> <span class="string">"大見出し"</span> at(200, 50) style(fontSize: 24, fontWeight: <span class="string">"bold"</span>, textAlign: <span class="string">"center"</span>)
+  <span class="keyword">text</span> <span class="string">"サブタイトル"</span> at(200, 90) style(fontSize: 16, color: <span class="string">"#666"</span>, textAlign: <span class="string">"center"</span>)
+  <span class="keyword">text</span> <span class="string">"本文テキストの例です。"</span> at(200, 130) style(textAlign: <span class="string">"center"</span>)
+}</pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="diagram-elements">
+                    <h2>図表要素</h2>
+
+                    <div class="element-card" id="circle">
+                        <div class="element-title">circle <span class="tag">図形</span></div>
+                        <div class="element-description">円形の要素を配置します。</div>
+                        
+                        <div class="syntax-pattern">
+                            circle "テキスト" at(x, y) radius(半径)<br>
+                            circle at(x, y) radius(半径)
+                        </div>
+
+                        <div class="code-block">
+<pre><span class="keyword">screen</span> <span class="string">"Circles"</span> size(300, 150) {
+  <span class="keyword">circle</span> <span class="string">"1"</span> at(80, 75) radius(30)
+  <span class="keyword">circle</span> <span class="string">"API"</span> at(220, 75) radius(35) style(fill: <span class="string">"#2196F3"</span>, color: <span class="string">"white"</span>)
+}</pre>
+                        </div>
+                    </div>
+
+                    <div class="element-card" id="database">
+                        <div class="element-title">database <span class="tag">システム</span></div>
+                        <div class="element-description">円柱形状のデータベースアイコンを配置します。</div>
+                        
+                        <div class="syntax-pattern">
+                            database "データベース名" at(x, y) size(幅, 高さ)
+                        </div>
+
+                        <div class="code-block">
+<pre><span class="keyword">screen</span> <span class="string">"System Architecture"</span> size(400, 200) {
+  <span class="keyword">database</span> <span class="string">"MySQL"</span> at(50, 60) size(100, 80) <span class="keyword">as</span> mainDb
+  <span class="keyword">database</span> <span class="string">"Redis"</span> at(250, 60) size(80, 60) style(color: <span class="string">"#ff5722"</span>) <span class="keyword">as</span> cache
+}</pre>
+                        </div>
+                    </div>
+
+                    <div class="element-card" id="node">
+                        <div class="element-title">node <span class="tag">システム</span></div>
+                        <div class="element-description">システムノードやサーバーを表します。</div>
+                        
+                        <div class="syntax-pattern">
+                            node "ノード名" at(x, y) size(幅, 高さ)
+                        </div>
+
+                        <div class="code-block">
+<pre><span class="keyword">screen</span> <span class="string">"Infrastructure"</span> size(500, 300) {
+  <span class="keyword">node</span> <span class="string">"Web Server"</span> at(50, 50) size(120, 80) <span class="keyword">as</span> web
+  <span class="keyword">node</span> <span class="string">"App Server"</span> at(200, 50) size(120, 80) <span class="keyword">as</span> app
+  <span class="keyword">node</span> <span class="string">"Cache Server"</span> at(350, 50) size(120, 80) <span class="keyword">as</span> cache
+}</pre>
+                        </div>
+                    </div>
+
+                    <div class="element-card" id="person">
+                        <div class="element-title">person <span class="tag">アクター</span></div>
+                        <div class="element-description">人物・ユーザー・アクターを表します。</div>
+                        
+                        <div class="syntax-pattern">
+                            person "人物名" at(x, y) size(幅, 高さ)
+                        </div>
+
+                        <div class="code-block">
+<pre><span class="keyword">screen</span> <span class="string">"User Flow"</span> size(400, 200) {
+  <span class="keyword">person</span> <span class="string">"ユーザー"</span> at(50, 60) size(80, 100) <span class="keyword">as</span> user
+  <span class="keyword">person</span> <span class="string">"管理者"</span> at(250, 60) size(80, 100) <span class="keyword">as</span> admin
+}</pre>
+                        </div>
+                    </div>
+
+                    <div class="element-card" id="loadbalancer">
+                        <div class="element-title">loadbalancer <span class="tag">システム</span></div>
+                        <div class="element-description">ロードバランサーを表します。</div>
+                        
+                        <div class="syntax-pattern">
+                            loadbalancer "名前" at(x, y) size(幅, 高さ)
+                        </div>
+
+                        <div class="code-block">
+<pre><span class="keyword">screen</span> <span class="string">"Load Balancing"</span> size(500, 250) {
+  <span class="keyword">loadbalancer</span> <span class="string">"ALB"</span> at(200, 50) size(100, 60) <span class="keyword">as</span> alb
+  <span class="keyword">node</span> <span class="string">"Server 1"</span> at(100, 150) size(80, 60) <span class="keyword">as</span> srv1
+  <span class="keyword">node</span> <span class="string">"Server 2"</span> at(300, 150) size(80, 60) <span class="keyword">as</span> srv2
+}</pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="connections">
+                    <h2>接続・関係</h2>
+
+                    <div class="element-card" id="line">
+                        <div class="element-title">line <span class="tag">接続</span></div>
+                        <div class="element-description">2点間に線を描画します。</div>
+                        
+                        <div class="syntax-pattern">
+                            line from(x1, y1) to(x2, y2)
+                        </div>
+
+                        <div class="code-block">
+<pre><span class="keyword">screen</span> <span class="string">"Connections"</span> size(300, 200) {
+  <span class="keyword">box</span> <span class="string">"A"</span> at(50, 50) size(60, 40) <span class="keyword">as</span> nodeA
+  <span class="keyword">box</span> <span class="string">"B"</span> at(200, 50) size(60, 40) <span class="keyword">as</span> nodeB
+  <span class="keyword">line</span> from(110, 70) to(200, 70) style(stroke: <span class="string">"#007bff"</span>, strokeWidth: 2)
+}</pre>
+                        </div>
+                    </div>
+
+                    <div class="element-card" id="arrow">
+                        <div class="element-title">arrow <span class="tag">接続</span></div>
+                        <div class="element-description">矢印付きの線を引きます。</div>
+                        
+                        <div class="syntax-pattern">
+                            arrow from(x1, y1) to(x2, y2)<br>
+                            arrow from(x1, y1) to(x2, y2) size(矢印サイズ)
+                        </div>
+
+                        <div class="code-block">
+<pre><span class="keyword">screen</span> <span class="string">"Data Flow"</span> size(400, 150) {
+  <span class="keyword">database</span> <span class="string">"DB"</span> at(50, 40) size(80, 70) <span class="keyword">as</span> db
+  <span class="keyword">node</span> <span class="string">"API"</span> at(250, 40) size(80, 70) <span class="keyword">as</span> api
+  <span class="keyword">arrow</span> from(130, 75) to(250, 75) size(8) style(stroke: <span class="string">"#28a745"</span>, strokeWidth: 2)
+}</pre>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="styling">
+                    <h2>スタイリング</h2>
+
+                    <p><code>style()</code>関数を使用して、要素の外観をカスタマイズできます。</p>
+
+                    <h3>共通スタイルプロパティ</h3>
+                    <table class="attributes-table">
+                        <tr><th>プロパティ</th><th>説明</th><th>例</th></tr>
+                        <tr><td>background</td><td>背景色</td><td>background: "#f0f0f0"</td></tr>
+                        <tr><td>color</td><td>文字色</td><td>color: "#333"</td></tr>
+                        <tr><td>border</td><td>境界線</td><td>border: "2px solid #007bff"</td></tr>
+                        <tr><td>fontSize</td><td>フォントサイズ</td><td>fontSize: 16</td></tr>
+                        <tr><td>fontWeight</td><td>フォント太さ</td><td>fontWeight: "bold"</td></tr>
+                        <tr><td>textAlign</td><td>テキスト配置</td><td>textAlign: "center"</td></tr>
+                    </table>
+
+                    <h3>図形要素のスタイル</h3>
+                    <table class="attributes-table">
+                        <tr><th>プロパティ</th><th>説明</th><th>例</th></tr>
+                        <tr><td>fill</td><td>塗りつぶし色</td><td>fill: "#ff5722"</td></tr>
+                        <tr><td>stroke</td><td>線の色</td><td>stroke: "#333"</td></tr>
+                        <tr><td>strokeWidth</td><td>線の太さ</td><td>strokeWidth: 2</td></tr>
+                    </table>
+
+                    <div class="code-block">
+<pre><span class="keyword">screen</span> <span class="string">"Styled Elements"</span> size(400, 200) {
+  <span class="keyword">box</span> <span class="string">"Primary Box"</span> at(50, 50) size(150, 60) style(
+    background: <span class="string">"#007bff"</span>, 
+    color: <span class="string">"white"</span>, 
+    border: <span class="string">"2px solid #0056b3"</span>
+  )
+  <span class="keyword">circle</span> <span class="string">"Alert"</span> at(300, 80) radius(35) style(
+    fill: <span class="string">"#dc3545"</span>, 
+    color: <span class="string">"white"</span>, 
+    fontWeight: <span class="string">"bold"</span>
+  )
+}</pre>
+                    </div>
+
+                    <div class="tip">
+                        スタイル指定はCSS準拠で、複数のプロパティをカンマで区切って指定できます。
+                    </div>
+                </section>
+
+                <section id="advanced">
+                    <h2>高度な機能</h2>
+
+                    <h3>ネストしたレイアウト</h3>
+                    <p>要素の中に他の要素を配置できます。</p>
+
+                    <div class="code-block">
+<pre><span class="keyword">screen</span> <span class="string">"Nested Layout"</span> size(400, 300) {
+  <span class="keyword">box</span> <span class="string">"メインコンテナ"</span> at(50, 50) size(300, 200) {
+    <span class="keyword">box</span> <span class="string">"ヘッダー"</span> at(20, 20) size(260, 50) style(background: <span class="string">"#f8f9fa"</span>)
+    <span class="keyword">box</span> <span class="string">"サイドバー"</span> at(20, 80) size(80, 100) style(background: <span class="string">"#e9ecef"</span>)
+    <span class="keyword">box</span> <span class="string">"コンテンツ"</span> at(110, 80) size(170, 100) style(background: <span class="string">"#ffffff"</span>)
+  }
+}</pre>
+                    </div>
+
+                    <h3>要素の参照と接続</h3>
+                    <p><code>as</code>で名前を付けた要素は、後で参照できます。</p>
+
+                    <div class="code-block">
+<pre><span class="keyword">screen</span> <span class="string">"System Diagram"</span> size(500, 300) {
+  <span class="keyword">person</span> <span class="string">"User"</span> at(50, 120) size(80, 60) <span class="keyword">as</span> user
+  <span class="keyword">node</span> <span class="string">"Web App"</span> at(200, 120) size(100, 60) <span class="keyword">as</span> webapp
+  <span class="keyword">database</span> <span class="string">"Database"</span> at(370, 120) size(80, 60) <span class="keyword">as</span> db
+  
+  <span class="keyword">arrow</span> from(130, 150) to(200, 150)
+  <span class="keyword">arrow</span> from(300, 150) to(370, 150)
+}</pre>
+                    </div>
+
+                    <div class="warning">
+                        現在のバージョンでは、要素間の自動接続機能は開発中です。手動で座標を指定して接続してください。
+                    </div>
+                </section>
+
+                <div class="nav-buttons">
+                    <a href="../getting-started/" class="nav-button secondary">← Getting Started</a>
+                    <a href="../examples/" class="nav-button">Examples →</a>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

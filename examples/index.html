@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examples - PlaceFlow Manual</title>
+    <meta name="description" content="PlaceFlow DSLの実用的なサンプル集。UI設計からシステム図まで幅広い例。">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        main {
+            background: white;
+            margin: 2rem auto;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 1.8rem;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
+        }
+
+        h3 {
+            color: #444;
+            font-size: 1.4rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .intro {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f0f4ff;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .example-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .example-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .example-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .example-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+        }
+
+        .example-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .example-description {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .example-tags {
+            margin-top: 0.5rem;
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            margin: 0.2rem 0.3rem 0.2rem 0;
+        }
+
+        .example-content {
+            padding: 1.5rem;
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .code-block .keyword {
+            color: #569cd6;
+        }
+
+        .code-block .string {
+            color: #ce9178;
+        }
+
+        .code-block .comment {
+            color: #6a9955;
+            font-style: italic;
+        }
+
+        .copy-button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: background 0.3s ease;
+        }
+
+        .copy-button:hover {
+            background: #5a67d8;
+        }
+
+        .use-case {
+            background: #e8f5e8;
+            border: 1px solid #c3e6c3;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .use-case h4 {
+            color: #2d5a2d;
+            margin-bottom: 0.5rem;
+        }
+
+        .complexity-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .complexity-dots {
+            display: flex;
+            gap: 0.2rem;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #dee2e6;
+        }
+
+        .dot.active {
+            background: #667eea;
+        }
+
+        .difficulty-beginner .dot:nth-child(1) { background: #28a745; }
+        .difficulty-intermediate .dot:nth-child(1),
+        .difficulty-intermediate .dot:nth-child(2) { background: #ffc107; }
+        .difficulty-advanced .dot:nth-child(1),
+        .difficulty-advanced .dot:nth-child(2),
+        .difficulty-advanced .dot:nth-child(3) { background: #dc3545; }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .nav-button {
+            padding: 0.8rem 1.5rem;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background: #5a67d8;
+        }
+
+        .nav-button.secondary {
+            background: #6c757d;
+        }
+
+        .nav-button.secondary:hover {
+            background: #5a6268;
+        }
+
+        @media (max-width: 768px) {
+            .example-grid {
+                grid-template-columns: 1fr;
+            }
+
+            main {
+                margin: 1rem;
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="../" class="logo">🎨 PlaceFlow</a>
+            <div class="breadcrumb">
+                <a href="../">Home</a> / Examples
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1>Examples</h1>
+        
+        <div class="intro">
+            PlaceFlow DSLを使った実用的なサンプル集です。UI設計からシステム図、フローチャートまで様々な用途の例を紹介します。各例はコピーして自分のプロジェクトで活用できます。
+        </div>
+
+        <h2>UI・フォーム設計</h2>
+        
+        <div class="example-grid">
+            <div class="example-card">
+                <div class="example-header">
+                    <div class="example-title">ログインフォーム</div>
+                    <div class="example-description">基本的なログインフォームの設計</div>
+                    <div class="example-tags">
+                        <span class="tag">UI</span>
+                        <span class="tag">フォーム</span>
+                        <span class="tag">初級</span>
+                    </div>
+                </div>
+                <div class="example-content">
+                    <div class="complexity-indicator difficulty-beginner">
+                        <span>難易度:</span>
+                        <div class="complexity-dots">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                        <span>初級</span>
+                    </div>
+
+                    <div class="code-block">
+<pre><span class="keyword">screen</span> <span class="string">"ログインフォーム"</span> size(400, 350) {
+  <span class="keyword">box</span> <span class="string">"ログインコンテナ"</span> at(50, 50) size(300, 250) style(
+    background: <span class="string">"#ffffff"</span>, 
+    border: <span class="string">"1px solid #e9ecef"</span>, 
+    borderRadius: <span class="string">"8px"</span>
+  ) {
+    <span class="keyword">text</span> <span class="string">"ログイン"</span> at(150, 30) style(
+      fontSize: 24, 
+      fontWeight: <span class="string">"bold"</span>, 
+      textAlign: <span class="string">"center"</span>
+    )
+    
+    <span class="keyword">label</span> <span class="string">"ユーザー名"</span> at(30, 70)
+    <span class="keyword">input</span> <span class="string">"ユーザー名を入力"</span> at(30, 90) size(240, 35) <span class="keyword">as</span> username
+    
+    <span class="keyword">label</span> <span class="string">"パスワード"</span> at(30, 140)
+    <span class="keyword">input</span> <span class="string">"パスワードを入力"</span> at(30, 160) size(240, 35) type=<span class="string">"password"</span> <span class="keyword">as</span> password
+    
+    <span class="keyword">button</span> <span class="string">"ログイン"</span> at(30, 210) size(100, 35) style(
+      background: <span class="string">"#007bff"</span>, 
+      color: <span class="string">"white"</span>
+    ) <span class="keyword">as</span> loginBtn
+    
+    <span class="keyword">button</span> <span class="string">"キャンセル"</span> at(140, 210) size(100, 35) style(
+      background: <span class="string">"#6c757d"</span>, 
+      color: <span class="string">"white"</span>
+    ) <span class="keyword">as</span> cancelBtn
+  }
+}</pre>
+                    </div>
+
+                    <div class="use-case">
+                        <h4>使用例</h4>
+                        <p>Webアプリケーション、モバイルアプリ、デスクトップアプリケーションの認証画面設計に活用できます。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-card">
+                <div class="example-header">
+                    <div class="example-title">ダッシュボードレイアウト</div>
+                    <div class="example-description">管理画面の典型的なレイアウト構成</div>
+                    <div class="example-tags">
+                        <span class="tag">UI</span>
+                        <span class="tag">レイアウト</span>
+                        <span class="tag">中級</span>
+                    </div>
+                </div>
+                <div class="example-content">
+                    <div class="complexity-indicator difficulty-intermediate">
+                        <span>難易度:</span>
+                        <div class="complexity-dots">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                        <span>中級</span>
+                    </div>
+
+                    <div class="code-block">
+<pre><span class="keyword">screen</span> <span class="string">"管理ダッシュボード"</span> size(800, 600) {
+  <span class="comment">// ヘッダー</span>
+  <span class="keyword">box</span> <span class="string">"ヘッダー"</span> at(0, 0) size(800, 60) style(
+    background: <span class="string">"#343a40"</span>, 
+    color: <span class="string">"white"</span>
+  ) {
+    <span class="keyword">text</span> <span class="string">"Admin Dashboard"</span> at(20, 30) style(fontSize: 18, fontWeight: <span class="string">"bold"</span>)
+    <span class="keyword">button</span> <span class="string">"ログアウト"</span> at(700, 15) size(80, 30) style(background: <span class="string">"#dc3545"</span>)
+  }
+  
+  <span class="comment">// サイドバー</span>
+  <span class="keyword">box</span> <span class="string">"サイドバー"</span> at(0, 60) size(200, 540) style(
+    background: <span class="string">"#f8f9fa"</span>, 
+    border: <span class="string">"1px solid #dee2e6"</span>
+  ) {
+    <span class="keyword">button</span> <span class="string">"ダッシュボード"</span> at(20, 30) size(160, 40) style(background: <span class="string">"#007bff"</span>)
+    <span class="keyword">button</span> <span class="string">"ユーザー管理"</span> at(20, 80) size(160, 40)
+    <span class="keyword">button</span> <span class="string">"商品管理"</span> at(20, 130) size(160, 40)
+    <span class="keyword">button</span> <span class="string">"注文管理"</span> at(20, 180) size(160, 40)
+    <span class="keyword">button</span> <span class="string">"設定"</span> at(20, 230) size(160, 40)
+  }
+  
+  <span class="comment">// メインコンテンツエリア</span>
+  <span class="keyword">box</span> <span class="string">"メインコンテンツ"</span> at(200, 60) size(600, 540) style(
+    background: <span class="string">"white"</span>, 
+    padding: <span class="string">"20px"</span>
+  ) {
+    <span class="comment">// 統計カード</span>
+    <span class="keyword">box</span> <span class="string">"総ユーザー数"</span> at(20, 20) size(130, 80) style(
+      background: <span class="string">"#e3f2fd"</span>, 
+      textAlign: <span class="string">"center"</span>
+    ) {
+      <span class="keyword">text</span> <span class="string">"1,234"</span> at(65, 35) style(fontSize: 24, fontWeight: <span class="string">"bold"</span>)
+      <span class="keyword">text</span> <span class="string">"ユーザー"</span> at(65, 60)
+    }
+    
+    <span class="keyword">box</span> <span class="string">"売上"</span> at(170, 20) size(130, 80) style(
+      background: <span class="string">"#e8f5e8"</span>, 
+      textAlign: <span class="string">"center"</span>
+    ) {
+      <span class="keyword">text</span> <span class="string">"¥456,789"</span> at(65, 35) style(fontSize: 20, fontWeight: <span class="string">"bold"</span>)
+      <span class="keyword">text</span> <span class="string">"今月の売上"</span> at(65, 60)
+    }
+    
+    <span class="keyword">box</span> <span class="string">"注文数"</span> at(320, 20) size(130, 80) style(
+      background: <span class="string">"#fff3cd"</span>, 
+      textAlign: <span class="string">"center"</span>
+    ) {
+      <span class="keyword">text</span> <span class="string">"89"</span> at(65, 35) style(fontSize: 24, fontWeight: <span class="string">"bold"</span>)
+      <span class="keyword">text</span> <span class="string">"本日の注文"</span> at(65, 60)
+    }
+    
+    <span class="comment">// チャートエリア</span>
+    <span class="keyword">box</span> <span class="string">"売上チャート"</span> at(20, 120) size(560, 200) style(
+      background: <span class="string">"#f8f9fa"</span>, 
+      border: <span class="string">"1px solid #dee2e6"</span>
+    ) {
+      <span class="keyword">text</span> <span class="string">"売上推移グラフ"</span> at(280, 100) style(textAlign: <span class="string">"center"</span>)
+    }
+    
+    <span class="comment">// 最近の活動</span>
+    <span class="keyword">box</span> <span class="string">"最近の活動"</span> at(20, 340) size(560, 180) style(
+      background: <span class="string">"white"</span>, 
+      border: <span class="string">"1px solid #dee2e6"</span>
+    ) {
+      <span class="keyword">text</span> <span class="string">"最近の活動"</span> at(20, 25) style(fontSize: 16, fontWeight: <span class="string">"bold"</span>)
+      <span class="keyword">text</span> <span class="string">"• 新規ユーザー登録: 田中太郎"</span> at(20, 50)
+      <span class="keyword">text</span> <span class="string">"• 注文完了: #12345"</span> at(20, 75)
+      <span class="keyword">text</span> <span class="string">"• 商品追加: MacBook Pro"</span> at(20, 100)
+    }
+  }
+}</pre>
+                    </div>
+
+                    <div class="use-case">
+                        <h4>使用例</h4>
+                        <p>管理システム、CMS、分析ダッシュボード、社内ツールなどの設計に活用。レスポンシブ対応の検討材料としても有用。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2>システム・アーキテクチャ図</h2>
+
+        <div class="example-grid">
+            <div class="example-card">
+                <div class="example-header">
+                    <div class="example-title">3層アーキテクチャ</div>
+                    <div class="example-description">典型的なWebアプリケーションの構成</div>
+                    <div class="example-tags">
+                        <span class="tag">システム</span>
+                        <span class="tag">アーキテクチャ</span>
+                        <span class="tag">中級</span>
+                    </div>
+                </div>
+                <div class="example-content">
+                    <div class="complexity-indicator difficulty-intermediate">
+                        <span>難易度:</span>
+                        <div class="complexity-dots">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                        <span>中級</span>
+                    </div>
+
+                    <div class="code-block">
+<pre><span class="keyword">screen</span> <span class="string">"3層アーキテクチャ"</span> size(600, 400) {
+  <span class="comment">// プレゼンテーション層</span>
+  <span class="keyword">box</span> <span class="string">"プレゼンテーション層"</span> at(50, 50) size(500, 80) style(
+    background: <span class="string">"#e3f2fd"</span>, 
+    border: <span class="string">"2px solid #2196f3"</span>
+  ) {
+    <span class="keyword">node</span> <span class="string">"Web Browser"</span> at(50, 15) size(100, 50) <span class="keyword">as</span> browser
+    <span class="keyword">node</span> <span class="string">"Mobile App"</span> at(200, 15) size(100, 50) <span class="keyword">as</span> mobile
+    <span class="keyword">node</span> <span class="string">"Desktop App"</span> at(350, 15) size(100, 50) <span class="keyword">as</span> desktop
+  }
+  
+  <span class="comment">// アプリケーション層</span>
+  <span class="keyword">box</span> <span class="string">"アプリケーション層"</span> at(50, 170) size(500, 80) style(
+    background: <span class="string">"#e8f5e8"</span>, 
+    border: <span class="string">"2px solid #4caf50"</span>
+  ) {
+    <span class="keyword">loadbalancer</span> <span class="string">"Load Balancer"</span> at(50, 15) size(120, 50) <span class="keyword">as</span> lb
+    <span class="keyword">node</span> <span class="string">"Web Server 1"</span> at(200, 15) size(100, 50) <span class="keyword">as</span> web1
+    <span class="keyword">node</span> <span class="string">"Web Server 2"</span> at(330, 15) size(100, 50) <span class="keyword">as</span> web2
+  }
+  
+  <span class="comment">// データ層</span>
+  <span class="keyword">box</span> <span class="string">"データ層"</span> at(50, 290) size(500, 80) style(
+    background: <span class="string">"#fff3e0"</span>, 
+    border: <span class="string">"2px solid #ff9800"</span>
+  ) {
+    <span class="keyword">database</span> <span class="string">"PostgreSQL"</span> at(100, 15) size(120, 50) <span class="keyword">as</span> maindb
+    <span class="keyword">database</span> <span class="string">"Redis Cache"</span> at(280, 15) size(120, 50) <span class="keyword">as</span> cache
+  }
+  
+  <span class="comment">// 接続線</span>
+  <span class="keyword">arrow</span> from(150, 130) to(150, 170)
+  <span class="keyword">arrow</span> from(250, 130) to(220, 170)
+  <span class="keyword">arrow</span> from(400, 130) to(380, 170)
+  
+  <span class="keyword">arrow</span> from(170, 250) to(160, 290)
+  <span class="keyword">arrow</span> from(250, 250) to(250, 290)
+  <span class="keyword">arrow</span> from(380, 250) to(340, 290)
+}</pre>
+                    </div>
+
+                    <div class="use-case">
+                        <h4>使用例</h4>
+                        <p>システム設計書、技術文書、プレゼンテーション資料、新人研修資料、クライアントへの説明資料として活用。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-card">
+                <div class="example-header">
+                    <div class="example-title">マイクロサービス構成</div>
+                    <div class="example-description">マイクロサービスアーキテクチャの例</div>
+                    <div class="example-tags">
+                        <span class="tag">システム</span>
+                        <span class="tag">マイクロサービス</span>
+                        <span class="tag">上級</span>
+                    </div>
+                </div>
+                <div class="example-content">
+                    <div class="complexity-indicator difficulty-advanced">
+                        <span>難易度:</span>
+                        <div class="complexity-dots">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                        <span>上級</span>
+                    </div>
+
+                    <div class="code-block">
+<pre><span class="keyword">screen</span> <span class="string">"マイクロサービス構成"</span> size(800, 600) {
+  <span class="comment">// API Gateway</span>
+  <span class="keyword">loadbalancer</span> <span class="string">"API Gateway"</span> at(350, 50) size(120, 60) <span class="keyword">as</span> gateway style(
+    background: <span class="string">"#ff6b6b"</span>, 
+    color: <span class="string">"white"</span>
+  )
+  
+  <span class="comment">// マイクロサービス群</span>
+  <span class="keyword">box</span> <span class="string">"User Service"</span> at(50, 150) size(120, 100) style(
+    background: <span class="string">"#4ecdc4"</span>, 
+    color: <span class="string">"white"</span>
+  ) {
+    <span class="keyword">node</span> <span class="string">"User API"</span> at(10, 15) size(100, 30) <span class="keyword">as</span> userapi
+    <span class="keyword">database</span> <span class="string">"User DB"</span> at(10, 55) size(100, 30) <span class="keyword">as</span> userdb
+  }
+  
+  <span class="keyword">box</span> <span class="string">"Order Service"</span> at(200, 150) size(120, 100) style(
+    background: <span class="string">"#45b7d1"</span>, 
+    color: <span class="string">"white"</span>
+  ) {
+    <span class="keyword">node</span> <span class="string">"Order API"</span> at(10, 15) size(100, 30) <span class="keyword">as</span> orderapi
+    <span class="keyword">database</span> <span class="string">"Order DB"</span> at(10, 55) size(100, 30) <span class="keyword">as</span> orderdb
+  }
+  
+  <span class="keyword">box</span> <span class="string">"Payment Service"</span> at(350, 150) size(120, 100) style(
+    background: <span class="string">"#f7b731"</span>, 
+    color: <span class="string">"white"</span>
+  ) {
+    <span class="keyword">node</span> <span class="string">"Payment API"</span> at(10, 15) size(100, 30) <span class="keyword">as</span> payapi
+    <span class="keyword">database</span> <span class="string">"Payment DB"</span> at(10, 55) size(100, 30) <span class="keyword">as</span> paydb
+  }
+  
+  <span class="keyword">box</span> <span class="string">"Notification Service"</span> at(500, 150) size(120, 100) style(
+    background: <span class="string">"#a55eea"</span>, 
+    color: <span class="string">"white"</span>
+  ) {
+    <span class="keyword">node</span> <span class="string">"Notify API"</span> at(10, 15) size(100, 30) <span class="keyword">as</span> notifyapi
+    <span class="keyword">database</span> <span class="string">"Queue"</span> at(10, 55) size(100, 30) <span class="keyword">as</span> queue
+  }
+  
+  <span class="comment">// 共通サービス</span>
+  <span class="keyword">box</span> <span class="string">"共通サービス"</span> at(50, 300) size(570, 80) style(
+    background: <span class="string">"#f8f9fa"</span>, 
+    border: <span class="string">"2px solid #6c757d"</span>
+  ) {
+    <span class="keyword">database</span> <span class="string">"Redis Cache"</span> at(50, 15) size(100, 50) <span class="keyword">as</span> redis
+    <span class="keyword">node</span> <span class="string">"Config Server"</span> at(180, 15) size(100, 50) <span class="keyword">as</span> config
+    <span class="keyword">node</span> <span class="string">"Log Service"</span> at(310, 15) size(100, 50) <span class="keyword">as</span> logging
+    <span class="keyword">node</span> <span class="string">"Monitoring"</span> at(440, 15) size(100, 50) <span class="keyword">as</span> monitor
+  }
+  
+  <span class="comment">// 外部システム</span>
+  <span class="keyword">box</span> <span class="string">"外部システム"</span> at(50, 420) size(570, 80) style(
+    background: <span class="string">"#ffe8e8"</span>, 
+    border: <span class="string">"2px solid #dc3545"</span>
+  ) {
+    <span class="keyword">node</span> <span class="string">"SMS Gateway"</span> at(50, 15) size(100, 50) <span class="keyword">as</span> sms
+    <span class="keyword">node</span> <span class="string">"Email Service"</span> at(180, 15) size(100, 50) <span class="keyword">as</span> email
+    <span class="keyword">node</span> <span class="string">"Payment Gateway"</span> at(310, 15) size(120, 50) <span class="keyword">as</span> paygw
+    <span class="keyword">database</span> <span class="string">"Analytics"</span> at(460, 15) size(100, 50) <span class="keyword">as</span> analytics
+  }
+  
+  <span class="comment">// 接続線（API Gatewayからマイクロサービスへ）</span>
+  <span class="keyword">arrow</span> from(350, 110) to(110, 150)
+  <span class="keyword">arrow</span> from(380, 110) to(260, 150)
+  <span class="keyword">arrow</span> from(410, 110) to(410, 150)
+  <span class="keyword">arrow</span> from(450, 110) to(560, 150)
+  
+  <span class="comment">// マイクロサービス間連携</span>
+  <span class="keyword">arrow</span> from(170, 200) to(200, 200) style(strokeWidth: 1, stroke: <span class="string">"#999"</span>)
+  <span class="keyword">arrow</span> from(320, 200) to(350, 200) style(strokeWidth: 1, stroke: <span class="string">"#999"</span>)
+  
+  <span class="comment">// 外部システムとの連携</span>
+  <span class="keyword">arrow</span> from(560, 250) to(530, 420) style(strokeWidth: 1, stroke: <span class="string">"#dc3545"</span>)
+  <span class="keyword">arrow</span> from(410, 250) to(380, 420) style(strokeWidth: 1, stroke: <span class="string">"#dc3545"</span>)
+}</pre>
+                    </div>
+
+                    <div class="use-case">
+                        <h4>使用例</h4>
+                        <p>大規模システムの設計資料、マイクロサービス移行計画、チーム間の責任分界点の明確化、運用体制の検討資料として活用。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2>フロー・プロセス図</h2>
+
+        <div class="example-grid">
+            <div class="example-card">
+                <div class="example-header">
+                    <div class="example-title">ユーザー登録フロー</div>
+                    <div class="example-description">ユーザー登録プロセスのフローチャート</div>
+                    <div class="example-tags">
+                        <span class="tag">フロー</span>
+                        <span class="tag">プロセス</span>
+                        <span class="tag">初級</span>
+                    </div>
+                </div>
+                <div class="example-content">
+                    <div class="complexity-indicator difficulty-beginner">
+                        <span>難易度:</span>
+                        <div class="complexity-dots">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                        <span>初級</span>
+                    </div>
+
+                    <div class="code-block">
+<pre><span class="keyword">screen</span> <span class="string">"ユーザー登録フロー"</span> size(600, 500) {
+  <span class="comment">// 開始</span>
+  <span class="keyword">circle</span> <span class="string">"開始"</span> at(300, 50) radius(30) style(
+    background: <span class="string">"#28a745"</span>, 
+    color: <span class="string">"white"</span>
+  ) <span class="keyword">as</span> start
+  
+  <span class="comment">// 登録フォーム入力</span>
+  <span class="keyword">rect</span> at(250, 130) size(100, 50) style(
+    background: <span class="string">"#e3f2fd"</span>, 
+    border: <span class="string">"2px solid #2196f3"</span>
+  ) <span class="keyword">as</span> form
+  <span class="keyword">text</span> <span class="string">"フォーム入力"</span> at(300, 155) style(textAlign: <span class="string">"center"</span>)
+  
+  <span class="comment">// バリデーション</span>
+  <span class="keyword">circle</span> at(300, 230) radius(40) style(
+    background: <span class="string">"#fff3cd"</span>, 
+    border: <span class="string">"2px solid #ffc107"</span>
+  ) <span class="keyword">as</span> validation
+  <span class="keyword">text</span> <span class="string">"バリデーション"</span> at(300, 225) style(textAlign: <span class="string">"center"</span>, fontSize: 12)
+  <span class="keyword">text</span> <span class="string">"OK？"</span> at(300, 240) style(textAlign: <span class="string">"center"</span>, fontSize: 12)
+  
+  <span class="comment">// エラー処理</span>
+  <span class="keyword">rect</span> at(100, 230) size(80, 40) style(
+    background: <span class="string">"#f8d7da"</span>, 
+    border: <span class="string">"2px solid #dc3545"</span>
+  ) <span class="keyword">as</span> error
+  <span class="keyword">text</span> <span class="string">"エラー表示"</span> at(140, 250) style(textAlign: <span class="string">"center"</span>, fontSize: 12)
+  
+  <span class="comment">// メール送信</span>
+  <span class="keyword">rect</span> at(250, 330) size(100, 50) style(
+    background: <span class="string">"#e8f5e8"</span>, 
+    border: <span class="string">"2px solid #28a745"</span>
+  ) <span class="keyword">as</span> email
+  <span class="keyword">text</span> <span class="string">"確認メール送信"</span> at(300, 355) style(textAlign: <span class="string">"center"</span>, fontSize: 12)
+  
+  <span class="comment">// 完了</span>
+  <span class="keyword">circle</span> <span class="string">"完了"</span> at(300, 430) radius(30) style(
+    background: <span class="string">"#dc3545"</span>, 
+    color: <span class="string">"white"</span>
+  ) <span class="keyword">as</span> end
+  
+  <span class="comment">// フロー線</span>
+  <span class="keyword">arrow</span> from(300, 80) to(300, 130)
+  <span class="keyword">arrow</span> from(300, 180) to(300, 190)
+  
+  <span class="comment">// バリデーション分岐</span>
+  <span class="keyword">arrow</span> from(260, 230) to(180, 230) style(stroke: <span class="string">"#dc3545"</span>)
+  <span class="keyword">text</span> <span class="string">"NG"</span> at(220, 220) style(color: <span class="string">"#dc3545"</span>, fontSize: 12)
+  
+  <span class="keyword">arrow</span> from(300, 270) to(300, 330) style(stroke: <span class="string">"#28a745"</span>)
+  <span class="keyword">text</span> <span class="string">"OK"</span> at(310, 300) style(color: <span class="string">"#28a745"</span>, fontSize: 12)
+  
+  <span class="comment">// エラーからフォームへ戻る</span>
+  <span class="keyword">arrow</span> from(100, 250) to(80, 250) to(80, 155) to(250, 155) style(stroke: <span class="string">"#dc3545"</span>)
+  
+  <span class="keyword">arrow</span> from(300, 380) to(300, 400)
+}</pre>
+                    </div>
+
+                    <div class="use-case">
+                        <h4>使用例</h4>
+                        <p>業務フロー設計、ユーザーエクスペリエンス設計、システム要件定義、テストケース設計、運用手順書作成に活用。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="../reference/" class="nav-button secondary">← DSL Reference</a>
+            <a href="../vscode-guide/" class="nav-button">VSCode Guide →</a>
+        </div>
+    </main>
+
+    <script>
+        // コピー機能（将来の拡張用）
+        function copyCode(button) {
+            const codeBlock = button.previousElementSibling;
+            const text = codeBlock.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                button.textContent = 'コピー済み!';
+                setTimeout(() => {
+                    button.textContent = 'コピー';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
