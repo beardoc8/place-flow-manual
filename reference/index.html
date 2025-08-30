@@ -386,6 +386,11 @@
                     <li><a href="#person">person</a></li>
                     <li><a href="#loadbalancer">loadbalancer</a></li>
                 </ul>
+                
+                <h3>接続</h3>
+                <ul>
+                    <li><a href="#connections">要素間接続</a></li>
+                </ul>
             </aside>
 
             <main>
@@ -845,6 +850,119 @@
                                     <line style="stroke: #28a745; stroke-width: 1" x1="200" y1="120" x2="130" y2="100" marker-end="url(#arrow-200-120-130-100)"/>
                                 </svg>
                             </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="connections">
+                    <h2>要素間接続</h2>
+                    
+                    <p>PlaceFlowでは<code>line</code>と<code>arrow</code>要素を使用して要素間を接続できます。</p>
+                    
+                    <div class="element-card">
+                        <div class="element-title">基本的な接続 <span class="tag">接続</span></div>
+                        <div class="element-description">lineとarrowを使用した要素間の接続方法</div>
+                        
+                        <div class="syntax-pattern">
+                            line from(x1, y1) to(x2, y2)<br>
+                            arrow from(x1, y1) to(x2, y2)<br>
+                            要素に<code>as 名前</code>で識別子を付与可能
+                        </div>
+
+                        <h4>シンプルな接続</h4>
+                        <div class="code-block">
+<pre><span class="keyword">screen</span> <span class="string">"Simple Connection"</span> size(400, 200) {
+  <span class="keyword">box</span> <span class="string">"ボックスA"</span> at(50, 80) size(100, 40) <span class="keyword">as</span> a
+  <span class="keyword">box</span> <span class="string">"ボックスB"</span> at(250, 80) size(100, 40) <span class="keyword">as</span> b
+  <span class="keyword">line</span> from(150, 100) to(250, 100)
+}</pre>
+                        </div>
+
+                        <div class="preview-box">
+                            <h4>生成結果:</h4>
+                            <div class="svg-preview">
+                                <svg width="400" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="100%" height="100%" fill="white"/>
+                                    <rect id="a" style="fill: white; stroke: black; stroke-width: 1" x="50" y="80" width="100" height="40"/>
+                                    <text style="text-anchor: middle; dominant-baseline: middle; fill: #000000; font-weight: normal; font-family: Arial, sans-serif; font-size: 14px" x="100" y="100">ボックスA</text>
+                                    <rect id="b" style="fill: white; stroke: black; stroke-width: 1" x="250" y="80" width="100" height="40"/>
+                                    <text style="text-anchor: middle; dominant-baseline: middle; fill: #000000; font-weight: normal; font-family: Arial, sans-serif; font-size: 14px" x="300" y="100">ボックスB</text>
+                                    <line style="stroke: black; stroke-width: 1" x1="150" y1="100" x2="250" y2="100"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <h4>方向付き接続</h4>
+                        <div class="code-block">
+<pre><span class="keyword">screen</span> <span class="string">"Directional Connection"</span> size(400, 200) {
+  <span class="keyword">database</span> <span class="string">"DB"</span> at(50, 80) size(80, 40) <span class="keyword">as</span> db
+  <span class="keyword">box</span> <span class="string">"API"</span> at(200, 80) size(80, 40) <span class="keyword">as</span> api
+  <span class="keyword">box</span> <span class="string">"UI"</span> at(320, 80) size(60, 40) <span class="keyword">as</span> ui
+  <span class="keyword">arrow</span> from(130, 100) to(200, 100)
+  <span class="keyword">arrow</span> from(280, 100) to(320, 100)
+}</pre>
+                        </div>
+
+                        <div class="preview-box">
+                            <h4>生成結果:</h4>
+                            <div class="svg-preview">
+                                <svg width="400" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="100%" height="100%" fill="white"/>
+                                    <g id="db" style="fill: #E8F4FD; stroke: #4A90E2; stroke-width: 1">
+                                        <rect x="50" y="84" width="80" height="32" fill="#E8F4FD" stroke="#4A90E2" stroke-width="1"/>
+                                        <ellipse cx="90" cy="84" rx="40" ry="4" fill="#B8E0FF" stroke="#4A90E2" stroke-width="1"/>
+                                        <ellipse cx="90" cy="116" rx="40" ry="4" fill="#E8F4FD" stroke="#4A90E2" stroke-width="1"/>
+                                    </g>
+                                    <text style="fill: #333333; font-weight: normal; font-size: 12px" x="90" y="100" dy="0.35em" text-anchor="middle" font-family="Arial, sans-serif">DB</text>
+                                    <rect id="api" style="fill: white; stroke: black; stroke-width: 1" x="200" y="80" width="80" height="40"/>
+                                    <text style="text-anchor: middle; dominant-baseline: middle; fill: #000000; font-weight: normal; font-family: Arial, sans-serif; font-size: 14px" x="240" y="100">API</text>
+                                    <rect id="ui" style="fill: white; stroke: black; stroke-width: 1" x="320" y="80" width="60" height="40"/>
+                                    <text style="text-anchor: middle; dominant-baseline: middle; fill: #000000; font-weight: normal; font-family: Arial, sans-serif; font-size: 14px" x="350" y="100">UI</text>
+                                    <defs>
+                                        <marker id="arrow-130-100-200-100" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="black"/></marker>
+                                    </defs>
+                                    <line style="stroke: black; stroke-width: 1" x1="130" y1="100" x2="200" y2="100" marker-end="url(#arrow-130-100-200-100)"/>
+                                    <defs>
+                                        <marker id="arrow-280-100-320-100" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="black"/></marker>
+                                    </defs>
+                                    <line style="stroke: black; stroke-width: 1" x1="280" y1="100" x2="320" y2="100" marker-end="url(#arrow-280-100-320-100)"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <h4>双方向接続</h4>
+                        <div class="code-block">
+<pre><span class="keyword">screen</span> <span class="string">"Bidirectional Connection"</span> size(400, 150) {
+  <span class="keyword">circle</span> <span class="string">"サーバーA"</span> at(80, 75) radius(40) <span class="keyword">as</span> serverA
+  <span class="keyword">circle</span> <span class="string">"サーバーB"</span> at(320, 75) radius(40) <span class="keyword">as</span> serverB
+  <span class="keyword">arrow</span> from(120, 75) to(280, 75)
+  <span class="keyword">arrow</span> from(280, 80) to(120, 80) style(stroke: <span class="string">"#28a745"</span>)
+}</pre>
+                        </div>
+
+                        <div class="preview-box">
+                            <h4>生成結果:</h4>
+                            <div class="svg-preview">
+                                <svg width="400" height="150" viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="100%" height="100%" fill="white"/>
+                                    <circle id="serverA" cx="80" cy="75" r="40" fill="white" stroke="black" stroke-width="1"/>
+                                    <text style="fill: #000000; font-weight: normal" x="80" y="75" dy="0.35em" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">サーバーA</text>
+                                    <circle id="serverB" cx="320" cy="75" r="40" fill="white" stroke="black" stroke-width="1"/>
+                                    <text style="fill: #000000; font-weight: normal" x="320" y="75" dy="0.35em" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">サーバーB</text>
+                                    <defs>
+                                        <marker id="arrow-120-75-280-75" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="black"/></marker>
+                                    </defs>
+                                    <line style="stroke: black; stroke-width: 1" x1="120" y1="75" x2="280" y2="75" marker-end="url(#arrow-120-75-280-75)"/>
+                                    <defs>
+                                        <marker id="arrow-280-80-120-80" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="#28a745"/></marker>
+                                    </defs>
+                                    <line style="stroke: #28a745; stroke-width: 1" x1="280" y1="80" x2="120" y2="80" marker-end="url(#arrow-280-80-120-80)"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="tip">
+                            <strong>注意:</strong> 現在のPlaceFlowでは座標ベースの接続を使用します。将来的には<code>a-b</code>、<code>a->b</code>、<code>a<->b</code>のような名前ベース接続構文の実装が予定されています。
                         </div>
                     </div>
                 </section>
