@@ -545,30 +545,21 @@
                         <button class="copy-button" onclick="copyCode(this)">Copy</button>
 <pre><span class="keyword">screen</span> <span class="string">"3層アーキテクチャ"</span> size(600, 400) {
   <span class="comment">// プレゼンテーション層</span>
-  <span class="keyword">box</span> <span class="string">"プレゼンテーション層"</span> at(50, 50) size(500, 80) style(
-    background: <span class="string">"#e3f2fd"</span>, 
-    border: <span class="string">"2px solid #2196f3"</span>
-  ) {
+  <span class="keyword">box</span> <span class="string">"プレゼンテーション層"</span> at(50, 50) size(500, 80) style(background: <span class="string">"#e3f2fd"</span>, border: <span class="string">"2px solid #2196f3"</span>) {
     <span class="keyword">node</span> <span class="string">"Web Browser"</span> at(50, 15) size(100, 50) <span class="keyword">as</span> browser
     <span class="keyword">node</span> <span class="string">"Mobile App"</span> at(200, 15) size(100, 50) <span class="keyword">as</span> mobile
     <span class="keyword">node</span> <span class="string">"Desktop App"</span> at(350, 15) size(100, 50) <span class="keyword">as</span> desktop
   }
   
   <span class="comment">// アプリケーション層</span>
-  <span class="keyword">box</span> <span class="string">"アプリケーション層"</span> at(50, 170) size(500, 80) style(
-    background: <span class="string">"#e8f5e8"</span>, 
-    border: <span class="string">"2px solid #4caf50"</span>
-  ) {
+  <span class="keyword">box</span> <span class="string">"アプリケーション層"</span> at(50, 170) size(500, 80) style(background: <span class="string">"#e8f5e8"</span>, border: <span class="string">"2px solid #4caf50"</span>) {
     <span class="keyword">loadbalancer</span> <span class="string">"Load Balancer"</span> at(50, 15) size(120, 50) <span class="keyword">as</span> lb
     <span class="keyword">node</span> <span class="string">"Web Server 1"</span> at(200, 15) size(100, 50) <span class="keyword">as</span> web1
     <span class="keyword">node</span> <span class="string">"Web Server 2"</span> at(330, 15) size(100, 50) <span class="keyword">as</span> web2
   }
   
   <span class="comment">// データ層</span>
-  <span class="keyword">box</span> <span class="string">"データ層"</span> at(50, 290) size(500, 80) style(
-    background: <span class="string">"#fff3e0"</span>, 
-    border: <span class="string">"2px solid #ff9800"</span>
-  ) {
+  <span class="keyword">box</span> <span class="string">"データ層"</span> at(50, 290) size(500, 80) style(background: <span class="string">"#fff3e0"</span>, border: <span class="string">"2px solid #ff9800"</span>) {
     <span class="keyword">database</span> <span class="string">"PostgreSQL"</span> at(100, 15) size(120, 50) <span class="keyword">as</span> maindb
     <span class="keyword">database</span> <span class="string">"Redis Cache"</span> at(280, 15) size(120, 50) <span class="keyword">as</span> cache
   }
@@ -658,49 +649,31 @@
                         <button class="copy-button" onclick="copyCode(this)">Copy</button>
 <pre><span class="keyword">screen</span> <span class="string">"マイクロサービス構成"</span> size(800, 600) {
   <span class="comment">// API Gateway</span>
-  <span class="keyword">loadbalancer</span> <span class="string">"API Gateway"</span> at(350, 50) size(120, 60) <span class="keyword">as</span> gateway style(
-    background: <span class="string">"#ff6b6b"</span>, 
-    color: <span class="string">"white"</span>
-  )
+  <span class="keyword">loadbalancer</span> <span class="string">"API Gateway"</span> at(350, 50) size(120, 60) <span class="keyword">as</span> gateway style(background: <span class="string">"#ff6b6b"</span>, color: <span class="string">"white"</span>)
   
   <span class="comment">// マイクロサービス群</span>
-  <span class="keyword">box</span> <span class="string">"User Service"</span> at(50, 150) size(120, 100) style(
-    background: <span class="string">"#4ecdc4"</span>, 
-    color: <span class="string">"white"</span>
-  ) {
+  <span class="keyword">box</span> <span class="string">"User Service"</span> at(50, 150) size(120, 100) style(background: <span class="string">"#4ecdc4"</span>, color: <span class="string">"white"</span>) {
     <span class="keyword">node</span> <span class="string">"User API"</span> at(10, 15) size(100, 30) <span class="keyword">as</span> userapi
     <span class="keyword">database</span> <span class="string">"User DB"</span> at(10, 55) size(100, 30) <span class="keyword">as</span> userdb
   }
   
-  <span class="keyword">box</span> <span class="string">"Order Service"</span> at(200, 150) size(120, 100) style(
-    background: <span class="string">"#45b7d1"</span>, 
-    color: <span class="string">"white"</span>
-  ) {
+  <span class="keyword">box</span> <span class="string">"Order Service"</span> at(200, 150) size(120, 100) style(background: <span class="string">"#45b7d1"</span>, color: <span class="string">"white"</span>) {
     <span class="keyword">node</span> <span class="string">"Order API"</span> at(10, 15) size(100, 30) <span class="keyword">as</span> orderapi
     <span class="keyword">database</span> <span class="string">"Order DB"</span> at(10, 55) size(100, 30) <span class="keyword">as</span> orderdb
   }
   
-  <span class="keyword">box</span> <span class="string">"Payment Service"</span> at(350, 150) size(120, 100) style(
-    background: <span class="string">"#f7b731"</span>, 
-    color: <span class="string">"white"</span>
-  ) {
+  <span class="keyword">box</span> <span class="string">"Payment Service"</span> at(350, 150) size(120, 100) style(background: <span class="string">"#f7b731"</span>, color: <span class="string">"white"</span>) {
     <span class="keyword">node</span> <span class="string">"Payment API"</span> at(10, 15) size(100, 30) <span class="keyword">as</span> payapi
     <span class="keyword">database</span> <span class="string">"Payment DB"</span> at(10, 55) size(100, 30) <span class="keyword">as</span> paydb
   }
   
-  <span class="keyword">box</span> <span class="string">"Notification Service"</span> at(500, 150) size(120, 100) style(
-    background: <span class="string">"#a55eea"</span>, 
-    color: <span class="string">"white"</span>
-  ) {
+  <span class="keyword">box</span> <span class="string">"Notification Service"</span> at(500, 150) size(120, 100) style(background: <span class="string">"#a55eea"</span>, color: <span class="string">"white"</span>) {
     <span class="keyword">node</span> <span class="string">"Notify API"</span> at(10, 15) size(100, 30) <span class="keyword">as</span> notifyapi
     <span class="keyword">database</span> <span class="string">"Queue"</span> at(10, 55) size(100, 30) <span class="keyword">as</span> queue
   }
   
   <span class="comment">// 共通サービス</span>
-  <span class="keyword">box</span> <span class="string">"共通サービス"</span> at(50, 300) size(570, 80) style(
-    background: <span class="string">"#f8f9fa"</span>, 
-    border: <span class="string">"2px solid #6c757d"</span>
-  ) {
+  <span class="keyword">box</span> <span class="string">"共通サービス"</span> at(50, 300) size(570, 80) style(background: <span class="string">"#f8f9fa"</span>, border: <span class="string">"2px solid #6c757d"</span>) {
     <span class="keyword">database</span> <span class="string">"Redis Cache"</span> at(50, 15) size(100, 50) <span class="keyword">as</span> redis
     <span class="keyword">node</span> <span class="string">"Config Server"</span> at(180, 15) size(100, 50) <span class="keyword">as</span> config
     <span class="keyword">node</span> <span class="string">"Log Service"</span> at(310, 15) size(100, 50) <span class="keyword">as</span> logging
@@ -803,45 +776,27 @@
                         <button class="copy-button" onclick="copyCode(this)">Copy</button>
 <pre><span class="keyword">screen</span> <span class="string">"ユーザー登録フロー"</span> size(600, 500) {
   <span class="comment">// 開始</span>
-  <span class="keyword">circle</span> <span class="string">"開始"</span> at(300, 50) radius(30) style(
-    background: <span class="string">"#28a745"</span>, 
-    color: <span class="string">"white"</span>
-  ) <span class="keyword">as</span> start
+  <span class="keyword">circle</span> <span class="string">"開始"</span> at(300, 50) radius(30) style(background: <span class="string">"#28a745"</span>, color: <span class="string">"white"</span>) <span class="keyword">as</span> start
   
   <span class="comment">// 登録フォーム入力</span>
-  <span class="keyword">rect</span> at(250, 130) size(100, 50) style(
-    background: <span class="string">"#e3f2fd"</span>, 
-    border: <span class="string">"2px solid #2196f3"</span>
-  ) <span class="keyword">as</span> form
+  <span class="keyword">rect</span> at(250, 130) size(100, 50) style(background: <span class="string">"#e3f2fd"</span>, border: <span class="string">"2px solid #2196f3"</span>) <span class="keyword">as</span> form
   <span class="keyword">text</span> <span class="string">"フォーム入力"</span> at(300, 155) style(textAlign: <span class="string">"center"</span>)
   
   <span class="comment">// バリデーション</span>
-  <span class="keyword">circle</span> at(300, 230) radius(40) style(
-    background: <span class="string">"#fff3cd"</span>, 
-    border: <span class="string">"2px solid #ffc107"</span>
-  ) <span class="keyword">as</span> validation
+  <span class="keyword">circle</span> at(300, 230) radius(40) style(background: <span class="string">"#fff3cd"</span>, border: <span class="string">"2px solid #ffc107"</span>) <span class="keyword">as</span> validation
   <span class="keyword">text</span> <span class="string">"バリデーション"</span> at(300, 225) style(textAlign: <span class="string">"center"</span>, fontSize: 12)
   <span class="keyword">text</span> <span class="string">"OK？"</span> at(300, 240) style(textAlign: <span class="string">"center"</span>, fontSize: 12)
   
   <span class="comment">// エラー処理</span>
-  <span class="keyword">rect</span> at(100, 230) size(80, 40) style(
-    background: <span class="string">"#f8d7da"</span>, 
-    border: <span class="string">"2px solid #dc3545"</span>
-  ) <span class="keyword">as</span> error
+  <span class="keyword">rect</span> at(100, 230) size(80, 40) style(background: <span class="string">"#f8d7da"</span>, border: <span class="string">"2px solid #dc3545"</span>) <span class="keyword">as</span> error
   <span class="keyword">text</span> <span class="string">"エラー表示"</span> at(140, 250) style(textAlign: <span class="string">"center"</span>, fontSize: 12)
   
   <span class="comment">// メール送信</span>
-  <span class="keyword">rect</span> at(250, 330) size(100, 50) style(
-    background: <span class="string">"#e8f5e8"</span>, 
-    border: <span class="string">"2px solid #28a745"</span>
-  ) <span class="keyword">as</span> email
+  <span class="keyword">rect</span> at(250, 330) size(100, 50) style(background: <span class="string">"#e8f5e8"</span>, border: <span class="string">"2px solid #28a745"</span>) <span class="keyword">as</span> email
   <span class="keyword">text</span> <span class="string">"確認メール送信"</span> at(300, 355) style(textAlign: <span class="string">"center"</span>, fontSize: 12)
   
   <span class="comment">// 完了</span>
-  <span class="keyword">circle</span> <span class="string">"完了"</span> at(300, 430) radius(30) style(
-    background: <span class="string">"#dc3545"</span>, 
-    color: <span class="string">"white"</span>
-  ) <span class="keyword">as</span> end
+  <span class="keyword">circle</span> <span class="string">"完了"</span> at(300, 430) radius(30) style(background: <span class="string">"#dc3545"</span>, color: <span class="string">"white"</span>) <span class="keyword">as</span> end
   
   <span class="comment">// フロー線</span>
   <span class="keyword">arrow</span> from(300, 80) to(300, 130)
