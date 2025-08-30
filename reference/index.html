@@ -366,7 +366,8 @@
                     <li><a href="#ui-elements">UI要素</a></li>
                     <li><a href="#diagram-elements">図表要素</a></li>
                     <li><a href="#styling">スタイリング</a></li>
-                    <li><a href="#connections">接続・関係</a></li>
+                    <li><a href="#graphics">図形・線</a></li>
+                    <li><a href="#connections">要素間接続</a></li>
                     <li><a href="#advanced">高度な機能</a></li>
                 </ul>
 
@@ -777,12 +778,12 @@
                     </div>
                 </section>
 
-                <section id="connections">
-                    <h2>接続・関係</h2>
+                <section id="graphics">
+                    <h2>図形・線</h2>
 
                     <div class="element-card" id="line">
-                        <div class="element-title">line <span class="tag">接続</span></div>
-                        <div class="element-description">2点間に線を描画します。</div>
+                        <div class="element-title">line <span class="tag">図形</span></div>
+                        <div class="element-description">指定した2点間に直線を描画します。</div>
                         
                         <div class="syntax-pattern">
                             line from(x1, y1) to(x2, y2)
@@ -814,8 +815,8 @@
                     </div>
 
                     <div class="element-card" id="arrow">
-                        <div class="element-title">arrow <span class="tag">接続</span></div>
-                        <div class="element-description">矢印付きの線を引きます。</div>
+                        <div class="element-title">arrow <span class="tag">図形</span></div>
+                        <div class="element-description">指定した2点間に矢印を描画します。</div>
                         
                         <div class="syntax-pattern">
                             arrow from(x1, y1) to(x2, y2)<br>
@@ -857,10 +858,10 @@
                 <section id="connections">
                     <h2>要素間接続</h2>
                     
-                    <p>PlaceFlowでは要素に名前を付けて直接接続する<strong>名前ベース接続</strong>（推奨）と、座標を指定する従来の方法があります。</p>
+                    <p>PlaceFlowでは要素に名前を付けて直接接続することができます。要素間の接続点は自動的に計算され、直感的なコードが書けます。</p>
                     
                     <div class="element-card">
-                        <div class="element-title">名前ベース接続 <span class="tag">推奨</span></div>
+                        <div class="element-title">要素間接続</div>
                         <div class="element-description">要素に名前を付けて直接接続する直感的な方法</div>
                         
                         <div class="syntax-pattern">
@@ -944,27 +945,6 @@
 
                     </div>
 
-                    <div class="element-card">
-                        <div class="element-title">座標ベース接続 <span class="tag">従来方法</span></div>
-                        <div class="element-description">座標を指定して要素間を接続する従来の方法</div>
-                        
-                        <div class="syntax-pattern">
-                            <code>line from(x1, y1) to(x2, y2)</code><br>
-                            <code>arrow from(x1, y1) to(x2, y2)</code>
-                        </div>
-
-                        <div class="code-block">
-<pre><span class="keyword">screen</span> <span class="string">"Coordinate-based Connection"</span> size(300, 150) {
-  <span class="keyword">box</span> <span class="string">"A"</span> at(50, 60) size(60, 30)
-  <span class="keyword">box</span> <span class="string">"B"</span> at(190, 60) size(60, 30)
-  <span class="keyword">arrow</span> from(110, 75) to(190, 75)
-}</pre>
-                        </div>
-
-                        <div class="tip">
-                            <strong>推奨:</strong> 新しいプロジェクトでは名前ベース接続（<code>a -> b</code>, <code>a &lt;-> b</code>）を使用してください。より直感的で保守しやすいコードになります。
-                        </div>
-                    </div>
                 </section>
 
                 <section id="styling">
