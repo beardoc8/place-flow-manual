@@ -363,11 +363,28 @@
 
                     <div class="code-block">
                         <button class="copy-button" onclick="copyCode(this)">Copy</button>
-<pre><span class="keyword">screen</span> <span class="string">"ログインフォーム"</span> size(400, 300) {
-  <span class="keyword">box</span> <span class="string">"フォーム"</span> at(50, 50) size(300, 200)
-  <span class="keyword">input</span> <span class="string">"ユーザー名"</span> at(80, 100) size(240, 30) <span class="keyword">as</span> username
-  <span class="keyword">input</span> <span class="string">"パスワード"</span> at(80, 140) size(240, 30) <span class="keyword">as</span> password  
-  <span class="keyword">button</span> <span class="string">"ログイン"</span> at(160, 190) size(80, 30) <span class="keyword">as</span> loginBtn
+<pre><span class="keyword">screen</span> <span class="string">"企業ログインシステム"</span> size(400, 500) {
+  <span class="comment">// ヘッダー部分</span>
+  <span class="keyword">box</span> <span class="string">"ヘッダー"</span> at(0, 0) size(400, 80) style(background: <span class="string">"#1e3a8a"</span>, color: <span class="string">"white"</span>)
+  <span class="keyword">text</span> <span class="string">"Company Portal"</span> at(200, 40) style(fontSize: 24, color: <span class="string">"white"</span>, textAlign: <span class="string">"center"</span>)
+  
+  <span class="comment">// メインフォームエリア</span>
+  <span class="keyword">box</span> <span class="string">"ログインフォーム"</span> at(50, 120) size(300, 280) style(background: <span class="string">"#f8fafc"</span>, border: <span class="string">"1px solid #e2e8f0"</span>)
+  
+  <span class="comment">// ユーザー名フィールド</span>
+  <span class="keyword">text</span> <span class="string">"ユーザー名"</span> at(70, 150) style(fontSize: 14, color: <span class="string">"#374151"</span>, textAlign: <span class="string">"left"</span>)
+  <span class="keyword">input</span> <span class="string">"社員番号またはメールアドレス"</span> at(70, 170) size(260, 40) style(background: <span class="string">"white"</span>, border: <span class="string">"2px solid #d1d5db"</span>) <span class="keyword">as</span> username
+  
+  <span class="comment">// パスワードフィールド</span>
+  <span class="keyword">text</span> <span class="string">"パスワード"</span> at(70, 230) style(fontSize: 14, color: <span class="string">"#374151"</span>, textAlign: <span class="string">"left"</span>)
+  <span class="keyword">input</span> <span class="string">"パスワードを入力"</span> at(70, 250) size(260, 40) style(background: <span class="string">"white"</span>, border: <span class="string">"2px solid #d1d5db"</span>) <span class="keyword">as</span> password
+  
+  <span class="comment">// ボタン</span>
+  <span class="keyword">button</span> <span class="string">"ログイン"</span> at(70, 320) size(120, 45) style(background: <span class="string">"#059669"</span>, color: <span class="string">"white"</span>) <span class="keyword">as</span> loginBtn
+  <span class="keyword">button</span> <span class="string">"キャンセル"</span> at(210, 320) size(120, 45) style(background: <span class="string">"#6b7280"</span>, color: <span class="string">"white"</span>) <span class="keyword">as</span> cancelBtn
+  
+  <span class="comment">// フッター</span>
+  <span class="keyword">text</span> <span class="string">"© 2024 Company Name"</span> at(200, 450) style(fontSize: 12, color: <span class="string">"#9ca3af"</span>, textAlign: <span class="string">"center"</span>)
 }</pre>
                     </div>
 
@@ -445,10 +462,29 @@
 
                     <div class="code-block">
                         <button class="copy-button" onclick="copyCode(this)">Copy</button>
-<pre><span class="keyword">screen</span> <span class="string">"管理ダッシュボード"</span> size(800, 600) {
-  <span class="keyword">box</span> <span class="string">"メニュー"</span> at(0, 0) size(800, 60)
-  <span class="keyword">box</span> <span class="string">"サイドバー"</span> at(0, 60) size(200, 540)
-  <span class="keyword">box</span> <span class="string">"メインコンテンツ"</span> at(200, 60) size(600, 540)
+<pre><span class="keyword">screen</span> <span class="string">"管理ダッシュボード"</span> size(600, 400) {
+  <span class="comment">// ヘッダー</span>
+  <span class="keyword">box</span> <span class="string">"ヘッダー"</span> at(0, 0) size(600, 60) style(background: <span class="string">"#1f2937"</span>, color: <span class="string">"white"</span>)
+  <span class="keyword">text</span> <span class="string">"管理システム"</span> at(300, 30) style(fontSize: 18, color: <span class="string">"white"</span>, textAlign: <span class="string">"center"</span>)
+  
+  <span class="comment">// サイドバー</span>
+  <span class="keyword">box</span> <span class="string">"サイドバー"</span> at(0, 60) size(150, 340) style(background: <span class="string">"#f3f4f6"</span>, border: <span class="string">"1px solid #e5e7eb"</span>) {
+    <span class="keyword">button</span> <span class="string">"ダッシュボード"</span> at(15, 20) size(120, 35) style(background: <span class="string">"#3b82f6"</span>, color: <span class="string">"white"</span>) <span class="keyword">as</span> dashBtn
+    <span class="keyword">button</span> <span class="string">"ユーザー管理"</span> at(15, 65) size(120, 35) style(background: <span class="string">"#6b7280"</span>, color: <span class="string">"white"</span>) <span class="keyword">as</span> userBtn
+    <span class="keyword">button</span> <span class="string">"売上分析"</span> at(15, 110) size(120, 35) style(background: <span class="string">"#6b7280"</span>, color: <span class="string">"white"</span>) <span class="keyword">as</span> salesBtn
+  }
+  
+  <span class="comment">// メインコンテンツ</span>
+  <span class="keyword">box</span> <span class="string">"メインコンテンツ"</span> at(150, 60) size(450, 340) style(background: <span class="string">"white"</span>, border: <span class="string">"1px solid #e5e7eb"</span>) {
+    <span class="keyword">text</span> <span class="string">"今月の概要"</span> at(225, 30) style(fontSize: 16, fontWeight: <span class="string">"bold"</span>, color: <span class="string">"#1f2937"</span>, textAlign: <span class="string">"center"</span>)
+    
+    <span class="comment">// 統計カード</span>
+    <span class="keyword">box</span> <span class="string">"売上"</span> at(30, 60) size(120, 80) style(background: <span class="string">"#ecfdf5"</span>, border: <span class="string">"2px solid #10b981"</span>) {
+      <span class="keyword">text</span> <span class="string">"¥2.4M"</span> at(60, 40) style(fontSize: 16, fontWeight: <span class="string">"bold"</span>, color: <span class="string">"#059669"</span>, textAlign: <span class="string">"center"</span>)
+    }
+    
+    <span class="keyword">button</span> <span class="string">"レポート"</span> at(30, 300) size(100, 35) style(background: <span class="string">"#7c3aed"</span>, color: <span class="string">"white"</span>) <span class="keyword">as</span> reportBtn
+  }
 }</pre>                    </div>
 
                     <div class="use-case">
