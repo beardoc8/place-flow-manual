@@ -179,6 +179,29 @@
             font-family: 'Monaco', 'Menlo', monospace;
             font-size: 0.9rem;
             overflow-x: auto;
+            position: relative;
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(102, 126, 234, 0.8);
+            border: 1px solid rgba(102, 126, 234, 1);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: background 0.3s ease;
+        }
+
+        .copy-button:hover {
+            background: rgba(102, 126, 234, 1);
+        }
+
+        .copy-button.copied {
+            background: rgba(76, 175, 80, 0.8);
         }
 
         .code-block .keyword {
@@ -414,6 +437,7 @@
 
                     <h4>自動サイズ調整</h4>
                     <div class="code-block">
+            <button class="copy-button" onclick="copyCode(this)">Copy</button>
 <pre><span class="keyword">screen</span> <span class="string">"画面名"</span> size(auto) {
   <span class="comment">// 要素の配置に合わせて自動サイズ調整</span>
 }</pre>
@@ -421,12 +445,14 @@
 
                     <h3>コメント</h3>
                     <div class="code-block">
+            <button class="copy-button" onclick="copyCode(this)">Copy</button>
 <pre><span class="comment">// 行コメント</span></pre>
                     </div>
 
                     <h3>要素の命名</h3>
                     <p><code>as</code>キーワードで要素に名前を付けて、後で参照できます。</p>
                     <div class="code-block">
+            <button class="copy-button" onclick="copyCode(this)">Copy</button>
 <pre><span class="keyword">button</span> <span class="string">"ログイン"</span> at(50, 100) size(100, 40) <span class="keyword">as</span> loginBtn</pre>
                     </div>
                 </section>
@@ -451,6 +477,7 @@
                         </table>
 
                         <div class="code-block">
+            <button class="copy-button" onclick="copyCode(this)">Copy</button>
 <pre><span class="keyword">screen</span> <span class="string">"Box Example"</span> size(300, 200) {
   <span class="keyword">box</span> <span class="string">"Hello Box"</span> at(50, 50) size(120, 60)
   <span class="keyword">box</span> <span class="string">"Styled Box"</span> at(50, 120) size(120, 60) style(background: <span class="string">"#e3f2fd"</span>, border: <span class="string">"2px solid #1976d2"</span>)
@@ -481,6 +508,7 @@
                         </div>
 
                         <div class="code-block">
+            <button class="copy-button" onclick="copyCode(this)">Copy</button>
 <pre><span class="keyword">screen</span> <span class="string">"Rectangle Examples"</span> size(300, 150) {
   <span class="keyword">rect</span> at(50, 40) size(80, 50)
   <span class="keyword">rect</span> at(160, 40) size(80, 50) radius(10) style(fill: <span class="string">"#ffeb3b"</span>)
@@ -512,6 +540,7 @@
                         </div>
 
                         <div class="code-block">
+            <button class="copy-button" onclick="copyCode(this)">Copy</button>
 <pre><span class="keyword">screen</span> <span class="string">"Button Examples"</span> size(300, 150) {
   <span class="keyword">button</span> <span class="string">"Click Me"</span> at(50, 50) size(100, 40)
   <span class="keyword">button</span> <span class="string">"Styled Button"</span> at(50, 100) size(120, 40) style(background: <span class="string">"#4CAF50"</span>, color: <span class="string">"white"</span>)
@@ -548,6 +577,7 @@
                         </div>
 
                         <div class="code-block">
+            <button class="copy-button" onclick="copyCode(this)">Copy</button>
 <pre><span class="keyword">screen</span> <span class="string">"Input Examples"</span> size(300, 120) {
   <span class="keyword">input</span> <span class="string">"Enter your name"</span> at(50, 30) size(200, 30)
   <span class="keyword">input</span> <span class="string">"Email address"</span> at(50, 70) size(200, 30) style(border: <span class="string">"2px solid #2196F3"</span>)
@@ -577,6 +607,7 @@
                         </div>
 
                         <div class="code-block">
+            <button class="copy-button" onclick="copyCode(this)">Copy</button>
 <pre><span class="keyword">screen</span> <span class="string">"Label Examples"</span> size(300, 150) {
   <span class="keyword">label</span> <span class="string">"ユーザー名:"</span> at(50, 40)
   <span class="keyword">label</span> <span class="string">"重要:"</span> at(50, 80) style(color: <span class="string">"#dc3545"</span>, fontWeight: <span class="string">"bold"</span>)
@@ -607,6 +638,7 @@
                         </div>
 
                         <div class="code-block">
+            <button class="copy-button" onclick="copyCode(this)">Copy</button>
 <pre><span class="keyword">screen</span> <span class="string">"Text Examples"</span> size(400, 200) {
   <span class="keyword">text</span> <span class="string">"タイトル"</span> at(50, 40) style(fontSize: 24, fontWeight: <span class="string">"bold"</span>)
   <span class="keyword">text</span> <span class="string">"サブタイトル"</span> at(50, 80) style(fontSize: 16, color: <span class="string">"#666"</span>)
@@ -643,6 +675,7 @@
                         </div>
 
                         <div class="code-block">
+            <button class="copy-button" onclick="copyCode(this)">Copy</button>
 <pre><span class="keyword">screen</span> <span class="string">"Circle Examples"</span> size(300, 150) {
   <span class="keyword">circle</span> <span class="string">"1"</span> at(80, 75) radius(30)
   <span class="keyword">circle</span> <span class="string">"API"</span> at(220, 75) radius(35) style(fill: <span class="string">"#2196F3"</span>, color: <span class="string">"white"</span>)
@@ -672,6 +705,7 @@
                         </div>
 
                         <div class="code-block">
+            <button class="copy-button" onclick="copyCode(this)">Copy</button>
 <pre><span class="keyword">screen</span> <span class="string">"Database Examples"</span> size(400, 200) {
   <span class="keyword">database</span> <span class="string">"MySQL"</span> at(50, 60) size(100, 80)
   <span class="keyword">database</span> <span class="string">"Redis"</span> at(200, 60) size(100, 80) style(fill: <span class="string">"#dc3545"</span>)
@@ -709,6 +743,7 @@
                         </div>
 
                         <div class="code-block">
+            <button class="copy-button" onclick="copyCode(this)">Copy</button>
 <pre><span class="keyword">screen</span> <span class="string">"Infrastructure"</span> size(500, 300) {
   <span class="keyword">node</span> <span class="string">"Web Server"</span> at(50, 50) size(120, 80) <span class="keyword">as</span> web
   <span class="keyword">node</span> <span class="string">"App Server"</span> at(200, 50) size(120, 80) <span class="keyword">as</span> app
@@ -726,6 +761,7 @@
                         </div>
 
                         <div class="code-block">
+            <button class="copy-button" onclick="copyCode(this)">Copy</button>
 <pre><span class="keyword">screen</span> <span class="string">"Person Examples"</span> size(400, 200) {
   <span class="keyword">person</span> <span class="string">"ユーザー"</span> at(50, 60) size(80, 100)
   <span class="keyword">person</span> <span class="string">"管理者"</span> at(200, 60) size(80, 100) style(fill: <span class="string">"#28a745"</span>)
@@ -769,6 +805,7 @@
                         </div>
 
                         <div class="code-block">
+            <button class="copy-button" onclick="copyCode(this)">Copy</button>
 <pre><span class="keyword">screen</span> <span class="string">"Load Balancing"</span> size(500, 250) {
   <span class="keyword">loadbalancer</span> <span class="string">"ALB"</span> at(200, 50) size(100, 60) <span class="keyword">as</span> alb
   <span class="keyword">node</span> <span class="string">"Server 1"</span> at(100, 150) size(80, 60) <span class="keyword">as</span> srv1
@@ -790,6 +827,7 @@
                         </div>
 
                         <div class="code-block">
+            <button class="copy-button" onclick="copyCode(this)">Copy</button>
 <pre><span class="keyword">screen</span> <span class="string">"Line Examples"</span> size(300, 200) {
   <span class="keyword">box</span> <span class="string">"A"</span> at(50, 50) size(60, 40)
   <span class="keyword">box</span> <span class="string">"B"</span> at(190, 120) size(60, 40)
@@ -824,6 +862,7 @@
                         </div>
 
                         <div class="code-block">
+            <button class="copy-button" onclick="copyCode(this)">Copy</button>
 <pre><span class="keyword">screen</span> <span class="string">"Arrow Examples"</span> size(400, 150) {
   <span class="keyword">box</span> <span class="string">"開始"</span> at(50, 50) size(80, 50)
   <span class="keyword">box</span> <span class="string">"終了"</span> at(270, 50) size(80, 50)
@@ -872,6 +911,7 @@
 
                         <h4>名前ベース方向付き接続</h4>
                         <div class="code-block">
+            <button class="copy-button" onclick="copyCode(this)">Copy</button>
 <pre><span class="keyword">screen</span> <span class="string">"Name-based Connection"</span> size(400, 150) {
   <span class="keyword">database</span> <span class="string">"DB"</span> at(50, 40) size(80, 70) <span class="keyword">as</span> db
   <span class="keyword">box</span> <span class="string">"API"</span> at(200, 40) size(80, 70) <span class="keyword">as</span> api
@@ -914,6 +954,7 @@
 
                         <h4>双方向接続</h4>
                         <div class="code-block">
+            <button class="copy-button" onclick="copyCode(this)">Copy</button>
 <pre><span class="keyword">screen</span> <span class="string">"Bidirectional Connection"</span> size(400, 150) {
   <span class="keyword">circle</span> <span class="string">"サーバーA"</span> at(80, 75) radius(40) <span class="keyword">as</span> serverA
   <span class="keyword">circle</span> <span class="string">"サーバーB"</span> at(320, 75) radius(40) <span class="keyword">as</span> serverB
@@ -972,6 +1013,7 @@
                     </table>
 
                     <div class="code-block">
+            <button class="copy-button" onclick="copyCode(this)">Copy</button>
 <pre><span class="keyword">screen</span> <span class="string">"Styled Elements"</span> size(400, 200) {
   <span class="keyword">box</span> <span class="string">"Primary Box"</span> at(50, 50) size(150, 60) style(
     background: <span class="string">"#007bff"</span>, 
@@ -998,6 +1040,7 @@
                     <p>要素の中に他の要素を配置できます。</p>
 
                     <div class="code-block">
+            <button class="copy-button" onclick="copyCode(this)">Copy</button>
 <pre><span class="keyword">screen</span> <span class="string">"Nested Layout"</span> size(400, 300) {
   <span class="keyword">box</span> <span class="string">"メインコンテナ"</span> at(50, 50) size(300, 200) {
     <span class="keyword">box</span> <span class="string">"ヘッダー"</span> at(20, 20) size(260, 50) style(background: <span class="string">"#f8f9fa"</span>)
@@ -1011,6 +1054,7 @@
                     <p><code>as</code>で名前を付けた要素は、後で参照できます。</p>
 
                     <div class="code-block">
+            <button class="copy-button" onclick="copyCode(this)">Copy</button>
 <pre><span class="keyword">screen</span> <span class="string">"System Diagram"</span> size(500, 300) {
   <span class="keyword">person</span> <span class="string">"User"</span> at(50, 120) size(80, 60) <span class="keyword">as</span> user
   <span class="keyword">node</span> <span class="string">"Web App"</span> at(200, 120) size(100, 60) <span class="keyword">as</span> webapp
@@ -1030,5 +1074,23 @@
             </main>
         </div>
     </div>
+
+    <script>
+        function copyCode(button) {
+            const codeBlock = button.nextElementSibling;
+            const text = codeBlock.textContent;
+            
+            navigator.clipboard.writeText(text).then(function() {
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+                setTimeout(function() {
+                    button.textContent = 'Copy';
+                    button.classList.remove('copied');
+                }, 2000);
+            }, function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        }
+    </script>
 </body>
 </html>
