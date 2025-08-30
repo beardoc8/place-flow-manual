@@ -1079,6 +1079,25 @@
 }</pre>
                     </div>
 
+                    <div class="preview-box">
+                        <h4>生成結果:</h4>
+                        <div class="svg-preview">
+                            <svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="100%" height="100%" fill="white"/>
+                                <rect style="fill: white; stroke: black; stroke-width: 1" x="50" y="50" width="300" height="200"/>
+                                <text style="text-anchor: middle; dominant-baseline: middle; fill: #000000; font-weight: normal; font-family: Arial, sans-serif; font-size: 14px" x="200" y="150">メインコンテナ</text>
+                                <g transform="translate(50, 50)">
+                                    <rect style="fill: white; stroke: black; stroke-width: 1; fill: #f8f9fa" x="20" y="20" width="260" height="50"/>
+                                    <text style="text-anchor: middle; dominant-baseline: middle; fill: #000000; font-weight: normal; font-family: Arial, sans-serif; font-size: 14px" x="150" y="45">ヘッダー</text>
+                                    <rect style="fill: white; stroke: black; stroke-width: 1; fill: #e9ecef" x="20" y="80" width="80" height="100"/>
+                                    <text style="text-anchor: middle; dominant-baseline: middle; fill: #000000; font-weight: normal; font-family: Arial, sans-serif; font-size: 14px" x="60" y="130">サイドバー</text>
+                                    <rect style="fill: white; stroke: black; stroke-width: 1; fill: #ffffff" x="110" y="80" width="170" height="100"/>
+                                    <text style="text-anchor: middle; dominant-baseline: middle; fill: #000000; font-weight: normal; font-family: Arial, sans-serif; font-size: 14px" x="195" y="130">コンテンツ</text>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+
                     <h3>要素の参照と接続</h3>
                     <p><code>as</code>で名前を付けた要素は、後で参照できます。</p>
 
@@ -1092,6 +1111,47 @@
   user -> webapp
   webapp -> db
 }</pre>
+                    </div>
+
+                    <div class="preview-box">
+                        <h4>生成結果:</h4>
+                        <div class="svg-preview">
+                            <svg width="500" height="300" viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="100%" height="100%" fill="white"/>
+                                <g id="user" style="fill: #87CEEB; stroke: #4682B4; stroke-width: 1">
+                                    <circle cx="90" cy="131" r="6" fill="#FFE4B5" stroke="#8B4513" stroke-width="1"/>
+                                    <rect x="78" y="142" width="24" height="27" rx="5" ry="5" stroke="#4682B4" stroke-width="1"/>
+                                    <line x1="78" y1="150.1" x2="62" y2="158.1" stroke="#8B4513" stroke-width="2" stroke-linecap="round"/>
+                                    <line x1="102" y1="150.1" x2="118" y2="158.1" stroke="#8B4513" stroke-width="2" stroke-linecap="round"/>
+                                    <line x1="85.2" y1="169" x2="82.8" y2="175" stroke="#8B4513" stroke-width="2" stroke-linecap="round"/>
+                                    <line x1="94.8" y1="169" x2="97.2" y2="175" stroke="#8B4513" stroke-width="2" stroke-linecap="round"/>
+                                </g>
+                                <text style="fill: #333333; font-weight: normal; font-size: 12px" x="90" y="195" dy="0.35em" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">User</text>
+                                <g id="webapp" style="fill: white; stroke: black; stroke-width: 1">
+                                    <rect x="200" y="120" width="100" height="60" fill="white" stroke="black" stroke-width="1" rx="4"/>
+                                    <circle cx="285" cy="129" r="3" fill="green"/>
+                                </g>
+                                <text style="fill: #000000; font-weight: bold; font-size: 12px" x="250" y="150" dy="0.35em" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">Web App</text>
+                                <g id="db" style="fill: #E8F4FD; stroke: #4A90E2; stroke-width: 1">
+                                    <rect x="370" y="126" width="80" height="48" fill="#E8F4FD" stroke="#4A90E2" stroke-width="1"/>
+                                    <ellipse cx="410" cy="126" rx="40" ry="6" fill="#B8E0FF" stroke="#4A90E2" stroke-width="1"/>
+                                    <ellipse cx="410" cy="174" rx="40" ry="6" fill="#E8F4FD" stroke="#4A90E2" stroke-width="1"/>
+                                </g>
+                                <text style="fill: #333333; font-weight: normal; font-size: 12px" x="410" y="150" dy="0.35em" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">Database</text>
+                                <defs>
+                                    <marker id="connection-arrow-130-150-200-150" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                                        <polygon points="0,0 8,4 0,8" fill="#666"/>
+                                    </marker>
+                                </defs>
+                                <line x1="130" y1="150" x2="200" y2="150" stroke="#666" stroke-width="1" marker-end="url(#connection-arrow-130-150-200-150)"/>
+                                <defs>
+                                    <marker id="connection-arrow-300-150-370-150" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                                        <polygon points="0,0 8,4 0,8" fill="#666"/>
+                                    </marker>
+                                </defs>
+                                <line x1="300" y1="150" x2="370" y2="150" stroke="#666" stroke-width="1" marker-end="url(#connection-arrow-300-150-370-150)"/>
+                            </svg>
+                        </div>
                     </div>
 
                 </section>
