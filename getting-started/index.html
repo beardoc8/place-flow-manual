@@ -198,6 +198,51 @@
             font-weight: bold;
         }
 
+        .important-note {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .important-note h4 {
+            color: #856404;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .important-note ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .important-note li {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .important-note li::before {
+            content: "•";
+            color: #ffc107;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .code-block.error {
+            background: #f8d7da;
+            border-color: #f5c6cb;
+        }
+        
+        .code-block.error pre {
+            background: #f8d7da;
+        }
+        }
+
         .preview-box {
             background: #f8f9fa;
             border: 1px solid #e9ecef;
@@ -355,6 +400,30 @@
         <div class="code-block">
             <button class="copy-button" onclick="copyCode(this)">Copy</button>
 <pre><span class="keyword">input</span> <span class="string">"プレースホルダー"</span> at(x, y) size(幅, 高さ)</pre>
+        </div>
+
+        <h3>構文ルール</h3>
+        <div class="important-note">
+            <h4>⚠️ 重要な制約</h4>
+            <ul>
+                <li><strong>1要素1行</strong>: 各要素定義は必ず1行で記述してください</li>
+                <li><strong>スタイル定義</strong>: style()内も複数行に分けることはできません</li>
+                <li><strong>改行禁止</strong>: 要素定義の途中で改行するとパースエラーになります</li>
+            </ul>
+        </div>
+
+        <h4>✅ 正しい例:</h4>
+        <div class="code-block">
+            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+<pre><span class="keyword">box</span> <span class="string">"Example"</span> at(50, 50) size(100, 50) style(background: <span class="string">"#007bff"</span>, color: <span class="string">"white"</span>)</pre>
+        </div>
+
+        <h4>❌ 間違った例:</h4>
+        <div class="code-block error">
+<pre><span class="keyword">box</span> <span class="string">"Example"</span> at(50, 50) size(100, 50) style(
+  background: <span class="string">"#007bff"</span>, 
+  color: <span class="string">"white"</span>
+)</pre>
         </div>
 
         <h2>最初の例：ログインフォーム</h2>
