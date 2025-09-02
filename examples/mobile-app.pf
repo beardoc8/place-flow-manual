@@ -1,0 +1,69 @@
+screen size(375, 667) {
+  // ステータスバー
+  box at(0, 0) size(375, 44) style(background: "#000000", color: "white") {
+    text "9:41" at(20, 22) style(fontSize: 14, color: "white", textAlign: "left")
+    text "100%" at(355, 22) style(fontSize: 12, color: "white", textAlign: "right")
+  }
+  
+  // ヘッダー
+  box at(0, 44) size(375, 60) style(background: "#667eea", color: "white") as header {
+    text "ToDoアプリ" at(187, 30) style(fontSize: 18, fontWeight: "bold", color: "white", textAlign: "center")
+    button "☰" at(20, 15) size(30, 30) style(background: "transparent", color: "white", border: "none", fontSize: 18) as menuBtn
+    button "+" at(325, 15) size(30, 30) style(background: "rgba(255,255,255,0.2)", color: "white", border: "1px solid white", borderRadius: "15px", fontSize: 16) as addBtn
+  }
+  
+  // 検索バー
+  box at(20, 120) size(335, 40) style(background: "#f1f3f4", border: "1px solid #e1e3e4", borderRadius: "20px") {
+    text "🔍 タスクを検索" at(20, 20) style(fontSize: 14, color: "#666", textAlign: "left")
+  }
+  
+  // タスクリスト
+  text "今日のタスク" at(20, 190) style(fontSize: 16, fontWeight: "bold", color: "#333")
+  
+  // タスクカード1
+  box at(20, 210) size(335, 70) style(background: "white", border: "1px solid #e1e3e4", borderRadius: "8px") as task1 {
+    circle "✓" at(30, 35) radius(10) style(background: "#4caf50", border: "2px solid #4caf50") as check1
+    text "資料の準備を完了する" at(60, 25) style(fontSize: 14, fontWeight: "500", color: "#333")
+    text "期限: 今日 18:00" at(60, 45) style(fontSize: 12, color: "#666")
+    text "重要" at(280, 35) style(fontSize: 10, color: "white", background: "#ff5722", padding: "2px 8px", borderRadius: "10px")
+  }
+  
+  // タスクカード2
+  box at(20, 295) size(335, 70) style(background: "white", border: "1px solid #e1e3e4", borderRadius: "8px") as task2 {
+    circle at(30, 35) radius(10) style(background: "white", border: "2px solid #e1e3e4") as check2
+    text "会議の議事録を作成" at(60, 25) style(fontSize: 14, fontWeight: "500", color: "#333")
+    text "期限: 明日 10:00" at(60, 45) style(fontSize: 12, color: "#666")
+    text "通常" at(280, 35) style(fontSize: 10, color: "white", background: "#2196f3", padding: "2px 8px", borderRadius: "10px")
+  }
+  
+  // タスクカード3
+  box at(20, 380) size(335, 70) style(background: "white", border: "1px solid #e1e3e4", borderRadius: "8px") as task3 {
+    circle at(30, 35) radius(10) style(background: "white", border: "2px solid #e1e3e4") as check3
+    text "プロジェクト進捗確認" at(60, 25) style(fontSize: 14, fontWeight: "500", color: "#333")
+    text "期限: 今週金曜日" at(60, 45) style(fontSize: 12, color: "#666")
+  }
+  
+  // 完了済みセクション
+  text "完了済み" at(20, 480) style(fontSize: 16, fontWeight: "bold", color: "#666")
+  
+  // 完了タスク
+  box at(20, 500) size(335, 50) style(background: "#f8f9fa", border: "1px solid #e1e3e4", borderRadius: "8px") as completed1 {
+    circle "✓" at(30, 25) radius(10) style(background: "#4caf50", border: "2px solid #4caf50") as checkCompleted
+    text "レポート提出" at(60, 25) style(fontSize: 14, color: "#666", textDecoration: "line-through")
+  }
+  
+  // ボトムタブナビゲーション
+  box at(0, 607) size(375, 60) style(background: "white", borderTop: "1px solid #e1e3e4") as tabBar {
+    button "🏠" at(18, 8) size(65, 44) style(background: "transparent", color: "#667eea", border: "none", fontSize: 18) as homeTab
+    text "ホーム" at(50, 46) style(fontSize: 10, color: "#667eea", textAlign: "center")
+    
+    button "📋" at(111, 8) size(65, 44) style(background: "transparent", color: "#999", border: "none", fontSize: 18) as tasksTab
+    text "タスク" at(143, 46) style(fontSize: 10, color: "#999", textAlign: "center")
+    
+    button "📊" at(204, 8) size(65, 44) style(background: "transparent", color: "#999", border: "none", fontSize: 18) as statsTab
+    text "統計" at(236, 46) style(fontSize: 10, color: "#999", textAlign: "center")
+    
+    button "👤" at(297, 8) size(65, 44) style(background: "transparent", color: "#999", border: "none", fontSize: 18) as profileTab
+    text "プロフィール" at(329, 46) style(fontSize: 10, color: "#999", textAlign: "center")
+  }
+}

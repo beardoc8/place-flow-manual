@@ -401,6 +401,32 @@
         <div class="example-grid">
             <div class="example-card">
                 <div class="example-header">
+                    <div class="example-title">モバイルアプリワイヤーフレーム</div>
+                    <div class="example-description">ToDoアプリの典型的なモバイルUI設計</div>
+                    <div class="example-tags">
+                        <span class="tag">モバイル</span>
+                        <span class="tag">ワイヤーフレーム</span>
+                        <span class="tag">初級</span>
+                    </div>
+                </div>
+                <div class="example-content">
+                    <div class="code-block">
+                        <button class="copy-button" onclick="copyCode(this)">Copy</button>
+<pre id="mobile-app-code">// ファイルを読み込み中...</pre>
+                    </div>
+                    <div class="use-case">
+                        <h4>使用例</h4>
+                        <p>モバイルアプリの初期設計、クライアントとの要件確認、開発チームとのUI共有に活用できます。</p>
+                    </div>
+                    <div class="preview-box">
+                        <h4>生成結果:</h4>
+                        <div class="svg-preview" id="mobile-app-svg">読み込み中...</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-card">
+                <div class="example-header">
                     <div class="example-title">システムインフラ構成図</div>
                     <div class="example-description">サーバー、ロードバランサー、データベースを含む典型的なWebシステム構成</div>
                     <div class="example-tags">
@@ -510,6 +536,16 @@
             const systemInfrastructureSvg = document.getElementById('system-infrastructure-svg');
             if (systemInfrastructureSvg) {
                 loadSvgPreview('system-infrastructure.svg', systemInfrastructureSvg);
+            }
+            
+            const mobileAppCode = document.getElementById('mobile-app-code');
+            if (mobileAppCode) {
+                loadExample('mobile-app.pf', mobileAppCode);
+            }
+            
+            const mobileAppSvg = document.getElementById('mobile-app-svg');
+            if (mobileAppSvg) {
+                loadSvgPreview('mobile-app.svg', mobileAppSvg);
             }
         });
     </script>
