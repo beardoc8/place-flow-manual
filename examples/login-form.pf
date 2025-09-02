@@ -19,5 +19,5 @@ screen "企業ログインシステム" size(400, 500) {
   button "キャンセル" at(210, 320) size(120, 45) style(background: "#6b7280", color: "white") as cancelBtn
   
   // フッター
-  text "© 2024 Company Name" at(200, 450) style(fontSize: 12, color: "#9ca3af", textAlign: "center")
+  text "© 2025 Company Name" at(200, 450) style(fontSize: 12, color: "#9ca3af", textAlign: "center")
 }
