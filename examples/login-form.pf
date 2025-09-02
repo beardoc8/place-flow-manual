@@ -1,4 +1,4 @@
-screen "企業ログインシステム" size(400, 500) {
+screen size(400, 500) {
   // ヘッダー部分
   box at(0, 0) size(400, 80) style(background: "#1e3a8a", color: "white")
   text "Company Portal" at(200, 40) style(fontSize: 24, color: "white", textAlign: "center")

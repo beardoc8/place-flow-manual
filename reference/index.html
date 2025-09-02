@@ -476,7 +476,23 @@
 
                     <div class="syntax-pattern">
                         screen "画面名" size(幅, 高さ) { ... }<br>
-                        layout "レイアウト名" size(幅, 高さ) { ... }
+                        screen size(幅, 高さ) { ... } <span style="color: #28a745;">※テキスト省略可能</span><br>
+                        layout "レイアウト名" size(幅, 高さ) { ... }<br>
+                        layout size(幅, 高さ) { ... } <span style="color: #28a745;">※テキスト省略可能</span>
+                    </div>
+
+                    <h4>テキスト省略例</h4>
+                    <div class="code-block">
+            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+<pre><span class="keyword">screen</span> size(600, 400) {
+  <span class="comment">// 画面名を省略した場合</span>
+  <span class="keyword">box</span> <span class="string">"コンテンツ"</span> at(50, 50) size(200, 100)
+}
+
+<span class="keyword">layout</span> size(800, 600) {
+  <span class="comment">// レイアウト名を省略した場合</span>
+  <span class="keyword">button</span> <span class="string">"ボタン"</span> at(100, 100) size(100, 40)
+}</pre>
                     </div>
 
                     <h4>自動サイズ調整</h4>
