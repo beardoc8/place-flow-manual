@@ -1,0 +1,24 @@
+screen "管理ダッシュボード" size(600, 400) {
+  // ヘッダー
+  box at(0, 0) size(600, 60) style(background: "#1f2937", color: "white")
+  text "管理システム" at(300, 30) style(fontSize: 18, color: "white", textAlign: "center")
+  
+  // サイドバー
+  box "サイドバー" at(0, 60) size(150, 340) style(background: "#f3f4f6", border: "1px solid #e5e7eb") {
+    button "ダッシュボード" at(15, 20) size(120, 35) style(background: "#3b82f6", color: "white") as dashBtn
+    button "ユーザー管理" at(15, 65) size(120, 35) style(background: "#6b7280", color: "white") as userBtn
+    button "売上分析" at(15, 110) size(120, 35) style(background: "#6b7280", color: "white") as salesBtn
+  }
+  
+  // メインコンテンツ
+  box "メインコンテンツ" at(150, 60) size(450, 340) style(background: "white", border: "1px solid #e5e7eb") {
+    text "今月の概要" at(225, 30) style(fontSize: 16, fontWeight: "bold", color: "#1f2937", textAlign: "center")
+    
+    // 統計カード
+    box "売上" at(30, 60) size(120, 80) style(background: "#ecfdf5", border: "2px solid #10b981") {
+      text "¥2.4M" at(60, 40) style(fontSize: 16, fontWeight: "bold", color: "#059669", textAlign: "center")
+    }
+    
+    button "レポート" at(30, 300) size(100, 35) style(background: "#7c3aed", color: "white") as reportBtn
+  }
+}

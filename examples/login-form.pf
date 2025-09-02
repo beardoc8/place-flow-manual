@@ -1,0 +1,23 @@
+screen "企業ログインシステム" size(400, 500) {
+  // ヘッダー部分
+  box at(0, 0) size(400, 80) style(background: "#1e3a8a", color: "white")
+  text "Company Portal" at(200, 40) style(fontSize: 24, color: "white", textAlign: "center")
+  
+  // メインフォームエリア
+  box "ログインフォーム" at(50, 120) size(300, 280) style(background: "#f8fafc", border: "1px solid #e2e8f0")
+  
+  // ユーザー名フィールド
+  text "ユーザー名" at(70, 150) style(fontSize: 14, color: "#374151", textAlign: "left")
+  input "社員番号またはメールアドレス" at(70, 170) size(260, 40) style(background: "white", border: "2px solid #d1d5db") as username
+  
+  // パスワードフィールド
+  text "パスワード" at(70, 230) style(fontSize: 14, color: "#374151", textAlign: "left")
+  input "パスワードを入力" at(70, 250) size(260, 40) style(background: "white", border: "2px solid #d1d5db") as password
+  
+  // ボタン
+  button "ログイン" at(70, 320) size(120, 45) style(background: "#059669", color: "white") as loginBtn
+  button "キャンセル" at(210, 320) size(120, 45) style(background: "#6b7280", color: "white") as cancelBtn
+  
+  // フッター
+  text "© 2024 Company Name" at(200, 450) style(fontSize: 12, color: "#9ca3af", textAlign: "center")
+}
