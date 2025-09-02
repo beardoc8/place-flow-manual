@@ -396,6 +396,36 @@
             </div>
         </div>
 
+        <h2>システム設計・インフラ</h2>
+        
+        <div class="example-grid">
+            <div class="example-card">
+                <div class="example-header">
+                    <div class="example-title">システムインフラ構成図</div>
+                    <div class="example-description">サーバー、ロードバランサー、データベースを含む典型的なWebシステム構成</div>
+                    <div class="example-tags">
+                        <span class="tag">インフラ</span>
+                        <span class="tag">システム</span>
+                        <span class="tag">中級</span>
+                    </div>
+                </div>
+                <div class="example-content">
+                    <div class="code-block">
+                        <button class="copy-button" onclick="copyCode(this)">Copy</button>
+<pre id="system-infrastructure-code">// ファイルを読み込み中...</pre>
+                    </div>
+                    <div class="use-case">
+                        <h4>使用例</h4>
+                        <p>システム設計書、技術提案書、インフラ構成の説明資料、チーム内での技術共有に活用できます。</p>
+                    </div>
+                    <div class="preview-box">
+                        <h4>生成結果:</h4>
+                        <div class="svg-preview" id="system-infrastructure-svg">読み込み中...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="nav-buttons">
             <a href="../reference/" class="nav-button secondary">← DSL Reference</a>
             <a href="../vscode-guide/" class="nav-button">VSCode Guide →</a>
@@ -470,6 +500,16 @@
             const dashboardSvg = document.getElementById('dashboard-svg');
             if (dashboardSvg) {
                 loadSvgPreview('dashboard.svg', dashboardSvg);
+            }
+            
+            const systemInfrastructureCode = document.getElementById('system-infrastructure-code');
+            if (systemInfrastructureCode) {
+                loadExample('system-infrastructure.pf', systemInfrastructureCode);
+            }
+            
+            const systemInfrastructureSvg = document.getElementById('system-infrastructure-svg');
+            if (systemInfrastructureSvg) {
+                loadSvgPreview('system-infrastructure.svg', systemInfrastructureSvg);
             }
         });
     </script>
