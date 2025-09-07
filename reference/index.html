@@ -457,6 +457,9 @@
                 <h3>接続</h3>
                 <ul>
                     <li><a href="#connections">要素間接続</a></li>
+                    <li><a href="#connections">基本接続</a></li>
+                    <li><a href="#connections">曲線接続</a></li>
+                    <li><a href="#connections">点線接続</a></li>
                 </ul>
             </aside>
 
@@ -545,10 +548,11 @@
 
                     <div class="element-card" id="box">
                         <div class="element-title">box <span class="tag">UI</span></div>
-                        <div class="element-description">矩形の領域を表示します。コンテナやグループ化に使用。</div>
+                        <div class="element-description">矩形の領域を表示します。コンテナやグループ化に使用。3D効果にも対応。</div>
                         
                         <div class="syntax-pattern">
                             box "テキスト" at(x, y) size(幅, 高さ)<br>
+                            box "テキスト" at(x, y) size(幅, 高さ) 3d <span style="color: #007bff;">※3D効果</span><br>
                             box at(x, y) size(幅, 高さ) <span style="color: #28a745;">※テキスト省略可能</span>
                         </div>
 
@@ -557,26 +561,94 @@
                             <tr><th>属性</th><th>説明</th><th>例</th></tr>
                             <tr><td>at(x, y)</td><td>位置座標</td><td>at(50, 100)</td></tr>
                             <tr><td>size(w, h)</td><td>サイズ指定</td><td>size(200, 100)</td></tr>
-                            <tr><td>style(...)</td><td>スタイリング</td><td>style(background: "#f0f0f0")</td></tr>
+                            <tr><td>3d</td><td>立体的な3D効果を適用。奥行き感のある表示になります</td><td>box "3D Box" ... 3d</td></tr>
+                            <tr><td>style(...)</td><td>スタイリング（3D効果使用時は色が自動調整されます）</td><td>style(background: "#4caf50")</td></tr>
                         </table>
+
+                        <div class="feature-highlight" style="background: #f8f9ff; border-left: 4px solid #007bff; padding: 15px; margin: 20px 0;">
+                            <h5 style="margin-top: 0; color: #007bff;">💡 3D効果について</h5>
+                            <p style="margin-bottom: 0;">
+                                <strong>3d</strong>キーワードを追加することで、Box要素に立体感を与えることができます。
+                                <br>• 奥行き10pxの立体効果が自動適用されます
+                                <br>• 背景色が設定されている場合、上面・右面の色が自動的に明暗調整されます
+                                <br>• 3D効果はスタイリングと組み合わせて使用できます
+                            </p>
+                        </div>
 
                         <div class="code-block">
             <button class="copy-button" onclick="copyCode(this)">Copy</button>
-<pre><span class="keyword">screen</span> <span class="string">"Box Example"</span> size(300, 200) {
-  <span class="keyword">box</span> <span class="string">"Hello Box"</span> at(50, 50) size(120, 60)
+<pre><span class="keyword">screen</span> <span class="string">"Box Examples"</span> size(400, 200) {
+  <span class="keyword">box</span> <span class="string">"Normal Box"</span> at(50, 50) size(120, 60)
+  <span class="keyword">box</span> <span class="string">"3D Box"</span> at(200, 50) size(120, 60) <span class="keyword">3d</span>
   <span class="keyword">box</span> <span class="string">"Styled Box"</span> at(50, 120) size(120, 60) style(background: <span class="string">"#e3f2fd"</span>, border: <span class="string">"2px solid #1976d2"</span>)
+  <span class="keyword">box</span> <span class="string">"3D Styled"</span> at(200, 120) size(120, 60) <span class="keyword">3d</span> style(background: <span class="string">"#4caf50"</span>, color: <span class="string">"white"</span>)
 }</pre>
                         </div>
 
                         <div class="preview-box">
                             <h4>生成結果:</h4>
                             <div class="svg-preview">
-                                <svg width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                                <svg width="400" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
                                     <rect width="100%" height="100%" fill="white"/>
+                                    <defs>
+                                        <!-- 右矢印マーカー -->
+                                        <marker id="arrowhead" 
+                                            markerWidth="8" 
+                                            markerHeight="8" 
+                                            refX="7" 
+                                            refY="4" 
+                                            orient="auto">
+                                            <polygon points="0,0 8,4 0,8" fill="#666"/>
+                                        </marker>
+                                        
+                                        <!-- 左矢印マーカー -->
+                                        <marker id="arrowhead-reverse" 
+                                            markerWidth="8" 
+                                            markerHeight="8" 
+                                            refX="1" 
+                                            refY="4" 
+                                            orient="auto">
+                                            <polygon points="8,0 0,4 8,8" fill="#666"/>
+                                        </marker>
+                                        
+                                        <!-- 開始矢印マーカー（双方向用） -->
+                                        <marker id="arrowhead-start" 
+                                            markerWidth="8" 
+                                            markerHeight="8" 
+                                            refX="1" 
+                                            refY="4" 
+                                            orient="auto">
+                                            <polygon points="8,0 0,4 8,8" fill="#666"/>
+                                        </marker>
+                                        
+                                        <!-- 終了矢印マーカー（双方向用） -->
+                                        <marker id="arrowhead-end" 
+                                            markerWidth="8" 
+                                            markerHeight="8" 
+                                            refX="7" 
+                                            refY="4" 
+                                            orient="auto">
+                                            <polygon points="0,0 8,4 0,8" fill="#666"/>
+                                        </marker>
+                                    </defs>
                                     <rect style="fill: white; stroke: black; stroke-width: 1" x="50" y="50" width="120" height="60"/>
-                                    <text style="text-anchor: middle; dominant-baseline: middle; fill: #000000; font-weight: normal; font-family: Arial, sans-serif; font-size: 14px" x="110" y="80">Hello Box</text>
+                                    <text style="text-anchor: middle; dominant-baseline: middle; fill: #000000; font-weight: normal; font-family: Arial, sans-serif; font-size: 14px" x="110" y="80">Normal Box</text>
+                                    <rect style="fill: white; stroke: black; stroke-width: 1" x="200" y="50" width="120" height="60"/>
+                                    <polygon points="200,50 210,40 330,40 320,50" fill="#ffffff" stroke="none"/>
+                                    <polygon points="320,50 330,40 330,100 320,110" fill="#f0f0f0" stroke="none"/>
+                                    <polygon points="200,50 210,40 330,40 320,50" fill="none" stroke="#333" stroke-width="1"/>
+                                    <polygon points="320,50 330,40 330,100 320,110" fill="none" stroke="#333" stroke-width="1"/>
+                                    <line x1="320" y1="50" x2="320" y2="110" stroke="#000" stroke-width="1"/>
+                                    <text style="text-anchor: middle; dominant-baseline: middle; fill: #000000; font-weight: normal; font-family: Arial, sans-serif; font-size: 14px" x="260" y="80">3D Box</text>
                                     <rect style="fill: white; stroke: black; stroke-width: 1; fill: #e3f2fd; stroke-width: 2px; stroke: #1976d2" x="50" y="120" width="120" height="60"/>
                                     <text style="text-anchor: middle; dominant-baseline: middle; fill: #000000; font-weight: normal; font-family: Arial, sans-serif; font-size: 14px" x="110" y="150">Styled Box</text>
+                                    <rect style="fill: white; stroke: black; stroke-width: 1; fill: #4caf50" x="200" y="120" width="120" height="60"/>
+                                    <polygon points="200,120 210,110 330,110 320,120" fill="#5eb762" stroke="none"/>
+                                    <polygon points="320,120 330,110 330,170 320,180" fill="#419544" stroke="none"/>
+                                    <polygon points="200,120 210,110 330,110 320,120" fill="none" stroke="#333" stroke-width="1"/>
+                                    <polygon points="320,120 330,110 330,170 320,180" fill="none" stroke="#333" stroke-width="1"/>
+                                    <line x1="320" y1="120" x2="320" y2="180" stroke="#000" stroke-width="1"/>
+                                    <text style="text-anchor: middle; dominant-baseline: middle; fill: white; font-weight: normal; font-family: Arial, sans-serif; font-size: 14px; fill: white" x="260" y="150">3D Styled</text>
                                 </svg>
                             </div>
                         </div>
@@ -584,7 +656,7 @@
 
                     <div class="element-card" id="rect">
                         <div class="element-title">rect <span class="tag">図形</span></div>
-                        <div class="element-description">基本的な矩形図形。boxよりもシンプルな図形要素。</div>
+                        <div class="element-description">基本的な矩形図形。boxよりもシンプルな図形要素。テキスト表示にも対応。</div>
                         
                         <div class="syntax-pattern">
                             rect "テキスト" at(x, y) size(幅, 高さ)<br>
@@ -592,21 +664,78 @@
                             rect at(x, y) size(幅, 高さ) radius(角丸半径)
                         </div>
 
+                        <h4>属性</h4>
+                        <table class="attributes-table">
+                            <tr><th>属性</th><th>説明</th><th>例</th></tr>
+                            <tr><td>at(x, y)</td><td>位置座標</td><td>at(50, 100)</td></tr>
+                            <tr><td>size(w, h)</td><td>サイズ指定</td><td>size(100, 60)</td></tr>
+                            <tr><td>radius(r)</td><td>角丸半径</td><td>radius(5)</td></tr>
+                            <tr><td>style(...)</td><td>スタイリング</td><td>style(fill: "#f0f0f0")</td></tr>
+                        </table>
+
                         <div class="code-block">
             <button class="copy-button" onclick="copyCode(this)">Copy</button>
-<pre><span class="keyword">screen</span> <span class="string">"Rectangle Examples"</span> size(300, 150) {
+<pre><span class="keyword">screen</span> <span class="string">"Rectangle Examples"</span> size(350, 180) {
   <span class="keyword">rect</span> at(50, 40) size(80, 50)
-  <span class="keyword">rect</span> at(160, 40) size(80, 50) radius(10) style(fill: <span class="string">"#ffeb3b"</span>)
+  <span class="keyword">rect</span> <span class="string">"テキスト付き"</span> at(50, 100) size(120, 50) style(fill: <span class="string">"#e3f2fd"</span>)
+  <span class="keyword">rect</span> <span class="string">"角丸"</span> at(200, 40) size(100, 50) radius(10) style(fill: <span class="string">"#ffeb3b"</span>)
+  <span class="keyword">rect</span> <span class="string">"カスタム"</span> at(200, 100) size(100, 50) radius(8) style(fill: <span class="string">"#4caf50"</span>, color: <span class="string">"white"</span>)
 }</pre>
                         </div>
 
                         <div class="preview-box">
                             <h4>生成結果:</h4>
                             <div class="svg-preview">
-                                <svg width="300" height="150" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
+                                <svg width="350" height="180" viewBox="0 0 350 180" xmlns="http://www.w3.org/2000/svg">
                                     <rect width="100%" height="100%" fill="white"/>
+                                    <defs>
+                                        <!-- 右矢印マーカー -->
+                                        <marker id="arrowhead" 
+                                            markerWidth="8" 
+                                            markerHeight="8" 
+                                            refX="7" 
+                                            refY="4" 
+                                            orient="auto">
+                                            <polygon points="0,0 8,4 0,8" fill="#666"/>
+                                        </marker>
+                                        
+                                        <!-- 左矢印マーカー -->
+                                        <marker id="arrowhead-reverse" 
+                                            markerWidth="8" 
+                                            markerHeight="8" 
+                                            refX="1" 
+                                            refY="4" 
+                                            orient="auto">
+                                            <polygon points="8,0 0,4 8,8" fill="#666"/>
+                                        </marker>
+                                        
+                                        <!-- 開始矢印マーカー（双方向用） -->
+                                        <marker id="arrowhead-start" 
+                                            markerWidth="8" 
+                                            markerHeight="8" 
+                                            refX="1" 
+                                            refY="4" 
+                                            orient="auto">
+                                            <polygon points="8,0 0,4 8,8" fill="#666"/>
+                                        </marker>
+                                        
+                                        <!-- 終了矢印マーカー（双方向用） -->
+                                        <marker id="arrowhead-end" 
+                                            markerWidth="8" 
+                                            markerHeight="8" 
+                                            refX="7" 
+                                            refY="4" 
+                                            orient="auto">
+                                            <polygon points="0,0 8,4 0,8" fill="#666"/>
+                                        </marker>
+                                    </defs>
                                     <rect style="fill: white; stroke: black; stroke-width: 1" x="50" y="40" width="80" height="50"/>
-                                    <rect style="fill: #ffeb3b; stroke: black; stroke-width: 1" x="160" y="40" width="80" height="50" rx="10" ry="10"/>
+                                    <rect style="fill: #e3f2fd; stroke: black; stroke-width: 1" x="50" y="100" width="120" height="50"/>
+                                    <text style="text-anchor: middle; dominant-baseline: middle; fill: #000000; font-weight: normal; font-family: Arial, sans-serif; font-size: 14px" x="110" y="125">テキスト付き</text>
+                                    <rect style="fill: #ffeb3b; stroke: black; stroke-width: 1" x="200" y="40" width="100" height="50" rx="10" ry="10"/>
+                                    <text style="text-anchor: middle; dominant-baseline: middle; fill: #000000; font-weight: normal; font-family: Arial, sans-serif; font-size: 14px" x="250" y="65">角丸</text>
+                                    <rect style="fill: #4caf50; stroke: black; stroke-width: 1" x="200" y="100" width="100" height="50" rx="8" ry="8"/>
+                                    <text style="text-anchor: middle; dominant-baseline: middle; fill: #000000; font-weight: normal; font-family: Arial, sans-serif; font-size: 14px; fill: white" x="250" y="125">カスタム</text>
                                 </svg>
                             </div>
                         </div>
@@ -1011,14 +1140,47 @@
                     <p>PlaceFlowでは要素に名前を付けて直接接続することができます。要素間の接続点は自動的に計算され、直感的なコードが書けます。</p>
                     
                     <div class="element-card">
-                        <div class="element-title">要素間接続</div>
-                        <div class="element-description">要素に名前を付けて直接接続する直感的な方法</div>
+                        <div class="element-title">接続構文一覧</div>
+                        <div class="element-description">利用可能な接続構文の完全リスト</div>
+                        
+                        <h4>基本接続</h4>
+                        <table class="attributes-table">
+                            <tr><th>構文</th><th>説明</th><th>例</th></tr>
+                            <tr><td>-></td><td>方向付き接続（右矢印）</td><td>elementA -> elementB</td></tr>
+                            <tr><td>&lt;-</td><td>逆方向接続（左矢印）</td><td>elementA &lt;- elementB</td></tr>
+                            <tr><td>&lt;-></td><td>双方向接続</td><td>elementA &lt;-> elementB</td></tr>
+                            <tr><td>--</td><td>線接続（矢印なし）</td><td>elementA -- elementB</td></tr>
+                        </table>
+
+                        <h4>点線接続</h4>
+                        <table class="attributes-table">
+                            <tr><th>構文</th><th>説明</th><th>例</th></tr>
+                            <tr><td>-.></td><td>点線矢印接続</td><td>elementA -.> elementB</td></tr>
+                            <tr><td>&lt;-.</td><td>点線左矢印接続</td><td>elementA &lt;-. elementB</td></tr>
+                            <tr><td>&lt;-.></td><td>点線双方向接続</td><td>elementA &lt;-.> elementB</td></tr>
+                            <tr><td>-.-</td><td>点線接続</td><td>elementA -.- elementB</td></tr>
+                        </table>
+
+                        <h4>曲線接続</h4>
+                        <table class="attributes-table">
+                            <tr><th>構文</th><th>説明</th><th>例</th></tr>
+                            <tr><td>~></td><td>曲線矢印接続</td><td>elementA ~> elementB</td></tr>
+                            <tr><td>&lt;~</td><td>曲線左矢印接続</td><td>elementA &lt;~ elementB</td></tr>
+                            <tr><td>&lt;~></td><td>曲線双方向接続</td><td>elementA &lt;~> elementB</td></tr>
+                            <tr><td>~.~></td><td>点線曲線矢印接続</td><td>elementA ~.~> elementB</td></tr>
+                            <tr><td>&lt;~.~</td><td>点線曲線左矢印接続</td><td>elementA &lt;~.~ elementB</td></tr>
+                            <tr><td>&lt;~.~></td><td>点線曲線双方向接続</td><td>elementA &lt;~.~> elementB</td></tr>
+                        </table>
                         
                         <div class="syntax-pattern">
                             要素定義時: <code>要素 ... as 名前</code><br>
-                            接続構文: <code>名前1 -> 名前2</code> (方向付き)<br>
-                            接続構文: <code>名前1 &lt;-> 名前2</code> (双方向)
+                            接続構文: <code>名前1 [接続記号] 名前2 "ラベル"</code> (ラベルオプション)
                         </div>
+                    </div>
+
+                    <div class="element-card">
+                        <div class="element-title">基本接続例</div>
+                        <div class="element-description">シンプルな方向付き接続の例</div>
 
                         <h4>名前ベース方向付き接続</h4>
                         <div class="code-block">
@@ -1037,28 +1199,74 @@
                             <div class="svg-preview">
                                 <svg width="400" height="150" viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
                                     <rect width="100%" height="100%" fill="white"/>
+                                    <defs>
+                                        <!-- 右矢印マーカー -->
+                                        <marker id="arrowhead" 
+                                            markerWidth="8" 
+                                            markerHeight="8" 
+                                            refX="7" 
+                                            refY="4" 
+                                            orient="auto">
+                                            <polygon points="0,0 8,4 0,8" fill="#666"/>
+                                        </marker>
+                                        
+                                        <!-- 左矢印マーカー -->
+                                        <marker id="arrowhead-reverse" 
+                                            markerWidth="8" 
+                                            markerHeight="8" 
+                                            refX="1" 
+                                            refY="4" 
+                                            orient="auto">
+                                            <polygon points="8,0 0,4 8,8" fill="#666"/>
+                                        </marker>
+                                        
+                                        <!-- 開始矢印マーカー（双方向用） -->
+                                        <marker id="arrowhead-start" 
+                                            markerWidth="8" 
+                                            markerHeight="8" 
+                                            refX="1" 
+                                            refY="4" 
+                                            orient="auto">
+                                            <polygon points="8,0 0,4 8,8" fill="#666"/>
+                                        </marker>
+                                        
+                                        <!-- 終了矢印マーカー（双方向用） -->
+                                        <marker id="arrowhead-end" 
+                                            markerWidth="8" 
+                                            markerHeight="8" 
+                                            refX="7" 
+                                            refY="4" 
+                                            orient="auto">
+                                            <polygon points="0,0 8,4 0,8" fill="#666"/>
+                                        </marker>
+                                    </defs>
                                     <g id="db" style="fill: #E8F4FD; stroke: #4A90E2; stroke-width: 1">
-                                        <rect x="50" y="47" width="80" height="56" fill="#E8F4FD" stroke="#4A90E2" stroke-width="1"/>
-                                        <ellipse cx="90" cy="47" rx="40" ry="7" fill="#B8E0FF" stroke="#4A90E2" stroke-width="1"/>
-                                        <ellipse cx="90" cy="103" rx="40" ry="7" fill="#E8F4FD" stroke="#4A90E2" stroke-width="1"/>
+                                        <rect x="50" y="47" 
+                                            width="80" height="56" 
+                                            fill="#E8F4FD" stroke="#4A90E2" stroke-width="1"/>
+                                        <ellipse cx="90" cy="47" 
+                                            rx="40" ry="7" 
+                                            fill="#B8E0FF" stroke="#4A90E2" stroke-width="1"/>
+                                        <ellipse cx="90" cy="103" 
+                                            rx="40" ry="7" 
+                                            fill="#E8F4FD" stroke="#4A90E2" stroke-width="1"/>
                                     </g>
-                                    <text style="fill: #333333; font-weight: normal; font-size: 12px" x="90" y="75" dy="0.35em" text-anchor="middle" font-family="Arial, sans-serif">DB</text>
+                                    <text style="fill: #333333; font-weight: normal; font-size: 12px" x="90" y="75" dy="0.35em"
+                                            text-anchor="middle"
+                                            font-family="Arial, sans-serif" font-size="12">DB</text>
                                     <rect id="api" style="fill: white; stroke: black; stroke-width: 1" x="200" y="40" width="80" height="70"/>
                                     <text style="text-anchor: middle; dominant-baseline: middle; fill: #000000; font-weight: normal; font-family: Arial, sans-serif; font-size: 14px" x="240" y="75">API</text>
-                                    <circle id="ui" cx="320" cy="50" r="30" fill="white" stroke="black" stroke-width="1"/>
-                                    <text style="fill: #000000; font-weight: normal" x="320" y="50" dy="0.35em" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">UI</text>
-                                    <defs>
-                                        <marker id="connection-arrow-130-75-200-75" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-                                            <polygon points="0,0 8,4 0,8" fill="#666"/>
-                                        </marker>
-                                    </defs>
-                                    <line x1="130" y1="75" x2="200" y2="75" stroke="#666" stroke-width="1" marker-end="url(#connection-arrow-130-75-200-75)"/>
-                                    <defs>
-                                        <marker id="connection-arrow-280-75-290-50" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-                                            <polygon points="0,0 8,4 0,8" fill="#666"/>
-                                        </marker>
-                                    </defs>
-                                    <line x1="280" y1="75" x2="290" y2="50" stroke="#666" stroke-width="1" marker-end="url(#connection-arrow-280-75-290-50)"/>
+                                    <circle id="ui" cx="320" cy="50" r="30" 
+                                        fill="white" stroke="black" stroke-width="1"/>
+                                    <text style="fill: #000000; font-weight: normal" x="320" y="50" dy="0.35em"
+                                            text-anchor="middle"
+                                            font-family="Arial, sans-serif" font-size="14">UI</text>
+                                    <line x1="130" y1="75" x2="200" y2="75" 
+                                        stroke="#666" 
+                                        stroke-width="1" marker-end="url(#arrowhead)" />
+                                    <line x1="280" y1="75" x2="290" y2="50" 
+                                        stroke="#666" 
+                                        stroke-width="1" marker-end="url(#arrowhead)" />
                                 </svg>
                             </div>
                         </div>
@@ -1078,20 +1286,174 @@
                             <div class="svg-preview">
                                 <svg width="400" height="150" viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
                                     <rect width="100%" height="100%" fill="white"/>
-                                    <circle id="serverA" cx="80" cy="75" r="40" fill="white" stroke="black" stroke-width="1"/>
-                                    <text style="fill: #000000; font-weight: normal" x="80" y="75" dy="0.35em" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">サーバーA</text>
-                                    <circle id="serverB" cx="320" cy="75" r="40" fill="white" stroke="black" stroke-width="1"/>
-                                    <text style="fill: #000000; font-weight: normal" x="320" y="75" dy="0.35em" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">サーバーB</text>
                                     <defs>
-                                        <marker id="connection-bi1-120-75-280-75" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                                        <!-- 右矢印マーカー -->
+                                        <marker id="arrowhead" 
+                                            markerWidth="8" 
+                                            markerHeight="8" 
+                                            refX="7" 
+                                            refY="4" 
+                                            orient="auto">
                                             <polygon points="0,0 8,4 0,8" fill="#666"/>
                                         </marker>
-                                        <marker id="connection-bi2-120-75-280-75" markerWidth="8" markerHeight="8" refX="1" refY="4" orient="auto">
+                                        
+                                        <!-- 左矢印マーカー -->
+                                        <marker id="arrowhead-reverse" 
+                                            markerWidth="8" 
+                                            markerHeight="8" 
+                                            refX="1" 
+                                            refY="4" 
+                                            orient="auto">
                                             <polygon points="8,0 0,4 8,8" fill="#666"/>
                                         </marker>
+                                        
+                                        <!-- 開始矢印マーカー（双方向用） -->
+                                        <marker id="arrowhead-start" 
+                                            markerWidth="8" 
+                                            markerHeight="8" 
+                                            refX="1" 
+                                            refY="4" 
+                                            orient="auto">
+                                            <polygon points="8,0 0,4 8,8" fill="#666"/>
+                                        </marker>
+                                        
+                                        <!-- 終了矢印マーカー（双方向用） -->
+                                        <marker id="arrowhead-end" 
+                                            markerWidth="8" 
+                                            markerHeight="8" 
+                                            refX="7" 
+                                            refY="4" 
+                                            orient="auto">
+                                            <polygon points="0,0 8,4 0,8" fill="#666"/>
+                                        </marker>
                                     </defs>
-                                    <line x1="120" y1="75" x2="280" y2="75" stroke="#666" stroke-width="1" marker-start="url(#connection-bi2-120-75-280-75)" marker-end="url(#connection-bi1-120-75-280-75)"/>
+                                    <circle id="serverA" cx="80" cy="75" r="40" 
+                                        fill="white" stroke="black" stroke-width="1"/>
+                                    <text style="fill: #000000; font-weight: normal" x="80" y="75" dy="0.35em"
+                                            text-anchor="middle"
+                                            font-family="Arial, sans-serif" font-size="14">サーバーA</text>
+                                    <circle id="serverB" cx="320" cy="75" r="40" 
+                                        fill="white" stroke="black" stroke-width="1"/>
+                                    <text style="fill: #000000; font-weight: normal" x="320" y="75" dy="0.35em"
+                                            text-anchor="middle"
+                                            font-family="Arial, sans-serif" font-size="14">サーバーB</text>
+                                    <line x1="120" y1="75" x2="280" y2="75" 
+                                        stroke="#666" 
+                                        stroke-width="1"
+                                        marker-start="url(#arrowhead-start)"
+                                        marker-end="url(#arrowhead-end)"/>
                                 </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="element-card">
+                        <div class="element-title">曲線接続</div>
+                        <div class="element-description">要素間を曲線で接続する機能</div>
+                        
+                        <h4>曲線接続の例</h4>
+                        <div class="code-block">
+            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+<pre><span class="keyword">screen</span> <span class="string">"Curve Connections"</span> size(500, 300) {
+  <span class="keyword">box</span> <span class="string">"起点"</span> at(50, 50) size(80, 60) <span class="keyword">as</span> start
+  <span class="keyword">box</span> <span class="string">"終点"</span> at(350, 50) size(80, 60) <span class="keyword">as</span> end
+  <span class="keyword">circle</span> <span class="string">"中継A"</span> at(100, 180) radius(40) <span class="keyword">as</span> relayA
+  <span class="keyword">circle</span> <span class="string">"中継B"</span> at(300, 180) radius(40) <span class="keyword">as</span> relayB
+
+  <span class="comment">// 曲線接続の例</span>
+  start ~> end <span class="string">"曲線矢印"</span>
+  relayA &lt;~> relayB <span class="string">"曲線双方向"</span>
+  start ~.~> relayA <span class="string">"点線曲線"</span>
+  end &lt;~.~ relayB
+}</pre>
+                        </div>
+
+                        <div class="preview-box">
+                            <h4>生成結果:</h4>
+                            <div class="svg-preview">
+                                <svg width="500" height="300" viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="white"/>
+    <defs>
+      <!-- 右矢印マーカー -->
+      <marker id="arrowhead" 
+        markerWidth="8" 
+        markerHeight="8" 
+        refX="7" 
+        refY="4" 
+        orient="auto">
+        <polygon points="0,0 8,4 0,8" fill="#666"/>
+      </marker>
+      
+      <!-- 左矢印マーカー -->
+      <marker id="arrowhead-reverse" 
+        markerWidth="8" 
+        markerHeight="8" 
+        refX="1" 
+        refY="4" 
+        orient="auto">
+        <polygon points="8,0 0,4 8,8" fill="#666"/>
+      </marker>
+      
+      <!-- 開始矢印マーカー（双方向用） -->
+      <marker id="arrowhead-start" 
+        markerWidth="8" 
+        markerHeight="8" 
+        refX="1" 
+        refY="4" 
+        orient="auto">
+        <polygon points="8,0 0,4 8,8" fill="#666"/>
+      </marker>
+      
+      <!-- 終了矢印マーカー（双方向用） -->
+      <marker id="arrowhead-end" 
+        markerWidth="8" 
+        markerHeight="8" 
+        refX="7" 
+        refY="4" 
+        orient="auto">
+        <polygon points="0,0 8,4 0,8" fill="#666"/>
+      </marker>
+    </defs>
+  <rect id="start" style="fill: white; stroke: black; stroke-width: 1" x="50" y="50" width="80" height="60"/><text style="text-anchor: middle; dominant-baseline: middle; fill: #000000; font-weight: normal; font-family: Arial, sans-serif; font-size: 14px" x="90" y="80">起点</text><rect id="end" style="fill: white; stroke: black; stroke-width: 1" x="350" y="50" width="80" height="60"/><text style="text-anchor: middle; dominant-baseline: middle; fill: #000000; font-weight: normal; font-family: Arial, sans-serif; font-size: 14px" x="390" y="80">終点</text><circle id="relayA" cx="100" cy="180" r="40" 
+    fill="white" stroke="black" stroke-width="1"/><text style="fill: #000000; font-weight: normal" x="100" y="180" dy="0.35em"
+        text-anchor="middle"
+        font-family="Arial, sans-serif" font-size="14">中継A</text><circle id="relayB" cx="300" cy="180" r="40" 
+    fill="white" stroke="black" stroke-width="1"/><text style="fill: #000000; font-weight: normal" x="300" y="180" dy="0.35em"
+        text-anchor="middle"
+        font-family="Arial, sans-serif" font-size="14">中継B</text><path d="M 130,80 Q 240,146 350,80" 
+    fill="none" 
+    stroke="#666" 
+    stroke-width="1" marker-end="url(#arrowhead)" /><text x="240" y="72" 
+    text-anchor="middle" 
+    dominant-baseline="middle"
+    font-family="Arial, sans-serif" 
+    font-size="10" 
+    fill="#666"
+    style="background: white; padding: 2px;">曲線矢印</text><path d="M 140,180 Q 200,230 260,180" 
+    fill="none" 
+    stroke="#666" 
+    stroke-width="1" marker-start="url(#arrowhead-start)" marker-end="url(#arrowhead-end)" /><text x="200" y="172" 
+    text-anchor="middle" 
+    dominant-baseline="middle"
+    font-family="Arial, sans-serif" 
+    font-size="10" 
+    fill="#666"
+    style="background: white; padding: 2px;">曲線双方向</text><path d="M 90,110 Q 47.56583509747431,140.81138830084188 100,140" 
+    fill="none" 
+    stroke="#666" 
+    stroke-width="1"
+    stroke-dasharray="5,3" marker-end="url(#arrowhead)" /><text x="95" y="117" 
+    text-anchor="middle" 
+    dominant-baseline="middle"
+    font-family="Arial, sans-serif" 
+    font-size="10" 
+    fill="#666"
+    style="background: white; padding: 2px;">点線曲線</text><path d="M 390,110 Q 329.1886116991581,77.5658350974743 300,140" 
+    fill="none" 
+    stroke="#666" 
+    stroke-width="1"
+    stroke-dasharray="5,3" marker-start="url(#arrowhead-reverse)" />
+</svg>
                             </div>
                         </div>
 
