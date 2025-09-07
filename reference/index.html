@@ -452,6 +452,7 @@
                     <li><a href="#node">node</a></li>
                     <li><a href="#person">person</a></li>
                     <li><a href="#loadbalancer">loadbalancer</a></li>
+                    <li><a href="#group">group</a></li>
                 </ul>
                 
                 <h3>接続</h3>
@@ -1051,6 +1052,75 @@
                                     <text style="fill: #000000; font-weight: bold; font-size: 12px" x="340" y="180" dy="0.35em" text-anchor="middle" font-family="Arial, sans-serif" font-size="12">Server 2</text>
                                 </svg>
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="element-card" id="group">
+                        <div class="element-title">group <span class="tag">グループ化</span></div>
+                        <div class="element-description">複数の要素をまとめて管理し、相対座標で配置します。要素のグループ化によりレイアウトの構造化が可能です。</div>
+                        
+                        <div class="syntax-pattern">
+                            group at(x, y) { elements... }
+                        </div>
+
+                        <div class="code-block">
+            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+<pre><span class="keyword">screen</span> <span class="string">"Group Demo"</span> size(400, 300) {
+  <span class="comment">// ログインフォームのグループ化</span>
+  <span class="keyword">group</span> at(50, 50) {
+    <span class="keyword">box</span> <span class="string">"Login Form"</span> at(0, 0) size(200, 150)
+    <span class="keyword">text</span> <span class="string">"Username"</span> at(20, 30)
+    <span class="keyword">input</span> <span class="string">"Enter username"</span> at(20, 50) size(160, 30)
+    <span class="keyword">button</span> <span class="string">"Login"</span> at(70, 110) size(80, 25)
+  }
+  
+  <span class="comment">// システム構成のグループ化</span>
+  <span class="keyword">group</span> at(280, 80) {
+    <span class="keyword">database</span> <span class="string">"DB"</span> at(0, 0) size(60, 50)
+    <span class="keyword">node</span> <span class="string">"API"</span> at(80, 0) size(70, 50)
+  }
+}</pre>
+                        </div>
+
+                        <div class="preview-box">
+                            <h4>生成結果:</h4>
+                            <div class="svg-preview">
+                                <svg width="450" height="300" viewBox="0 0 450 300" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="100%" height="100%" fill="white"/>
+                                    <!-- Login Form Group -->
+                                    <g transform="translate(50,50)">
+                                        <rect style="fill: white; stroke: black; stroke-width: 1" x="0" y="0" width="200" height="150"/>
+                                        <text style="text-anchor: middle; dominant-baseline: middle; fill: #000000" x="100" y="75">Login Form</text>
+                                        <text style="fill: #333333; font-size: 14px" x="20" y="45">Username</text>
+                                        <rect style="fill: #f8f9fa; stroke: #dee2e6; stroke-width: 1" x="20" y="50" width="160" height="30"/>
+                                        <text style="fill: #6c757d; font-size: 12px" x="100" y="68" text-anchor="middle">Enter username</text>
+                                        <rect style="fill: #007bff; stroke: #0056b3; stroke-width: 1" x="70" y="110" width="80" height="25" rx="4"/>
+                                        <text style="text-anchor: middle; fill: white; font-weight: 500" x="110" y="126">Login</text>
+                                    </g>
+                                    <!-- System Group -->
+                                    <g transform="translate(280,80)">
+                                        <g style="fill: #E8F4FD; stroke: #4A90E2; stroke-width: 1">
+                                            <rect x="0" y="5" width="60" height="40" fill="#E8F4FD" stroke="#4A90E2"/>
+                                            <ellipse cx="30" cy="5" rx="30" ry="5" fill="#B8E0FF" stroke="#4A90E2"/>
+                                            <ellipse cx="30" cy="45" rx="30" ry="5" fill="#E8F4FD" stroke="#4A90E2"/>
+                                        </g>
+                                        <text style="fill: #333333; font-size: 10px" x="30" y="25" text-anchor="middle">DB</text>
+                                        <rect style="fill: white; stroke: black; stroke-width: 1" x="80" y="0" width="70" height="50" rx="4"/>
+                                        <circle cx="115" cy="7" r="2" fill="green"/>
+                                        <text style="fill: #000000; font-weight: bold; font-size: 10px" x="115" y="30" text-anchor="middle">API</text>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="info-box">
+                            <h5 style="margin-top: 0; color: #28a745;">✨ Group機能の特徴</h5>
+                            <p style="margin-bottom: 0;">
+                                • <strong>相対座標</strong>: グループ内の要素はグループ位置からの相対座標で配置<br>
+                                • <strong>ネスト対応</strong>: グループの中にさらにグループを配置可能<br>
+                                • <strong>透明グループ</strong>: group at(0,0)は座標変換なしで要素をまとめるだけ<br>
+                                • <strong>SVG出力</strong>: &lt;g transform="translate(x,y)"&gt;タグとして出力
+                            </p>
                         </div>
                     </div>
                 </section>
